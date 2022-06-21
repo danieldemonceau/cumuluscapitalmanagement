@@ -8,14 +8,14 @@ FROM (
     JOIN broker b ON b.id = t.broker_id
     WHERE t.type = 'Fund Deposit'
     UNION
-    SELECT mt.id tid, mt.type ttype, mt.description tdescription, mt.execution_timestamp texecution_timestamp, b.name bname, (-1)*mt.amount cash_flow, mt.price_per_asset mt_price_per_asset, mt.nb_of_units mtnb_of_units, p.type ptype
+    SELECT mt.id tid, mt.type ttype, mt.description tdescription, mt.execution_timestamp texecution_timestamp, b.name bname, (-1)*mt.amount cash_flow, mt.price_per_asset mt_price_per_asset, mt.nb_of_units mtnb_of_units, mt.type mttype
     FROM market_transaction mt
     JOIN broker b ON b.id = mt.broker_id
     JOIN position_market_transaction pmt ON pmt.market_transaction_id = mt.id
     JOIN position p ON p.id = pmt.position_id
     WHERE mt.type = 'Buy'
     UNION
-    SELECT mt.id tid, mt.type ttype, mt.description tdescription, mt.execution_timestamp texecution_timestamp, b.name bname, mt.amount cash_flow, mt.price_per_asset mt_price_per_asset, mt.nb_of_units mtnb_of_units, p.type ptype
+    SELECT mt.id tid, mt.type ttype, mt.description tdescription, mt.execution_timestamp texecution_timestamp, b.name bname, mt.amount cash_flow, mt.price_per_asset mt_price_per_asset, mt.nb_of_units mtnb_of_units, mt.type mttype
     FROM market_transaction mt
     JOIN broker b ON b.id = mt.broker_id
     JOIN position_market_transaction pmt ON pmt.market_transaction_id = mt.id
@@ -29,6 +29,3 @@ FROM (
 ) t
 ORDER BY texecution_timestamp DESC
 ;
-
-SELECT *
-FROM transaction_summary;
