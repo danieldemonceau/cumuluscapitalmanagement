@@ -4,7 +4,7 @@ SELECT
     , 'First deposit' "description"
     , '2022-03-14' "execution_timestamp"
     , b.id "broker_id"
-    , 2000::MONEY "amount"
+    , 20000::MONEY "amount"
 FROM broker b
 WHERE 1 = 1
 AND b.name = 'etoro';

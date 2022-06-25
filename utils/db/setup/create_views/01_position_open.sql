@@ -1,22 +1,31 @@
-DROP VIEW position_open;
+DROP VIEW IF EXISTS position_open;
 CREATE OR REPLACE VIEW position_open AS
 
 SELECT 
-p.id id,
-p.status "Position Status", 
-mt.direction "Position Type", 
-s.name "Asset", 
-p.open_timestamp open_timestamp, 
-p.close_timestamp close_timestamp,
-pl.nb_of_units_opened nb_of_units_opened,
-pl.amount_opened amount_opened,
-pl.nb_of_units_closed nb_of_units_closed,
-pl.amount_closed amount_closed,
-pl.nb_of_units_open nb_of_units_open,
-pl.amount_open amount_open,
-EXTRACT(DAY FROM COALESCE(close_timestamp, CURRENT_TIMESTAMP(0)) - open_timestamp) holding_period_days,
-(pl.amount_opened - pl.amount_closed) pl, 
-(pl.amount_opened - pl.amount_closed) / pl.amount_opened * 100. pl_percent
+p.id id
+, p.status "Position Status"
+, mt.direction "Position Type"
+, s.name "Asset"
+, p.open_timestamp open_timestamp
+, p.close_timestamp close_timestamp
+
+, pl.nb_of_units_opened nb_of_units_opened
+, pl.amount_opened amount_opened
+, pl.amount_opened / pl.nb_of_units_opened average_price_opened
+
+, pl.nb_of_units_closed nb_of_units_closed
+, pl.amount_closed amount_closed
+, pl.amount_closed / pl.nb_of_units_closed average_price_closed
+
+, pl.nb_of_units_open nb_of_units_open
+, pl.amount_open amount_open
+, pl.amount_open / pl.nb_of_units_open average_price_open
+
+, EXTRACT(DAY FROM COALESCE(close_timestamp
+, CURRENT_TIMESTAMP(0)) - open_timestamp) holding_period_days
+, (pl.amount_opened - pl.amount_closed) pl
+, (pl.amount_opened - pl.amount_closed) / pl.amount_opened * 100. pl_percent
+, st.name strategy_name
 FROM position p
 JOIN position_market_transaction pmt ON pmt.position_id = p.id
 JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
@@ -103,6 +112,7 @@ JOIN (
         GROUP BY mts.pid
     ) mtt ON (mtt.pid = mtc.pid) OR (mtt.pid = mto.pid)
 ) pl ON pl.pid = p.id
+JOIN strategy st ON st.id = mt.strategy_id
 WHERE p.status = 'Open'
 GROUP BY 
 p.id
@@ -117,4 +127,5 @@ p.id
 , pl.amount_closed
 , pl.nb_of_units_open
 , pl.amount_open
+, st.name
 ;
