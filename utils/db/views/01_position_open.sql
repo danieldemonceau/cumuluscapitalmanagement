@@ -118,6 +118,3 @@ p.id
 , pl.nb_of_units_open
 , pl.amount_open
 ;
-
-SELECT *
-FROM position_open;
