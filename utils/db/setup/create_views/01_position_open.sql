@@ -129,3 +129,6 @@ p.id
 , pl.amount_open
 , st.name
 ;
+
+COMMENT ON VIEW position_open IS
+E'@name position_open\n@omit update,delete\nThis is the documentation.';
