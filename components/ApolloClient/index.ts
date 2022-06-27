@@ -7,6 +7,6 @@ import {
 } from "@apollo/client";
 
 export const apolloClient = new ApolloClient({
-  uri: "/api/graphql",
+  uri: process.env.GRAPHQL_ROUTE,
   cache: new InMemoryCache(),
 });

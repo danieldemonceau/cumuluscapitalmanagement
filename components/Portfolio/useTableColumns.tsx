@@ -28,12 +28,12 @@ export const useTableColumns = () => {
         accessor: "date_open",
       },
       {
-        Header: "Price",
-        accessor: "price",
+        Header: "Avg Unit Price Open",
+        accessor: "unit_price_open_average",
       },
       {
-        Header: "Price today",
-        accessor: "price_today",
+        Header: "Current Unit Price",
+        accessor: "unit_price_current",
       },
       {
         Header: "P/L %",
