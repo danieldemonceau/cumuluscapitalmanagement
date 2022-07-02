@@ -1,17 +1,17 @@
 import postgraphile from "postgraphile";
 import { createServer } from "http";
 
-export default postgraphile(
-  process.env.DB_URL ||
-    "postgres://admin_cumulus:admin_cumulus@localhost:5432/cumulus",
-  "public",
-  {
-    watchPg: true,
-    graphiql: true,
-    enhanceGraphiql: true,
+const dbUrl = process.env.DB_URL;
+const dbSchema = process.env.DB_SCHEMA;
+const graphqlRoute = process.env.GRAPHQL_ROUTE;
+const graphiqlRoute = process.env.GRAPHIQL_ROUTE;
 
-    graphqlRoute: "/api/graphql",
-    graphiqlRoute: "/api/graphiql",
-    retryOnInitFail: true,
-  }
-);
+export default postgraphile(dbUrl, dbSchema, {
+  watchPg: true,
+  graphiql: true,
+  enhanceGraphiql: true,
+
+  graphqlRoute: "/api/graphql",
+  graphiqlRoute: "/api/graphiql",
+  retryOnInitFail: true,
+});
