@@ -186,7 +186,7 @@ FROM (
             , 'NYSE'
         )
         , (
-            'ENIA'
+            'ENIAY'
             , 'Enel Americas SA'
             , ''
             , 'Stock'
