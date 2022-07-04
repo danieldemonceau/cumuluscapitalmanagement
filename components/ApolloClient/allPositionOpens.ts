@@ -23,11 +23,12 @@ export const ALL_POSITION_OPENS = `
     allPositionOpens {
       nodes {
         id
-        positionType
+        type
         asset
         openTimestamp
-        averagePriceOpened
-        priceCurrent
+        priceOpenAverage
+        sharePriceCurrent
+        sharePriceCurrentDate
         plPercent
         strategyName
       }
