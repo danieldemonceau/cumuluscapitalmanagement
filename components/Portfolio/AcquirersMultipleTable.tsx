@@ -11,7 +11,7 @@ import {
   Column,
   useSortBy,
 } from "react-table";
-import { Position } from "../../types/Position.type";
+import { PositionOpen } from "../../types/Position.type";
 import { Quote } from "../../types/Quote.type";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import { Table } from "./Table";
@@ -23,70 +23,16 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from "@apollo/client";
+import { StrategyTableOpen } from "./StrategyTableOpen";
+
+import { useAppSelector, useAppDispatch } from "../../src/state/hooks";
 
 const AcquirersMultipleTable = () => {
-  // const [columns] = useTableColumns();
-
-  // const data: Position[] = useMemo<Position[]>(
-  //   () => [
-  //     {
-  //       id: 1,
-  //       type: "Long",
-  //       asset: "SYF",
-  //       date_open: "2022-03-11",
-  //       unit_price_open_average: 20,
-  //       unit_price_current: 60,
-  //       p_l_percent: -10,
-  //       strategy: "The Acquirer's Multiple",
-  //     },
-  //     {
-  //       id: 2,
-  //       type: "Long",
-  //       asset: "SYF",
-  //       date_open: "2022-03-12",
-  //       unit_price_open_average: 50,
-  //       unit_price_current: 60,
-  //       p_l_percent: 2,
-  //       strategy: "The Acquirer's Multiple",
-  //     },
-  //     {
-  //       id: 3,
-  //       type: "Long",
-  //       asset: "SYF",
-  //       date_open: "2022-03-13",
-  //       unit_price_open_average: 50,
-  //       unit_price_current: 60,
-  //       p_l_percent: 3,
-  //       strategy: "The Acquirer's Multiple",
-  //     },
-  //     {
-  //       id: 4,
-  //       type: "Long",
-  //       asset: "SYF",
-  //       date_open: "2022-03-14",
-  //       unit_price_open_average: 50,
-  //       unit_price_current: 60,
-  //       p_l_percent: 4,
-  //       strategy: "Acquirer's Multiple",
-  //     },
-  //     {
-  //       id: 5,
-  //       type: "Long",
-  //       asset: "SYF",
-  //       date_open: "2022-03-15",
-  //       unit_price_open_average: 50,
-  //       unit_price_current: 60,
-  //       p_l_percent: 5,
-  //       strategy: "The Acquirer's Multiple",
-  //     },
-  //   ],
-  //   []
-  // );
+  const strategyName = "The Acquirer's Multiple";
 
   return (
     <>
-      <h2 className="text-center uppercase">The Acquirer's Multiple</h2>
-      {/* <Table columns={columns} data={data} /> */}
+      <StrategyTableOpen strategyName={strategyName} />
     </>
   );
 };
