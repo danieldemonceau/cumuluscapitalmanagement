@@ -1,21 +1,23 @@
-export interface Position {
+export interface PositionOpen {
   id: number;
   type: string;
   asset: string;
-  date_open: string;
-  unit_price_open_average: number;
-  unit_price_current?: number;
-  p_l_percent: number;
-  strategy: string;
+  openTimestamp: string;
+  priceOpenAverage: number;
+  sharePriceCurrent?: number;
+  sharePriceCurrentDate?: string;
+  plPercent: number;
+  strategyName: string;
   getSortByToggleProps?(): () => {};
 }
-export interface PositionGraphQl {
+export interface PositionClosed {
   id: number;
-  positionType: string;
+  type: string;
   asset: string;
   openTimestamp: string;
-  averagePriceOpened: number;
-  priceCurrent?: number;
+  priceOpenAverage: number;
+  sharePriceCurrent?: number;
+  sharePriceCurrentDate?: string;
   plPercent: number;
   strategyName: string;
   getSortByToggleProps?(): () => {};
