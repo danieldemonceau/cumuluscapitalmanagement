@@ -10,12 +10,23 @@ import axios, { AxiosRequestConfig } from "axios";
 
 import meta, { httpProtocol } from "../data/meta";
 
-import { PositionGraphQl } from "../types/Position.type";
+import { PositionOpen } from "../types/Position.type";
+import { loadPositionOpens } from "../src/state/positionOpenSlice";
+
 import { Quote } from "../types/Quote.type";
 
-const Index: NextPage = (data: any) => {
-  console.log("page");
-  console.log(data);
+import { useAppSelector, useAppDispatch } from "../src/state/hooks";
+
+import { InferGetServerSidePropsType } from "next";
+import formatDataPortfolio from "../src/helpers/formatDataPortfolio";
+
+const Index = ({
+  positionsOpen,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const dispatch = useAppDispatch();
+  dispatch(loadPositionOpens(positionsOpen));
+
+  const positionOpen = useAppSelector((state) => state.positionOpen);
   return (
     <>
       <Home />
@@ -37,7 +48,9 @@ export const getServerSideProps = async () => {
     data: { query: ALL_POSITION_OPENS },
   });
 
-  const positionsOpen = response.data.data;
+  const positionsOpen: PositionOpen[] = formatDataPortfolio(
+    response.data.data.allPositionOpens.nodes
+  );
 
-  return { props: { data: positionsOpen } };
+  return { props: { positionsOpen } };
 };
