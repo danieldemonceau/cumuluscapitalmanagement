@@ -9,38 +9,120 @@ import {
   useTable,
   Column,
   useSortBy,
+  defaultGroupByFn,
 } from "react-table";
-import { Position } from "../../types/Position.type";
+import { PositionOpen } from "../../types/Position.type";
 
-export const useTableColumns = () => {
-  const columns: Column<Position>[] = useMemo<Column<Position>[]>(
-    () => [
-      {
-        Header: "Type",
-        accessor: "type",
-      },
-      {
-        Header: "Asset",
-        accessor: "asset",
-      },
-      {
-        Header: "Date open",
-        accessor: "date_open",
-      },
-      {
-        Header: "Avg Unit Price Open",
-        accessor: "unit_price_open_average",
-      },
-      {
-        Header: "Current Unit Price",
-        accessor: "unit_price_current",
-      },
-      {
-        Header: "P/L %",
-        accessor: "p_l_percent",
-      },
-    ],
-    []
-  );
-  return [columns];
+export const useTableColumns = (positionStatus: string) => {
+  let columns: Column<PositionOpen>[];
+  switch (positionStatus) {
+    case "opened":
+      columns = [
+        {
+          Header: "Type",
+          accessor: "type",
+        },
+        {
+          Header: "Asset",
+          accessor: "asset",
+        },
+        {
+          Header: "Date open",
+          accessor: "openTimestamp",
+        },
+        {
+          Header: "Avg Unit Price Open",
+          accessor: "priceOpenAverage",
+        },
+        {
+          Header: "Current Unit Price",
+          accessor: "sharePriceCurrent",
+        },
+        {
+          Header: "Current Unit Price Date",
+          accessor: "sharePriceCurrentDate",
+        },
+        {
+          Header: "P/L %",
+          accessor: "plPercent",
+          sortType: sort,
+        },
+      ];
+      break;
+    case "closed":
+      columns = [
+        {
+          Header: "Type",
+          accessor: "type",
+        },
+        {
+          Header: "Asset",
+          accessor: "asset",
+        },
+        {
+          Header: "Date open",
+          accessor: "openTimestamp",
+        },
+        {
+          Header: "Avg Unit Price Open",
+          accessor: "priceOpenAverage",
+        },
+        {
+          Header: "Current Unit Price",
+          accessor: "sharePriceCurrent",
+        },
+        {
+          Header: "Current Unit Price Date",
+          accessor: "sharePriceCurrentDate",
+        },
+        {
+          Header: "P/L %",
+          accessor: "plPercent",
+          sortType: sort,
+        },
+      ];
+      break;
+    default:
+      columns = [
+        {
+          Header: "Type",
+          accessor: "type",
+        },
+        {
+          Header: "Asset",
+          accessor: "asset",
+        },
+        {
+          Header: "Date open",
+          accessor: "openTimestamp",
+        },
+        {
+          Header: "Avg Unit Price Open",
+          accessor: "priceOpenAverage",
+        },
+        {
+          Header: "Current Unit Price",
+          accessor: "sharePriceCurrent",
+        },
+        {
+          Header: "Current Unit Price Date",
+          accessor: "sharePriceCurrentDate",
+        },
+        {
+          Header: "P/L %",
+          accessor: "plPercent",
+          sortType: sort,
+        },
+      ];
+      break;
+  }
+  return [useMemo<Column<PositionOpen>[]>(() => columns, [columns])];
+};
+
+const sort = (rowA: any, rowB: any, id: string) => {
+  const a = rowA.values[id];
+  const b = rowB.values[id];
+  if (a > b) return 1;
+  if (a < b) return -1;
+  return 0;
 };
