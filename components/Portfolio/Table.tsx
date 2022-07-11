@@ -1,5 +1,3 @@
-import { useTableColumns } from "./useTableColumns";
-import { useState, useMemo } from "react";
 import {
   CellProps,
   FilterProps,
@@ -11,20 +9,28 @@ import {
   Column,
   useSortBy,
 } from "react-table";
-import { Position } from "../../types/Position.type";
+import { PositionOpen } from "../../types/Position.type";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 
 export const Table = ({
   columns,
   data,
 }: {
-  columns: Column<Position>[];
-  data: Position[];
+  columns: Column<PositionOpen>[];
+  data: PositionOpen[];
 }) => {
-  const tableInstance = useTable<Position>(
+  const tableInstance = useTable<PositionOpen>(
     {
       columns,
       data,
+      initialState: {
+        sortBy: [
+          {
+            id: "plPercent",
+            desc: true,
+          },
+        ],
+      },
     },
     useSortBy
   );
@@ -82,14 +88,18 @@ export const Table = ({
                 let color = "";
                 let valuePrefix = "";
                 let valueSuffix = "";
-                if (cell.column.Header === "P/L %") {
+                if (String(cell.column.Header).includes("%")) {
                   valueSuffix = "%";
                   if (cell.value > 0) color = "text-green-400";
                   if (cell.value < 0) color = "text-red-400";
                 }
                 if (
-                  cell.column.Header === "Price" ||
-                  cell.column.Header === "Price today"
+                  String(cell.column.Header)
+                    .toLocaleLowerCase()
+                    .includes("price") &&
+                  !String(cell.column.Header)
+                    .toLocaleLowerCase()
+                    .includes("date")
                 ) {
                   valuePrefix = "$";
                 }
