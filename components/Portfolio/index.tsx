@@ -10,7 +10,7 @@ import {
   Column,
   useSortBy,
 } from "react-table";
-import { Position } from "../../types/Position.type";
+import { PositionOpen } from "../../types/Position.type";
 import { MagicFormulaTable } from "./MagicFormulaTable";
 import AcquirersMultipleTable from "./AcquirersMultipleTable";
 
