@@ -40,7 +40,6 @@ def quote_refresh(source_name):
         FROM (
             SELECT po."Asset" name
             FROM position_open po
-            LIMIT 1
         ) s;
     """
     cur.execute(query)
@@ -63,10 +62,11 @@ def quote_refresh(source_name):
                     break
             except:
                 print("--- Failed to decode JSON")
-                print("--- This is the returned result")
-                print(response)
+                # print("--- This is the returned result")
+                # print(response)
                 print("--- Trying again")
                 time.sleep(5)
+                continue
         quotes_list = quotes[f"Time Series ({symbol_time_interval_label})"]
         quotes_list_items = quotes_list.items()
         time_interval = "1day"
@@ -139,10 +139,10 @@ def quote_refresh(source_name):
                     AND (q.time_interval_id = ti.id)
                     AND (q.timestamp = '{quote_datetime_utc}')
                     AND (q.source_id = so.id)
-                    AND (q.close = {quote['4. close']})
+                    AND (q.close = {quote['4. close']}::MONEY)
                 )
             """
-            print(quote_query_insert)
+            # print(quote_query_insert)
             cur.execute(quote_query_insert)
         conn.commit()
         time.sleep(time_sleep)
