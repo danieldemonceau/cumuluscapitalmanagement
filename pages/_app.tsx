@@ -8,16 +8,21 @@ import Meta from "../components/Meta";
 import { ApolloProvider } from "@apollo/client";
 import { apolloClient } from "../components/ApolloClient";
 
+import { Provider } from "react-redux";
+import { store } from "../src/state/store";
+
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <NextSeo {...SEO} />
-      <Meta />
-      <ApolloProvider client={apolloClient}>
-        <Layout title={pageProps.title} className="h-full">
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
+      <Provider store={store}>
+        <NextSeo {...SEO} />
+        <Meta />
+        <ApolloProvider client={apolloClient}>
+          <Layout title={pageProps.title} className="h-full">
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloProvider>
+      </Provider>
     </>
   );
 };
