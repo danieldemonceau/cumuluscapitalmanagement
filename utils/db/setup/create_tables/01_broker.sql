@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS broker (
 DROP TABLE IF EXISTS broker_history CASCADE;
 CREATE TABLE broker_history (LIKE broker);
 
-CREATE INDEX IF NOT EXISTS idx_market_transaction_name ON broker(name);
-CREATE INDEX IF NOT EXISTS idx_market_transaction_description ON broker(description);
-CREATE INDEX IF NOT EXISTS idx_market_transaction_sys_period ON broker(sys_period);
+CREATE INDEX IF NOT EXISTS idx_broker_name ON broker(name);
+CREATE INDEX IF NOT EXISTS idx_broker_description ON broker(description);
+CREATE INDEX IF NOT EXISTS idx_broker_sys_period ON broker(sys_period);
