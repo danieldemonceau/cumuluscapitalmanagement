@@ -1,28 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { Position } from "../../../types/Position.type";
+import { PositionOpen } from "../../../types/Position.type";
+import formatDataPortfolio from "../../../src/helpers/formatDataPortfolio";
 
 // Define the initial state using that type
-const initialState: Position[] = [
-  {
-    id: NaN,
-    type: "",
-    asset: "",
-    openTimestamp: "",
-    averagePriceOpened: NaN,
-    priceCurrent: NaN,
-    plPercent: NaN,
-    strategyName: "",
-  },
-];
+const initialState: PositionOpen[] = [];
 
 export const positionOpenSlice = createSlice({
   name: "positionOpen",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    loadPositionOpens: (state, action: PayloadAction<Position[]>) => {
+    loadPositionOpens: (state, action: PayloadAction<PositionOpen[]>) => {
       return action.payload;
     },
   },
