@@ -3,7 +3,12 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Navbar from "../Navbar";
 import Header from "./Header";
+import CumulusCapitalManagementDescription from "./CumulusCapitalManagementDescription";
+import FeaturedStrategies from "./FeaturedStrategies";
 import Description from "./Description";
+import MagicFormulaDescription from "./MagicFormulaDescription";
+import AcquirersMultiple from "./AcquirersMultiple";
+import DollarCostAveraging from "./DollarCostAveraging";
 import Portfolio from "../Portfolio";
 import Footer from "../Footer";
 
@@ -13,10 +18,14 @@ const Index: NextPage = () => {
       <Navbar />
       {/* <div className="flex flex-col"> */}
       <Header />
+      <FeaturedStrategies />
+      <CumulusCapitalManagementDescription />
       <Description />
+      <MagicFormulaDescription />
+      <AcquirersMultiple />
+      <DollarCostAveraging />
       <Portfolio />
       <Footer />
-      {/* </div> */}
     </>
   );
 };
