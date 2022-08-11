@@ -31,7 +31,7 @@ const Portfolio = () => {
   // console.log(data);
   return (
     <>
-      <section className="m-5 p-2">
+      <section id="portfolio" className="m-5 p-2">
         <h1 className="text-center uppercase">Portfolios</h1>
         {/* {data.allExchanges.nodes.map(({ id, name }: any) => (
           <div key={id}>
