@@ -18,10 +18,10 @@ export const useTableColumns = (positionStatus: string) => {
   switch (positionStatus) {
     case "opened":
       columns = [
-        {
-          Header: "Type",
-          accessor: "type",
-        },
+        // {
+        //   Header: "Type",
+        //   accessor: "type",
+        // },
         {
           Header: "Asset",
           accessor: "asset",
@@ -51,10 +51,10 @@ export const useTableColumns = (positionStatus: string) => {
       break;
     case "closed":
       columns = [
-        {
-          Header: "Type",
-          accessor: "type",
-        },
+        // {
+        //   Header: "Type",
+        //   accessor: "type",
+        // },
         {
           Header: "Asset",
           accessor: "asset",
@@ -84,10 +84,10 @@ export const useTableColumns = (positionStatus: string) => {
       break;
     default:
       columns = [
-        {
-          Header: "Type",
-          accessor: "type",
-        },
+        // {
+        //   Header: "Type",
+        //   accessor: "type",
+        // },
         {
           Header: "Asset",
           accessor: "asset",
