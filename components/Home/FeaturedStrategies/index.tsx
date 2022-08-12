@@ -5,7 +5,7 @@ const FeatureStrategies = () => {
   return (
     <section className="flex flex-col">
       <div className="bg-slate-100 basis-1/3 text-gray-700 text-xl pt-6 pb-3 text-center uppercase">
-        Capital Management based on 3 Proven Strategies
+        Our Three Strategies
       </div>
       <div className="flex flex-row">
         <div className="group pt-10 pb-14 bg-slate-100 basis-1/3 text-gray-700 text-3xl text-center">
