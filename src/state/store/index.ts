@@ -4,7 +4,7 @@ import positionOpen from "../positionOpenSlice";
 
 export const store = configureStore({
   reducer: {
-    positionOpen: positionOpen,
+    positionOpen,
   },
 });
 
