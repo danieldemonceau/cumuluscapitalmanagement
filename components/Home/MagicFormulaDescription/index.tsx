@@ -6,7 +6,7 @@ const index = () => {
   return (
     <>
       <section className="p-10 m-4 flex flex-row">
-        <div className="m-4 bg-slate-400 basis-2/6 align-middle justify-center">
+        <div className="m-4 basis-2/6 align-middle justify-center">
           <Image
             src={moneySeedImage}
             className="h-4/5 object-cover object-top"
