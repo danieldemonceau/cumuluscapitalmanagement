@@ -17,6 +17,7 @@ const Description = () => {
                 <a
                   href="https://www.magicformulainvesting.com/"
                   className="text-blue-700 hover:text-blue-300"
+                  target={`_self`}
                 >
                   The Magic Formula
                 </a>
@@ -25,6 +26,7 @@ const Description = () => {
                 <a
                   href="https://www.magicformulainvesting.com/"
                   className="text-blue-700 hover:text-blue-300"
+                  target={`_self`}
                 >
                   The Acquirer's Multiple
                 </a>
@@ -33,6 +35,7 @@ const Description = () => {
                 <a
                   href="https://www.magicformulainvesting.com/"
                   className="text-blue-700 hover:text-blue-300"
+                  target={`_self`}
                 >
                   Dollar Cost Averaging
                 </a>
