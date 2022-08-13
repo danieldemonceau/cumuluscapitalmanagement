@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { NextSeo } from "next-seo";
 import meta from "../data/meta";
 import { useEffect, useState } from "react";
+import ContactUs from "./ContactUs";
 
 const Layout = ({ children, title }: any) => {
   return (
@@ -11,9 +12,10 @@ const Layout = ({ children, title }: any) => {
       {/* <Head></Head> */}
       {/* SEO config */}
       {/* <NextSeo title="Home" description={`Homepage of ${meta.domainName}`} /> */}
-      <div className="from-white to-white bg-gradient-to-br">
-        <main>{children}</main>
-      </div>
+      <Navbar />
+      <main>{children}</main>
+      <ContactUs />
+      <Footer />
     </>
   );
 };
