@@ -11,6 +11,7 @@ const Ribbon = () => {
           <a
             href={`https://${domainName}`}
             className="flex flex-col h-full align-middle justify-center"
+            target={`_self`}
           >
             ©2022, All Rights Reserved, Fluffy Clouds Avenue Pty Ltd
           </a>
@@ -19,24 +20,28 @@ const Ribbon = () => {
           <a
             href={`https://${domainName}`}
             className="justify-between basis-2/12"
+            target={`_self`}
           >
             Disclaimer
           </a>
           <a
             href={`https://${domainName}`}
             className="justify-between basis-2/12"
+            target={`_self`}
           >
             Terms
           </a>
           <a
             href={`https://${domainName}`}
             className="justify-between basis-2/12"
+            target={`_self`}
           >
             Privacy
           </a>
           <a
             href={`https://${domainName}`}
             className="justify-between basis-6/12"
+            target={`_self`}
           >
             Site Credit
           </a>
