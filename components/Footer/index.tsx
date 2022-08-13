@@ -1,16 +1,64 @@
-import meta from "../../data/meta";
+import paperBarkTree from "./paperBarkTree.jpg";
+import AustraliaMap from "./AustraliaMap.png";
+import Image from "next/image";
+import Ribbon from "./Ribbon";
 
 const Footer = () => {
-  const domainName = meta.domainName;
   return (
     <>
       <footer className="">
-        <div className="text-white text-lg bg-slate-900 pt-8">
-          <div className="text-center xl:mx-96 lg:mx-36 md:mx-14 lg:text-base md:text-sm sm:text-sm">
-            Cumulus Capital Management acknowledges the traditional owners of
-            the land on which we stand, the Wurundjeri Woi Wurrung people, and
-            pays respect to their Elders, past and present. Aboriginal and
-            Torres Strait Islander people
+        <div className="text-white text-lg bg-slate-900">
+          <div className="flex flex-row w-full">
+            {/* Filler */}
+            <div className="basis-1/5 p-10"></div>
+            <div className="basis-1/5 p-10">
+              <Image
+                src={paperBarkTree}
+                alt={`Image of Paper Bark Tree`}
+                layout={`responsive`}
+              ></Image>
+              <p className="text-sm">
+                Photo by{" "}
+                <a href="https://unsplash.com/@davidclode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+                  David Clode
+                </a>{" "}
+                on{" "}
+                <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+                  Unsplash
+                </a>
+              </p>
+            </div>
+            <div className="basis-2/5">
+              <div className="text-center h-full align-middle justify-center flex flex-col">
+                <div className="basis-1/3"></div>
+                <div className="basis-1/3">
+                  <p>
+                    Cumulus Capital Management acknowledges the traditional
+                    owners of the land on which we stand, the{" "}
+                    <a
+                      href="https://www.wurundjeri.com.au/"
+                      target={"_blank"}
+                      rel="noreferrer"
+                    >
+                      Wurundjeri Woi Wurrung people
+                    </a>
+                    , and pays respect to their Elders, past and present.
+                    Aboriginal and Torres Strait Islander people
+                  </p>
+                </div>
+                <div className="basis-1/3 flex flex-row">
+                  <div className="w-full text-center align-middle justify-center">
+                    <Image
+                      src={AustraliaMap}
+                      alt={`Map of Australia`}
+                      layout={`intrinsic`}
+                      width={75}
+                      height={75}
+                    ></Image>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           {/* Credits */}
           <div className="text-sm">
@@ -27,34 +75,7 @@ const Footer = () => {
               Icons8
             </a>
           </div>
-          <div className="flex flex-row p-10 justify-between text-xs h-5 bottom-0 ">
-            {/* All Rights Reserved */}
-            <div className="mr-auto text-left">
-              <a href={`https://${domainName}`} className="">
-                ©2022, All Rights Reserved, Fluffy Clouds Avenue Pty Ltd
-              </a>
-            </div>
-            <div className="flex flex-row justify-center space-x-2 text-right w-auto">
-              <a
-                href={`https://${domainName}`}
-                className="justify-between basis-2/12"
-              >
-                Terms
-              </a>
-              <a
-                href={`https://${domainName}`}
-                className="justify-between basis-2/12"
-              >
-                Privacy
-              </a>
-              <a
-                href={`https://${domainName}`}
-                className="justify-between basis-6/12"
-              >
-                Site Credit
-              </a>
-            </div>
-          </div>
+          <Ribbon />
         </div>
       </footer>
     </>
