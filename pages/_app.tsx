@@ -11,6 +11,10 @@ import { apolloClient } from "../components/ApolloClient";
 import { Provider } from "react-redux";
 import { store } from "../src/state/store";
 
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
+
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
