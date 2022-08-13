@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import Navbar from "../Navbar";
 import Hero from "./Hero";
 import CumulusCapitalManagementDescription from "./CumulusCapitalManagementDescription";
-import FeaturedStrategies from "./FeaturedStrategies";
+import RibbonStrategies from "./RibbonStrategies";
 import Description from "./Description";
 import MagicFormulaDescription from "./MagicFormulaDescription";
 import AcquirersMultiple from "./AcquirersMultiple";
@@ -12,14 +12,16 @@ import DollarCostAveraging from "./DollarCostAveraging";
 import Portfolio from "../Portfolio";
 import ContactUs from "../ContactUs";
 import Footer from "../Footer";
+import NoFinancialAdviceDisclaimer from "./NoFinancialAdviceDisclaimer";
 
 const Index: NextPage = () => {
   return (
     <>
       <Navbar />
       {/* <div className="flex flex-col"> */}
+      <NoFinancialAdviceDisclaimer />
       <Hero />
-      <FeaturedStrategies />
+      <RibbonStrategies />
       {/* <CumulusCapitalManagementDescription />
       <Description /> */}
       <MagicFormulaDescription />
