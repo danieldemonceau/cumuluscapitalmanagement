@@ -13,3 +13,18 @@ body {
 * {
   box-sizing: border-box;
 }
+
+a[target] {
+  @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600;
+}
+
+.nav-menu-inactive {
+  visibility: hidden;
+  height: 0px;
+  transition: ease height 0.3s;
+}
+.nav-menu-active {
+  visibility: visible;
+  height: 104px;
+  transition: ease height 0.3s;
+}
