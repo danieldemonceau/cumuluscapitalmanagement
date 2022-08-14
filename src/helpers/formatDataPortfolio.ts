@@ -1,5 +1,5 @@
 import formatDate from "./formatDate";
-import { PositionOpen } from "../../types/Position.type";
+import { PositionOpen } from "../types/Position.type";
 
 const formatDataPortfolio = (data: PositionOpen[]): PositionOpen[] => {
   const dataFormatted = data
