@@ -11,8 +11,8 @@ import {
   Column,
   useSortBy,
 } from "react-table";
-import { PositionOpen } from "../../types/Position.type";
-import { Quote } from "../../types/Quote.type";
+import { PositionOpen } from "../../src/types/Position.type";
+import { Quote } from "../../src/types/Quote.type";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import { Table } from "./Table";
 

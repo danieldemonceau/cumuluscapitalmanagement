@@ -6,15 +6,6 @@ const index = () => {
   return (
     <>
       <section className="p-10 m-4 flex flex-row">
-        <div className="m-4 basis-2/6 align-middle justify-center">
-          <Image
-            src={moneySeedImage}
-            className="h-4/5 object-cover object-top"
-            alt="Hero Image"
-            layout="responsive"
-            height={`500px`}
-          ></Image>
-        </div>
         <div className="">
           <h1>The Magic Formula</h1>
           <p>
@@ -41,6 +32,15 @@ const index = () => {
             </li>
             <li>Continue the process for many years</li>
           </ol>
+        </div>
+        <div className="m-4 basis-2/6 align-middle justify-center">
+          <Image
+            src={moneySeedImage}
+            className="h-4/5 object-cover object-top"
+            alt="Hero Image"
+            layout="responsive"
+            height={`500px`}
+          ></Image>
         </div>
       </section>
     </>

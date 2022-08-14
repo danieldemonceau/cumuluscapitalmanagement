@@ -1,5 +1,5 @@
 import Head from "next/head";
-import meta from "../../data/meta";
+import meta from "../../src/data/meta";
 
 const Meta = ({ keywords, author }: any) => {
   return (

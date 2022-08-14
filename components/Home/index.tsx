@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Hero from "./Hero";
+import HeroHeader from "./HeroHeader";
 import CumulusCapitalManagementDescription from "./CumulusCapitalManagementDescription";
 import RibbonStrategies from "./RibbonStrategies";
 import Description from "./Description";
@@ -16,7 +16,7 @@ const Index: NextPage = () => {
     <>
       {/* <div className="flex flex-col"> */}
       <NoFinancialAdviceDisclaimer />
-      <Hero />
+      <HeroHeader />
       <RibbonStrategies />
       {/* <CumulusCapitalManagementDescription />
       <Description /> */}

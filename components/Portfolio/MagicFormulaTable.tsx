@@ -11,7 +11,7 @@ import {
   Column,
   useSortBy,
 } from "react-table";
-import { PositionOpen } from "../../types/Position.type";
+import { PositionOpen } from "../../src/types/Position.type";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import { Table } from "./Table";
 import { StrategyTableOpen } from "./StrategyTableOpen";

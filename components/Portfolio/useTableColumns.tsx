@@ -11,7 +11,7 @@ import {
   useSortBy,
   defaultGroupByFn,
 } from "react-table";
-import { PositionOpen } from "../../types/Position.type";
+import { PositionOpen } from "../../src/types/Position.type";
 
 export const useTableColumns = (positionStatus: string) => {
   let columns: Column<PositionOpen>[];
