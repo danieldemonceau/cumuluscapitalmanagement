@@ -11,6 +11,11 @@ module.exports = {
         imbue: ["Imbue", "serif"],
         frenchCanon: ["IM Fell French Canon SC", "serif"],
         lato: ["Lato", "sans-serif"],
+        openSans: ["Open Sans", "sans-serif"],
+        droidSerif: ["Droid Serif"],
+      },
+      transitionProperty: {
+        height: "height",
       },
     },
   },
