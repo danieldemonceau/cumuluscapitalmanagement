@@ -1,18 +1,16 @@
-import Head from "next/head";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import { NextSeo } from "next-seo";
-import meta from "../../src/data/meta";
-import { useEffect, useState } from "react";
 import ContactUs from "./ContactUs";
+import NoFinancialAdviceDisclaimer from "./NoFinancialAdviceDisclaimer";
 
-const Layout = ({ children, title }: any) => {
+const Layout = ({ children }: any) => {
   return (
     <>
       {/* <Head></Head> */}
       {/* SEO config */}
       {/* <NextSeo title="Home" description={`Homepage of ${meta.domainName}`} /> */}
       <Navbar />
+      <NoFinancialAdviceDisclaimer />
       <main>{children}</main>
       <ContactUs />
       <Footer />

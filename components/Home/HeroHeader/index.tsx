@@ -14,7 +14,7 @@ const Hero = () => {
             layout="responsive"
             height={`2100px`}
           />
-          <div className="absolute h-full w-full top-0 ">
+          <div className="absolute h-full w-full top-0">
             <div className="flex flex-row h-full relative">
               {/* Left Side of Hero - Transparent Curtain */}
               <div className="basis-1/2 relative">
