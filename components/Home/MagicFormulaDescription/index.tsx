@@ -1,5 +1,5 @@
 import React from "react";
-import moneySeedImage from "../Description/money-seed.jpg";
+import moneySeedImage from "@/components/Home/Description/money-seed.jpg";
 import Image from "next/image";
 
 const index = () => {

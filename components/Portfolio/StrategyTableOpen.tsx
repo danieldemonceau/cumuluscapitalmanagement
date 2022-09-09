@@ -1,43 +1,19 @@
 import { useTableColumns } from "./useTableColumns";
 import { Table } from "./Table";
-import { useState, useMemo, useEffect } from "react";
-import {
-  CellProps,
-  FilterProps,
-  FilterValue,
-  IdType,
-  Row,
-  TableInstance,
-  useTable,
-  Column,
-  useSortBy,
-} from "react-table";
-import { PositionOpen } from "../../src/types/Position.type";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
+import { useMemo } from "react";
+import { PositionOpen } from "@/src/types/Position.type";
 
-import { useAppSelector, useAppDispatch } from "../../src/state/hooks";
-
-export const StrategyTableOpen = ({
-  strategyName,
-}: {
-  strategyName: string;
-}) => {
-  const positionOpen: PositionOpen[] = useAppSelector(
-    (state) => state.positionOpen
-  );
-  const positionOpenMagicFormula: PositionOpen[] = positionOpen.filter(
-    (p) => p.strategyName === strategyName
-  );
+export const StrategyTableOpen = ({ positionOpen }: { positionOpen: any }) => {
   const [columns] = useTableColumns("open");
 
   const data: PositionOpen[] = useMemo<PositionOpen[]>(
-    () => positionOpenMagicFormula,
-    [positionOpenMagicFormula]
+    () => positionOpen,
+    [positionOpen]
   );
 
   return (
     <>
-      <h2 className="text-center uppercase">{strategyName}</h2>
+      <h2 className="text-center uppercase">Magic Formula</h2>
       <Table columns={columns} data={data} />
     </>
   );

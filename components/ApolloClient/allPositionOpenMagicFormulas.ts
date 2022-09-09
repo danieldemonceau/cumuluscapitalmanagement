@@ -1,8 +1,8 @@
 import "@apollo/client";
 
-export const ALL_POSITION_OPENS = `
-  query GetAllPositionOpens {
-    allPositionOpens {
+export const POSITION_OPEN_MAGIC_FORMULAS = `
+  query GetAllPositionOpenMagicFormulas {
+    allPositionOpenMagicFormulas {
       nodes {
         id
         type
@@ -17,3 +17,5 @@ export const ALL_POSITION_OPENS = `
     }
   }
 `;
+
+// strategy_name = "Magic Formula";

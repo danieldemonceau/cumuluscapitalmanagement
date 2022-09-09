@@ -1,15 +1,5 @@
-import {
-  CellProps,
-  FilterProps,
-  FilterValue,
-  IdType,
-  Row,
-  TableInstance,
-  useTable,
-  Column,
-  useSortBy,
-} from "react-table";
-import { PositionOpen } from "../../src/types/Position.type";
+import { useTable, Column, useSortBy } from "react-table";
+import { PositionOpen } from "@/src/types/Position.type";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 
 export const Table = ({
@@ -42,7 +32,7 @@ export const Table = ({
       className="table-auto mx-auto justify-center w-4/6"
     >
       <thead>
-        {headerGroups.map((headerGroup, index) => {
+        {headerGroups.map((headerGroup) => {
           const { key, ...restHeaderGroupProps } =
             headerGroup.getHeaderGroupProps();
           return (

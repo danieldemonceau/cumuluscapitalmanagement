@@ -1,17 +1,6 @@
-import { useState, useMemo } from "react";
-import {
-  CellProps,
-  FilterProps,
-  FilterValue,
-  IdType,
-  Row,
-  TableInstance,
-  useTable,
-  Column,
-  useSortBy,
-  defaultGroupByFn,
-} from "react-table";
-import { PositionOpen } from "../../src/types/Position.type";
+import { useMemo } from "react";
+import { Column } from "react-table";
+import { PositionOpen } from "@/src/types/Position.type";
 
 export const useTableColumns = (positionStatus: string) => {
   let columns: Column<PositionOpen>[];

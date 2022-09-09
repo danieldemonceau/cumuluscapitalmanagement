@@ -1,11 +1,21 @@
 import Link from "next/link";
-import YoutubeEmbed from "../../common/YoutubeEmbed";
+import { useMemo } from "react";
+import { PositionOpen } from "@/src/types/Position.type";
+import YoutubeEmbed from "@/components/common/YoutubeEmbed";
+import { Table } from "@/components/Portfolio/Table";
+import { useTableColumns } from "@/components/Portfolio/useTableColumns";
 
-const MagicFormula = () => {
+const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
+  const [columns] = useTableColumns("open");
+
+  const data: PositionOpen[] = useMemo<PositionOpen[]>(
+    () => positionOpen,
+    [positionOpen]
+  );
+
   return (
     <>
       <div className="font-openSans">
-        {/* Banner with Title */}
         <div className="flex flex-row bg-blue-100">
           <div className="basis-1/12"></div>
           <div className="basis-10/12 flex flex-col w-full py-10 align-middle text-left text-black space-y-3">
@@ -184,7 +194,10 @@ const MagicFormula = () => {
                 company - Order by lowest
               </p>
             </div>
-            <h1 id="currentporfolio">Current Portfolio</h1>
+            <div>
+              <h1 id="currentporfolio">Current Portfolio</h1>
+              <Table columns={columns} data={data} />
+            </div>
             <h1 id="closedpositions">Closed Positions</h1>
           </div>
           <div className="basis-1/12"></div>
