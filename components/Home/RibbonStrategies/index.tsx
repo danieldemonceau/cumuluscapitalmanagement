@@ -1,5 +1,4 @@
 import React from "react";
-import HorizontalBar from "../../Layout/Navbar/HorizontalBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {} from "@fortawesome/free-regular-svg-icons";
 

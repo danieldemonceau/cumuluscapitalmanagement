@@ -1,5 +1,5 @@
 import React from "react";
-import meta from "../../../../src/data/meta";
+import meta from "@/src/data/meta";
 const domainName = meta.domainName;
 
 const Ribbon = () => {

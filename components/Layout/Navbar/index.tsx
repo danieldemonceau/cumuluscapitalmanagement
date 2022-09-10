@@ -1,5 +1,4 @@
 import Link from "next/link";
-import HorizontalBar from "./HorizontalBar";
 import Image from "next/image";
 import CloudImage from "./clouds.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,7 +24,6 @@ const Navbar = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", scrollFunction);
-    console.log("window.scrollY", window.scrollY);
   });
 
   return (
