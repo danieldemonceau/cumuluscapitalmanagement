@@ -1,29 +1,8 @@
-import { useTableColumns } from "./useTableColumns";
-import { useState, useMemo, useEffect } from "react";
-import {
-  CellProps,
-  FilterProps,
-  FilterValue,
-  IdType,
-  Row,
-  TableInstance,
-  useTable,
-  Column,
-  useSortBy,
-} from "react-table";
-import { PositionOpen } from "../../src/types/Position.type";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
-import { Table } from "./Table";
-import { StrategyTableOpen } from "./StrategyTableOpen";
-
-import { useAppSelector, useAppDispatch } from "../../src/state/hooks";
+// import { useState } from "react";
+// import { StrategyTableOpen } from "./StrategyTableOpen";
 
 export const MagicFormulaTable = () => {
-  const [strategyName, setStrategyName] = useState("Magic Formula");
+  // const [strategyName] = useState("Magic Formula");
 
-  return (
-    <>
-      <StrategyTableOpen strategyName={strategyName} />
-    </>
-  );
+  return <>{/* <StrategyTableOpen strategyName={strategyName} /> */}</>;
 };
