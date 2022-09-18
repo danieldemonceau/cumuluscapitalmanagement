@@ -28,11 +28,11 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
             <div className="flex flex-row space-x-3">
               <Link href="#whatisit">What Is It?</Link>
               <div>|</div>
-              <Link href="#theformula">The Formula</Link>
-              <div>|</div>
               <Link href="#inpractice">In Practice</Link>
               <div>|</div>
-              <Link href="#gethigherreturns">Get higher returns</Link>
+              <Link href="#wanthigherreturns">Get higher returns</Link>
+              <div>|</div>
+              <Link href="#magicFormulaExplanation">The Formula</Link>
               <div>|</div>
               <Link href="#currentporfolio">Current Portfolio</Link>
               <div>|</div>
@@ -44,9 +44,9 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
         <div className="flex flex-row my-5">
           <div className="basis-1/12"></div>
           <div className="flex flex-col basis-10/12">
-            <div className="flex mt-16 mb-16">
+            <div id="whatisit" className="flex mt-16 mb-16 scroll-mt-10">
               <div className="basis-6/12 align-middle justify-center my-auto text-center">
-                <h1 id="whatisit">What Is It?</h1>
+                <h1>What Is It?</h1>
               </div>
               <div className="basis-5/12">
                 <p>
@@ -63,12 +63,12 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
                 </p>
               </div>
             </div>
-            <div className="mx-auto justify-center align-middle mt-14">
+            <div className="mx-auto justify-center align-middle mt-14 scroll-mt-10">
               <YoutubeEmbed embedId="fzig7KJFuNU" />
             </div>
-            <div className="flex mt-14 mb-14">
+            <div id="inpractice" className="flex mt-14 mb-14 scroll-mt-10">
               <div className="basis-5/12 text-center mt-32">
-                <h1 id="theformula">In Practice</h1>
+                <h1>In Practice</h1>
               </div>
               <div className="basis-6/12">
                 <ol className="list-decimal">
@@ -115,7 +115,7 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
                   </li>
                   <li>
                     Optional: For higher return, please see{" "}
-                    <Link href="#gethigherreturns">here</Link>
+                    <Link href="#wanthigherreturns">here</Link>
                   </li>
                   <li>
                     Pick the top 5 to 7 of these top companies, and invest 25%
@@ -139,7 +139,7 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
                 </ol>
               </div>
             </div>
-            <div className="align-middle justify-center mx-auto mt-16 mb-16">
+            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
               <Image
                 src={MagicFormulaImage11}
                 alt={`Art Images Banner`}
@@ -147,9 +147,9 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
                 height={464}
               ></Image>
             </div>
-            <div className="flex mb-16">
+            <div id="wanthigherreturns" className="flex mb-16 scroll-mt-10">
               <div className="basis-5/12">
-                <h1 id="gethigherreturns">Want higher returns?</h1>
+                <h1>Want higher returns?</h1>
               </div>
               <div className="basis-6/12">
                 <p>
@@ -205,8 +205,7 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
                 </div>
               </div>
             </div>
-
-            <div className="align-middle justify-center mx-auto mt-16 mb-16">
+            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
               <Image
                 src={MagicFormulaImage2}
                 alt={`Art Images Banner`}
@@ -214,7 +213,7 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
                 height={464}
               ></Image>
             </div>
-            <div id="magicFormulaExplanation" className="flex">
+            <div id="magicFormulaExplanation" className="flex scroll-mt-10">
               <div className="basis-5/12 pr-9">
                 <h1>The "Magic Formula" formula</h1>
               </div>
@@ -265,7 +264,7 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
                 </div>
               </div>
             </div>
-            <div className="align-middle justify-center mx-auto mt-16 mb-16">
+            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
               <Image
                 src={MagicFormulaImage3}
                 alt={`Art Images Banner`}
@@ -277,7 +276,10 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
               <h1 id="currentporfolio">Current Portfolio</h1>
               <Table columns={columns} data={data} />
             </div>
-            <h1 id="closedpositions">Closed Positions</h1>
+            <div>
+              <h1 id="closedpositions scroll-mt-10">Closed Positions</h1>
+              <Table columns={columns} data={data} />
+            </div>
           </div>
           <div className="basis-1/12"></div>
         </div>
