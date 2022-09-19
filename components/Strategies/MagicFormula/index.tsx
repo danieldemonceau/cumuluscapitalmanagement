@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useMemo } from "react";
-import { PositionOpen } from "@/src/types/Position.type";
+import { PositionOpen, PositionClosed } from "@/src/types/Position.type";
 import YoutubeEmbed from "@/components/common/YoutubeEmbed";
 import { Table } from "@/components/Portfolio/Table";
 import { useTableColumns } from "@/components/Portfolio/useTableColumns";
@@ -10,12 +10,23 @@ import MagicFormulaImage11 from "./MagicFormulaImage11.png";
 import MagicFormulaImage2 from "./MagicFormulaImage2.png";
 import MagicFormulaImage3 from "./MagicFormulaImage3.png";
 
-const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
+const MagicFormula = ({
+  positionOpen,
+  positionClosed,
+}: {
+  positionOpen: PositionOpen[];
+  positionClosed: PositionClosed[];
+}) => {
   const [columns] = useTableColumns("open");
 
-  const data: PositionOpen[] = useMemo<PositionOpen[]>(
+  const openPositionData: PositionOpen[] = useMemo<PositionOpen[]>(
     () => positionOpen,
     [positionOpen]
+  );
+
+  const closedPositionData: PositionClosed[] = useMemo<PositionClosed[]>(
+    () => positionClosed,
+    [positionClosed]
   );
 
   return (
@@ -272,14 +283,18 @@ const MagicFormula = ({ positionOpen }: { positionOpen: PositionOpen[] }) => {
                 height={464}
               ></Image>
             </div>
-            <div>
-              <h1 id="currentporfolio">Current Portfolio</h1>
-              <Table columns={columns} data={data} />
-            </div>
-            <div>
-              <h1 id="closedpositions scroll-mt-10">Closed Positions</h1>
-              <Table columns={columns} data={data} />
-            </div>
+            {openPositionData.length > 0 && (
+              <div>
+                <h1 id="currentporfolio">Current Portfolio</h1>
+                <Table columns={columns} data={openPositionData} />
+              </div>
+            )}
+            {closedPositionData.length > 0 && (
+              <div>
+                <h1 id="closedpositions scroll-mt-10">Closed Positions</h1>
+                <Table columns={columns} data={closedPositionData} />
+              </div>
+            )}
           </div>
           <div className="basis-1/12"></div>
         </div>
