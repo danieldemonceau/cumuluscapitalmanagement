@@ -62,15 +62,16 @@ const MagicFormula = ({
               <div className="basis-5/12">
                 <p>
                   The Magic Formula is an easy-to-follow method particularly
-                  suited to long-term Investors as it approaches investing from
-                  an organized, disciplined, and unemotional perspective
+                  suited to <b>long-term Investors</b> as it approaches
+                  investing from an organized, disciplined, and unemotional
+                  perspective
                 </p>
                 <p>
                   The Method was developed by Joel Greenblatt and described in
                   his books "The Little Book That Beats the Market" and "The
                   Little Book That Still Beats the Market". The Author claims
                   the method to beat the S&P500, used as the market benchmark,
-                  by providing annualized returns of over 30%.{" "}
+                  by providing <b>annualized returns of over 30%</b>.{" "}
                 </p>
               </div>
             </div>
@@ -126,7 +127,11 @@ const MagicFormula = ({
                   </li>
                   <li>
                     Optional: For higher return, please see{" "}
-                    <Link href="#wanthigherreturns">here</Link>
+                    <Link href="#wanthigherreturns">
+                      <a href="#wanthigherreturns" target={"_self"}>
+                        here
+                      </a>
+                    </Link>
                   </li>
                   <li>
                     Pick the top 5 to 7 of these top companies, and invest 25%
@@ -174,12 +179,12 @@ const MagicFormula = ({
                   thoroughly back-tested the strategy by combining the Magic
                   Formula score for each stock with different ratios. Get the
                   highest return by combining the stocks with the highest Magic
-                  Formula score and the highest Price Index 6 Months
+                  Formula score and the highest <b>Price Index 6 Months</b>
                 </p>
                 <p>
                   The backtest on the period from June 1999 to June 2011 showed
-                  a 600.5% improvement over the best return of 182.8% using the
-                  Magic Formula alone. Find the complete results{" "}
+                  a <b>600.5% improvement</b> over the best return of 182.8%
+                  using the Magic Formula alone. Find the complete results{" "}
                   <a
                     href="https://www.quant-investing.com/blog/magic-formula-investment-strategy-back-test"
                     target="_blank"
@@ -255,7 +260,8 @@ const MagicFormula = ({
                       </ul>
                     </li>
                     <li className="leading-7">
-                      Calculate the ROC for each company (or ROA sometimes)
+                      Calculate the Return On Capital (ROC) for each company (or
+                      Return On Asset (ROA) sometimes)
                       <ul>
                         <li className="leading-5">High ROC ~ "Good Company"</li>
                       </ul>
