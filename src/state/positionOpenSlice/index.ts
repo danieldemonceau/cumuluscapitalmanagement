@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { PositionOpen } from "../../../types/Position.type";
-import formatDataPortfolio from "../../../src/helpers/formatDataPortfolio";
+import { PositionOpen } from "../../types/Position.type";
 
 // Define the initial state using that type
 const initialState: PositionOpen[] = [];

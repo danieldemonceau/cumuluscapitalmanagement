@@ -3,22 +3,22 @@ export interface PositionOpen {
   type: string;
   asset: string;
   openTimestamp: string;
-  priceOpenAverage: number;
+  priceOpenedAverage: number;
   sharePriceCurrent?: number;
   sharePriceCurrentDate?: string;
   plPercent: number;
   strategyName: string;
-  getSortByToggleProps?(): () => {};
+  getSortByToggleProps?(): () => Record<string, unknown>;
 }
 export interface PositionClosed {
   id: number;
   type: string;
   asset: string;
   openTimestamp: string;
-  priceOpenAverage: number;
-  sharePriceCurrent?: number;
-  sharePriceCurrentDate?: string;
+  priceOpenedAverage: number;
+  closeTimestamp: string;
+  priceClosedAverage: number;
   plPercent: number;
   strategyName: string;
-  getSortByToggleProps?(): () => {};
+  getSortByToggleProps?(): () => Record<string, unknown>;
 }

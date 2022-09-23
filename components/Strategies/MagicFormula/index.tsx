@@ -75,10 +75,25 @@ const MagicFormula = ({
                 </p>
                 <p>
                   The Method was developed by Joel Greenblatt and described in
-                  his books "The Little Book That Beats the Market" and "The
-                  Little Book That Still Beats the Market". The Author claims
-                  the method to beat the S&P500, used as the market benchmark,
-                  by providing <b>annualized returns of over 30%</b>.{" "}
+                  his books{" "}
+                  <a
+                    href="https://www.amazon.com/Little-Book-That-Beats-Market/dp/0471733067/"
+                    target={"_blank"}
+                    rel={"noreferrer"}
+                  >
+                    "The Little Book That Beats the Market"
+                  </a>{" "}
+                  and
+                  <a
+                    href="https://www.amazon.com/Little-Book-Still-Beats-Market/dp/0470624159"
+                    target={"_blank"}
+                    rel={"noreferrer"}
+                  >
+                    "The Little Book That Still Beats the Market"
+                  </a>
+                  . The Author claims the method to beat the S&P500, used as the
+                  market benchmark, by providing{" "}
+                  <b>annualized returns of over 30%</b>.{" "}
                 </p>
               </div>
             </div>
@@ -141,8 +156,8 @@ const MagicFormula = ({
                     </Link>
                   </li>
                   <li>
-                    Pick the top 5 to 7 of these top companies, and invest 25%
-                    of your total intended capital
+                    Pick the top 5* to 7* of these top companies, and invest
+                    25%* of your total intended capital
                     <ol>
                       <li>Consider Equal dollar amount for each stock</li>
                     </ol>
@@ -150,7 +165,7 @@ const MagicFormula = ({
                   <li>
                     Hold these stocks for one year, no matter what
                     <ol>
-                      <li>Do not panic sell, don't take premature profits</li>
+                      <li>Do not panic sell, do not take premature profits</li>
                       <li>
                         Depending on the Capital Gains laws in your country and
                         for tax purposes, keep winners for more than one year,
@@ -158,8 +173,18 @@ const MagicFormula = ({
                       </li>
                     </ol>
                   </li>
-                  <li>Repeat all the previous steps every 3 months</li>
+                  <li>Repeat all the previous steps every 3 months**</li>
                 </ol>
+                <div className="mt-4">
+                  <div className="text-sm italic">
+                    * You can pick more than 7 or less than 5 stocks depending
+                    on your allocated capital
+                  </div>
+                  <div className="text-sm italic">
+                    ** You can also decide to repeat the cycle more frequently
+                    than 3 months, or less frequently
+                  </div>
+                </div>
               </div>
             </div>
             <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">

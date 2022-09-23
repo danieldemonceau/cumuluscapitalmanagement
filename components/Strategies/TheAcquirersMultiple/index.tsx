@@ -22,9 +22,6 @@ const TheAcquirersMultiple = ({
   const [columnsOpen] = useTableColumnsOpenPositions();
   const [columnsClosed] = useTableColumnsClosedPositions();
 
-  console.log("positionOpen", positionOpen);
-  console.log("positionClosed", positionClosed);
-
   const openPositionData: PositionOpen[] = useMemo<PositionOpen[]>(
     () => positionOpen,
     [positionOpen]
@@ -69,22 +66,30 @@ const TheAcquirersMultiple = ({
               </div>
               <div className="basis-5/12">
                 <p>
-                  The Acquirer's Multiple is an easy-to-follow method
-                  particularly suited to long-term Investors as it approaches
-                  investing from an organized, disciplined, and unemotional
-                  perspective
+                  The Acquirer's Multiple is a contrarian investment strategy
+                  suited to long-term investors, and it approaches investing
+                  from an organized, disciplined, and unemotional perspective.
+                  The method identifies deeply undervalued stocks to hold for
+                  one year and which will see a Regression to the mean
                 </p>
                 <p>
-                  The Method was developed by Joel Greenblatt and described in
-                  his books "The Little Book That Beats the Market" and "The
-                  Little Book That Still Beats the Market". The Author claims
-                  the method to beat the S&P500, used as the market benchmark,
-                  by providing annualized returns of over 30%.{" "}
+                  Tobias Carlisle describes his method in his book{" "}
+                  <a
+                    href="http://amzn.to/2zUj7mk"
+                    target={"_blank"}
+                    rel={"noreferrer"}
+                  >
+                    "The Acquirer's Multiple: How the Billionaire Contrarians of
+                    Deep Value Beat the Market"
+                  </a>
+                  . The method would have had an 18.6% return per year on
+                  average between 1973 and 2017 (vs 10.2% per year for the
+                  S&P500){" "}
                 </p>
               </div>
             </div>
             <div className="mx-auto justify-center align-middle mt-14 scroll-mt-10">
-              <YoutubeEmbed embedId="fzig7KJFuNU" />
+              <YoutubeEmbed embedId="nsQYjz9XI2c" />
             </div>
             <div id="inpractice" className="flex mt-14 mb-14 scroll-mt-10">
               <div className="basis-5/12 text-center mt-32">
@@ -93,70 +98,68 @@ const TheAcquirersMultiple = ({
               <div className="basis-6/12">
                 <ol className="list-decimal">
                   <li>
-                    Go to the{" "}
+                    Go to{" "}
                     <a
                       href="https://acquirersmultiple.com/"
                       target="_blank"
                       rel="noreferrer"
                     >
-                      The Acquirer's Multiple Investing website
+                      The Acquirer's Multiple Investing
                     </a>
+                    &nbsp;website
                     <ol className="list-decimal">
                       <li>Create an account</li>
                       <li>
-                        Go the{" "}
+                        Go to the{" "}
                         <a
-                          href="https://acquirersmultiple.com/"
+                          href="https://acquirersmultiple.com/screener/large-cap/"
                           target="_blank"
                           rel="noreferrer"
                         >
                           Stock Screener
                         </a>
+                        *{"   "} (only the Large Cap 1000 Screener is free)
                       </li>
                     </ol>
                   </li>
                   <li>
-                    Enter a value for the Minimum Market Cap for, and the number
-                    of, companies you consider investing in
+                    Compose your portfolio
                     <ol>
                       <li>
-                        Companies with lower Market Capitalizations leads to
-                        greater volatility, and vice-versa
+                        Buy X number of stocks with the lowest Acquirer's
+                        Multiple scores every Y months.
                       </li>
                       <li>
-                        More companies means more diversification and less
-                        volatility
+                        E.g., Cumulus Capital Management buys three stocks with
+                        equal-dollar amounts every single month.
                       </li>
+                      <li>E.g., You can also buy 20 stocks every year.</li>
                     </ol>
                   </li>
                   <li>
-                    From the list, remove the companies you do not want to
-                    invest in for your personal reasons
-                  </li>
-                  <li>
-                    Optional: For higher return, please see{" "}
-                    <Link href="#wanthigherreturns">here</Link>
-                  </li>
-                  <li>
-                    Pick the top 5 to 7 of these top companies, and invest 25%
-                    of your total intended capital
+                    Hold these stocks for one year, no matter what.
                     <ol>
-                      <li>Consider Equal dollar amount for each stock</li>
-                    </ol>
-                  </li>
-                  <li>
-                    Hold these stocks for one year, no matter what
-                    <ol>
-                      <li>Do not panic sell, don't take premature profits</li>
+                      <li>Do not panic sell, do not take premature profits.</li>
+                      <li>
+                        Only sell after one year if the stock is not on the list
+                        anymore.
+                      </li>
                       <li>
                         Depending on the Capital Gains laws in your country and
                         for tax purposes, keep winners for more than one year,
-                        and sell losers before the one-year mark
+                        and sell losers before the one-year mark.
                       </li>
                     </ol>
                   </li>
-                  <li>Repeat all the previous steps every 3 months</li>
+                  <li>
+                    Repeat the previous steps every Y months according to your
+                    strategy.
+                  </li>
                 </ol>
+                <div className="mt-4 text-sm italic">
+                  * You might want to filter out Companies you do not want to
+                  invest in for personal reasons.
+                </div>
               </div>
             </div>
             <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
@@ -184,48 +187,39 @@ const TheAcquirersMultiple = ({
               </div>
               <div className="basis-6/12">
                 <div>
-                  The Acquirer's Multiple Score is determined as followed
-                  <ol>
-                    <li className="leading-7">
-                      From a list of companies, remove the following ones:
-                      <ul>
-                        <li className="leading-5">Financials</li>
-                        <li className="leading-5">Insurances</li>
-                        <li className="leading-5">Investment funds</li>
-                        <li className="leading-5">
-                          Utilities, specific holdings companies
-                        </li>
-                        <li className="leading-5">REITs</li>
-                        <li className="leading-5">
-                          American Depository Receipts (ADRs)
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="leading-7">{`Keep companies with a Market Capitalization of > $50M`}</li>
-                    <li className="leading-7">
-                      Calculate, or get, the P/E for each company
-                      <ul>
-                        <li className="leading-5">Low P/E ~ "Cheap Stock"</li>
-                      </ul>
-                    </li>
-                    <li className="leading-7">
-                      Calculate the ROC for each company (or ROA sometimes)
-                      <ul>
-                        <li className="leading-5">High ROC ~ "Good Company"</li>
-                      </ul>
-                    </li>
-                    <li className="leading-7">
-                      Rank each company by lowest P/E
-                    </li>
-                    <li className="leading-7">
-                      Rank each company based on the highest ROC
-                    </li>
-                    <li className="leading-7">
-                      Simply Sum the ranks for each company
-                    </li>
-                    <li className="leading-7">Order by Lowest</li>
-                    <li className="leading-7">Et voila!!</li>
-                  </ol>
+                  <h3>
+                    The Acquirer's Multiple Score is calculated based on the
+                    ratio of
+                  </h3>
+                  <ul>
+                    <li className="leading-5 text-base">Enterprise Value</li>
+                    <li className="leading-5 text-base">Operating Earnings</li>
+                  </ul>
+                  <div className="mt-2">
+                    <h3>The Enterprise Value is equal to</h3>
+                    <ul>
+                      <li className="leading-5 text-base">
+                        Market capitalization
+                      </li>
+                      <li className="leading-5 text-base">+ Debt</li>
+                      <li className="leading-5 text-base">- Cash</li>
+                    </ul>
+                  </div>
+                  <div className="mt-2">
+                    <h3>The Operating Earnings are equal to</h3>
+                    <ul>
+                      <li className="leading-5 text-base">Revenue</li>
+                      <li className="leading-5 text-base">
+                        - the cost of goods sold
+                      </li>
+                      <li className="leading-5 text-base">
+                        - selling, general & admin costs
+                      </li>
+                      <li className="leading-5 text-base">
+                        - depreciation & amortization
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
