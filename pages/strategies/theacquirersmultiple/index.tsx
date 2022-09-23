@@ -1,12 +1,12 @@
 import axios from "axios";
 import type { InferGetServerSidePropsType } from "next";
 import {
-  ALL_POSITIONS_OPEN_MAGIC_FORMULA,
-  ALL_POSITIONS_CLOSED_MAGIC_FORMULA,
+  ALL_POSITIONS_OPEN_THE_ACQUIRERS_MULTIPLE,
+  ALL_POSITIONS_CLOSED_THE_ACQUIRERS_MULTIPLE,
 } from "@/components/ApolloClient/allPositions";
 // import Head from "next/head";
 // import styles from "../styles/Home.module.css";
-import MagicFormula from "@/components/Strategies/MagicFormula";
+import TheAcquirersMultiple from "@/components/Strategies/TheAcquirersMultiple";
 import meta, { httpProtocol } from "@/src/data/meta";
 import {
   formatDataPortfolioOpenPositions,
@@ -20,7 +20,7 @@ const Index = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
-      <MagicFormula
+      <TheAcquirersMultiple
         positionOpen={positionOpen}
         positionClosed={positionClosed}
       />
@@ -37,11 +37,11 @@ export const getServerSideProps = async () => {
     headers: {
       "content-type": "application/json",
     },
-    data: { query: ALL_POSITIONS_OPEN_MAGIC_FORMULA },
+    data: { query: ALL_POSITIONS_OPEN_THE_ACQUIRERS_MULTIPLE },
   });
 
   const positionOpen: PositionOpen[] = formatDataPortfolioOpenPositions(
-    responsePositionOpen.data.data.allPositionOpenMagicFormulas.nodes
+    responsePositionOpen.data.data.allPositionOpenTheAcquirersMultiples.nodes
   );
 
   const responsePositionClosed = await axios({
@@ -51,11 +51,12 @@ export const getServerSideProps = async () => {
     headers: {
       "content-type": "application/json",
     },
-    data: { query: ALL_POSITIONS_CLOSED_MAGIC_FORMULA },
+    data: { query: ALL_POSITIONS_CLOSED_THE_ACQUIRERS_MULTIPLE },
   });
 
   const positionClosed: PositionClosed[] = formatDataPortfolioClosedPositions(
-    responsePositionClosed.data.data.allPositionClosedMagicFormulas.nodes
+    responsePositionClosed.data.data.allPositionClosedTheAcquirersMultiples
+      .nodes
   );
 
   return { props: { positionOpen, positionClosed } };

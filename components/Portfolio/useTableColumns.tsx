@@ -1,12 +1,11 @@
 import { useMemo } from "react";
 import { Column } from "react-table";
-import { PositionOpen } from "@/src/types/Position.type";
+import { PositionOpen, PositionClosed } from "@/src/types/Position.type";
 
-export const useTableColumns = (positionStatus: string) => {
-  let columns: Column<PositionOpen>[];
-  switch (positionStatus) {
-    case "opened":
-      columns = [
+export const useTableColumnsOpenPositions = () => {
+  return [
+    useMemo<Column<PositionOpen>[]>(
+      () => [
         // {
         //   Header: "Type",
         //   accessor: "type",
@@ -16,12 +15,12 @@ export const useTableColumns = (positionStatus: string) => {
           accessor: "asset",
         },
         {
-          Header: "Date open",
+          Header: "Date opened",
           accessor: "openTimestamp",
         },
         {
           Header: "Avg Unit Price Open",
-          accessor: "priceOpenAverage",
+          accessor: "priceOpenedAverage",
         },
         {
           Header: "Current Unit Price",
@@ -36,10 +35,15 @@ export const useTableColumns = (positionStatus: string) => {
           accessor: "plPercent",
           sortType: sort,
         },
-      ];
-      break;
-    case "closed":
-      columns = [
+      ],
+      []
+    ),
+  ];
+};
+export const useTableColumnsClosedPositions = () => {
+  return [
+    useMemo<Column<PositionClosed>[]>(
+      () => [
         // {
         //   Header: "Type",
         //   accessor: "type",
@@ -49,63 +53,30 @@ export const useTableColumns = (positionStatus: string) => {
           accessor: "asset",
         },
         {
-          Header: "Date open",
+          Header: "Date opened",
           accessor: "openTimestamp",
         },
         {
           Header: "Avg Unit Price Open",
-          accessor: "priceOpenAverage",
+          accessor: "priceOpenedAverage",
         },
         {
-          Header: "Current Unit Price",
-          accessor: "sharePriceCurrent",
+          Header: "Date closed",
+          accessor: "closeTimestamp",
         },
         {
-          Header: "Current Unit Price Date",
-          accessor: "sharePriceCurrentDate",
+          Header: "Avg Unit Price Open",
+          accessor: "priceClosedAverage",
         },
         {
           Header: "P/L %",
           accessor: "plPercent",
           sortType: sort,
         },
-      ];
-      break;
-    default:
-      columns = [
-        // {
-        //   Header: "Type",
-        //   accessor: "type",
-        // },
-        {
-          Header: "Asset",
-          accessor: "asset",
-        },
-        {
-          Header: "Date open",
-          accessor: "openTimestamp",
-        },
-        {
-          Header: "Avg Unit Price Open",
-          accessor: "priceOpenAverage",
-        },
-        {
-          Header: "Current Unit Price",
-          accessor: "sharePriceCurrent",
-        },
-        {
-          Header: "Current Unit Price Date",
-          accessor: "sharePriceCurrentDate",
-        },
-        {
-          Header: "P/L %",
-          accessor: "plPercent",
-          sortType: sort,
-        },
-      ];
-      break;
-  }
-  return [useMemo<Column<PositionOpen>[]>(() => columns, [columns])];
+      ],
+      []
+    ),
+  ];
 };
 
 const sort = (rowA: any, rowB: any, id: string) => {

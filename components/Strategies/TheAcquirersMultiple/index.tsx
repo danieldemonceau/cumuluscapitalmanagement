@@ -10,13 +10,9 @@ import {
   useTableColumnsOpenPositions,
   useTableColumnsClosedPositions,
 } from "@/components/Portfolio/useTableColumns";
-import Image from "next/image";
-// import MagicFormulaImage1 from "./MagicFormulaImage1.png";
-import MagicFormulaImage11 from "./MagicFormulaImage11.png";
-import MagicFormulaImage2 from "./MagicFormulaImage2.png";
-import MagicFormulaImage3 from "./MagicFormulaImage3.png";
+// import Image from "next/image";
 
-const MagicFormula = ({
+const TheAcquirersMultiple = ({
   positionOpen,
   positionClosed,
 }: {
@@ -25,6 +21,9 @@ const MagicFormula = ({
 }) => {
   const [columnsOpen] = useTableColumnsOpenPositions();
   const [columnsClosed] = useTableColumnsClosedPositions();
+
+  console.log("positionOpen", positionOpen);
+  console.log("positionClosed", positionClosed);
 
   const openPositionData: PositionOpen[] = useMemo<PositionOpen[]>(
     () => positionOpen,
@@ -42,7 +41,9 @@ const MagicFormula = ({
         <div className="flex flex-row bg-blue-100">
           <div className="basis-2/12"></div>
           <div className="basis-8/12 flex flex-col w-full py-10 align-middle text-left text-black space-y-3">
-            <div className="text-4xl text-left">The Magic Formula Strategy</div>
+            <div className="text-4xl text-left">
+              The Acquirer's Multiple Strategy
+            </div>
             <div className="flex flex-row space-x-3">
               <Link href="#whatisit">What Is It?</Link>
               <div>|</div>
@@ -50,7 +51,7 @@ const MagicFormula = ({
               <div>|</div>
               <Link href="#wanthigherreturns">Get higher returns</Link>
               <div>|</div>
-              <Link href="#magicFormulaExplanation">The Formula</Link>
+              <Link href="#TheAcquirersMultipleExplanation">The Formula</Link>
               <div>|</div>
               <Link href="#currentporfolio">Current Portfolio</Link>
               <div>|</div>
@@ -68,8 +69,8 @@ const MagicFormula = ({
               </div>
               <div className="basis-5/12">
                 <p>
-                  The Magic Formula is an easy-to-follow method particularly
-                  suited to <b>long-term Investors</b> as it approaches
+                  The Acquirer's Multiple is an easy-to-follow method
+                  particularly suited to long-term Investors as it approaches
                   investing from an organized, disciplined, and unemotional
                   perspective
                 </p>
@@ -78,7 +79,7 @@ const MagicFormula = ({
                   his books "The Little Book That Beats the Market" and "The
                   Little Book That Still Beats the Market". The Author claims
                   the method to beat the S&P500, used as the market benchmark,
-                  by providing <b>annualized returns of over 30%</b>.{" "}
+                  by providing annualized returns of over 30%.{" "}
                 </p>
               </div>
             </div>
@@ -94,18 +95,18 @@ const MagicFormula = ({
                   <li>
                     Go to the{" "}
                     <a
-                      href="https://www.magicformulainvesting.com/"
+                      href="https://acquirersmultiple.com/"
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Magic Formula Investing website
+                      The Acquirer's Multiple Investing website
                     </a>
                     <ol className="list-decimal">
                       <li>Create an account</li>
                       <li>
                         Go the{" "}
                         <a
-                          href="https://www.magicformulainvesting.com/Screening/StockScreening"
+                          href="https://acquirersmultiple.com/"
                           target="_blank"
                           rel="noreferrer"
                         >
@@ -134,11 +135,7 @@ const MagicFormula = ({
                   </li>
                   <li>
                     Optional: For higher return, please see{" "}
-                    <Link href="#wanthigherreturns">
-                      <a href="#wanthigherreturns" target={"_self"}>
-                        here
-                      </a>
-                    </Link>
+                    <Link href="#wanthigherreturns">here</Link>
                   </li>
                   <li>
                     Pick the top 5 to 7 of these top companies, and invest 25%
@@ -163,86 +160,31 @@ const MagicFormula = ({
               </div>
             </div>
             <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
-              <Image
-                src={MagicFormulaImage11}
+              {/* <Image
+                src={TheAcquirersMultipleImage11}
                 alt={`Art Images Banner`}
                 width={1045}
                 height={464}
-              ></Image>
-            </div>
-            <div id="wanthigherreturns" className="flex mb-16 scroll-mt-10">
-              <div className="basis-5/12">
-                <h1>Want higher returns?</h1>
-              </div>
-              <div className="basis-6/12">
-                <p>
-                  <a
-                    href="https://www.quant-investing.com/blog/magic-formula-investment-strategy-back-test"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Quant Investing{" "}
-                  </a>
-                  thoroughly back-tested the strategy by combining the Magic
-                  Formula score for each stock with different ratios. Get the
-                  highest return by combining the stocks with the highest Magic
-                  Formula score and the highest <b>Price Index 6 Months</b>
-                </p>
-                <p>
-                  The backtest on the period from June 1999 to June 2011 showed
-                  a <b>600.5% improvement</b> over the best return of 182.8%
-                  using the Magic Formula alone. Find the complete results{" "}
-                  <a
-                    href="https://www.quant-investing.com/blog/magic-formula-investment-strategy-back-test"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    here{" "}
-                  </a>
-                </p>
-                <div>
-                  For each company,
-                  <ol>
-                    <li className="text-[14px] leading-5">
-                      Calculate Magic Formula Score (details{" "}
-                      <Link href="#magicFormulaExplanation">here</Link>)
-                    </li>
-                    <li className="text-[14px] leading-5">
-                      Keep the top 20% of companies
-                    </li>
-                    <li className="text-[14px] leading-5">
-                      Calculate the Price Index 6 months these companies, and
-                      order the list in a decreasing order
-                    </li>
-                    <li className="text-[14px] leading-5">
-                      If you're a techie, use the Python script provided{" "}
-                      <a
-                        href="https://github.com/danieldemonceau/magicformula"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        here
-                      </a>
-                    </li>
-                  </ol>{" "}
-                </div>
-              </div>
+              ></Image> */}
             </div>
             <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
-              <Image
-                src={MagicFormulaImage2}
+              {/* <Image
+                src={TheAcquirersMultipleImage2}
                 alt={`Art Images Banner`}
                 width={1045}
                 height={464}
-              ></Image>
+              ></Image> */}
             </div>
-            <div id="magicFormulaExplanation" className="flex scroll-mt-10">
+            <div
+              id="theAcquirersMultipleExplanation"
+              className="flex scroll-mt-10"
+            >
               <div className="basis-5/12 pr-9">
-                <h1>The "Magic Formula" formula</h1>
+                <h1>The Acquirer's Multiple formula</h1>
               </div>
               <div className="basis-6/12">
                 <div>
-                  The Magic Formula Score is determined as followed
+                  The Acquirer's Multiple Score is determined as followed
                   <ol>
                     <li className="leading-7">
                       From a list of companies, remove the following ones:
@@ -267,8 +209,7 @@ const MagicFormula = ({
                       </ul>
                     </li>
                     <li className="leading-7">
-                      Calculate the Return On Capital (ROC) for each company (or
-                      Return On Asset (ROA) sometimes)
+                      Calculate the ROC for each company (or ROA sometimes)
                       <ul>
                         <li className="leading-5">High ROC ~ "Good Company"</li>
                       </ul>
@@ -289,12 +230,12 @@ const MagicFormula = ({
               </div>
             </div>
             <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
-              <Image
-                src={MagicFormulaImage3}
+              {/* <Image
+                src={TheAcquirersMultipleImage3}
                 alt={`Art Images Banner`}
                 width={1045}
                 height={464}
-              ></Image>
+              ></Image> */}
             </div>
             {openPositionData.length > 0 && (
               <div>
@@ -307,7 +248,7 @@ const MagicFormula = ({
             )}
             {closedPositionData.length > 0 && (
               <div>
-                <h1 id="closedpositions scroll-mt-10">Closed Positions</h1>
+                <h1 id="closedpositions">Closed Positions</h1>
                 <TableClosedPositions
                   columns={columnsClosed}
                   data={closedPositionData}
@@ -322,4 +263,4 @@ const MagicFormula = ({
   );
 };
 
-export default MagicFormula;
+export default TheAcquirersMultiple;
