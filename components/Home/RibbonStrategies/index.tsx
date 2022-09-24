@@ -36,17 +36,17 @@ const FeatureStrategies = () => {
                 />
               </div>
               <div className="text-xl text-center flex flex-col h-full align-middle justify-center">
-                <p className="text-gray-100">Magic Formula</p>
-                <p className="text-xs text-gray-300 ">
+                <div className="text-gray-100">Magic Formula</div>
+                <div className="text-xs text-gray-300 ">
                   30.8% Annual Return (1988 - 2004)
-                </p>
+                </div>
               </div>
             </div>
           </Link>
         </div>
         <div className="group flex flex-row basis-1/4 cursor-pointer justify-center">
           <Link
-            href={`/strategies/acquirermultiple`}
+            href={`/strategies/theacquirersmultiple`}
             className="group flex flex-row basis-1/4"
           >
             <div className="flex flex-row transition ease-in-out duration-300 delay-150 group-hover:-translate-y-1 group-hover:scale-110">
@@ -54,10 +54,10 @@ const FeatureStrategies = () => {
                 <FontAwesomeIcon icon={faCoins} color={`white`} size="2x" />
               </div>
               <div className="text-xl text-center flex flex-col h-full align-middle justify-center">
-                <p className="text-gray-100">The Acquirer's Multiple</p>
-                <p className="text-xs text-gray-300 ">
+                <div className="text-gray-100">The Acquirer's Multiple</div>
+                <div className="text-xs text-gray-300 ">
                   45% Annual Return (2007 - 2022)
-                </p>
+                </div>
               </div>
             </div>
           </Link>
@@ -72,10 +72,10 @@ const FeatureStrategies = () => {
                 <FontAwesomeIcon icon={faLineChart} color={`white`} size="2x" />
               </div>
               <div className="text-xl text-center flex flex-col h-full align-middle justify-center">
-                <p className="text-gray-100">Dollar Cost Averaging</p>
-                <p className="text-xs text-gray-300 ">
+                <div className="text-gray-100">Dollar Cost Averaging</div>
+                <div className="text-xs text-gray-300 ">
                   ~10% Annual Return (2000 - 2022)
-                </p>
+                </div>
               </div>
             </div>
           </Link>

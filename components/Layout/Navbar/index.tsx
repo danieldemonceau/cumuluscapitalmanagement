@@ -84,11 +84,11 @@ const Navbar = () => {
         onMouseEnter={() => setStrategyMenusIsVisible(() => true)}
         onMouseLeave={() => setStrategyMenusIsVisible(() => false)}
       >
-        <div className="flex flex-row space-x-10 py-4">
+        <div className="flex flex-row space-x-10 py-2">
           <div className="uppercase group">
             <Link href={`/strategies/magicformula`}>
               <div className="flex flex-col transition ease-in-out duration-300 delay-150 group-hover:scale-110 cursor-pointer">
-                <div className="flex flex-col h-full align-middle justify-center mx-3 mb-2">
+                <div className="flex flex-col h-full align-middle justify-center mx-3 mb-1">
                   <FontAwesomeIcon
                     icon={faMagicWandSparkles}
                     // color={`slate`}
@@ -106,9 +106,9 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="uppercase group">
-            <Link href={`/strategies/acquirersmultiple`}>
+            <Link href={`/strategies/theacquirersmultiple`}>
               <div className="flex flex-col transition ease-in-out duration-300 delay-150 group-hover:scale-110 cursor-pointer">
-                <div className="flex flex-col h-full align-middle justify-center mx-3 mb-2">
+                <div className="flex flex-col h-full align-middle justify-center mx-3 mb-1">
                   <FontAwesomeIcon
                     icon={faCoins}
                     // color={`slate`}
@@ -128,7 +128,7 @@ const Navbar = () => {
           <div className="uppercase group">
             <Link href={`/strategies/acquirersmultiple`}>
               <div className="flex flex-col transition ease-in-out duration-300 delay-150 group-hover:scale-110 cursor-pointer">
-                <div className="flex flex-col h-full align-middle justify-center mx-3 mb-2">
+                <div className="flex flex-col h-full align-middle justify-center mx-3 mb-1">
                   <FontAwesomeIcon
                     icon={faLineChart}
                     // color={`slate`}

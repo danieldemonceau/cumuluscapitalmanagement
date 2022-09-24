@@ -1,11 +1,31 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
+import { hasCookie, setCookie } from "cookies-next";
 
 const NoFinancialAdviceDisclaimer = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const understoodButtonRef = useRef(null);
+
+  // Expires in 100 days
+  const COOKIE_TOS_EXPIRY_DATE_OFFSET = 100;
+  const cookieTosExpiryDate = new Date();
+  cookieTosExpiryDate.setDate(
+    cookieTosExpiryDate.getDate() + COOKIE_TOS_EXPIRY_DATE_OFFSET
+  );
+
+  useEffect(() => {
+    if (!hasCookie("hasAcceptedFinancialAdviceDisclaimer")) {
+      setOpen(true);
+    }
+  }, []);
+
+  const acceptFinancialAdviceDisclaimer = () => {
+    setCookie("hasAcceptedFinancialAdviceDisclaimer", true, {
+      expires: cookieTosExpiryDate,
+    });
+    setOpen(false);
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -85,7 +105,7 @@ const NoFinancialAdviceDisclaimer = () => {
                   <button
                     type="button"
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:text-sm"
-                    onClick={() => setOpen(false)}
+                    onClick={acceptFinancialAdviceDisclaimer}
                     ref={understoodButtonRef}
                   >
                     I Understand

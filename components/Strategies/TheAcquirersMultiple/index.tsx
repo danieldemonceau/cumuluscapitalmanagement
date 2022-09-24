@@ -141,8 +141,8 @@ const TheAcquirersMultiple = ({
                     <ol>
                       <li>Do not panic sell, do not take premature profits.</li>
                       <li>
-                        Only sell after one year if the stock is not on the list
-                        anymore.
+                        Only sell after one year if the stock{" "}
+                        <u>is not on the list anymore</u>.
                       </li>
                       <li>
                         Depending on the Capital Gains laws in your country and
