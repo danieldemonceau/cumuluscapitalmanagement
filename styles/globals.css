@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Droid Serif";
+  src: url("../assets/fonts/droidSerif/DroidSerif-Regular.ttf");
+}
+
 html,
 body {
   padding: 0;
@@ -14,17 +19,92 @@ body {
   box-sizing: border-box;
 }
 
-a[target] {
+a[target],
+Link {
   @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600;
 }
 
-.nav-menu-inactive {
+.nav-subnav-menu-inactive {
   visibility: hidden;
   height: 0px;
   transition: ease height 0.3s;
 }
-.nav-menu-active {
+.nav-subnav-menu-active {
   visibility: visible;
-  height: 104px;
+  height: 134px;
   transition: ease height 0.3s;
+}
+
+.nav-menu-shrunk {
+  height: 52px;
+  transition: ease height 0.3s;
+}
+.nav-menu-grown {
+  height: 80px;
+  transition: ease height 0.3s;
+}
+
+h1,
+p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Droid Serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p {
+  font-family: "Open Sans";
+  font-size: 16px;
+  line-height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+ol {
+  counter-reset: item;
+  list-style-position: outside;
+  display: table;
+}
+
+ol > li {
+  /* display: block; */
+  display: table-row;
+  list-style-position: outside;
+  font-size: 18px;
+}
+
+ol > li:before {
+  padding-right: 20px;
+  content: counters(item, ".") " ";
+  counter-increment: item;
+  display: table-cell;
+  text-align: right;
+}
+
+ul > li {
+  margin-left: 30px;
+}
+
+ol > li > ol > li,
+ul > li {
+  font-size: 14px;
+  font-style: italic;
+  color: midnightblue;
+}
+
+ul {
+  list-style-type: disc;
 }
