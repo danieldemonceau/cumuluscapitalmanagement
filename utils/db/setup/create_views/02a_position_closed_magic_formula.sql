@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS position_open;
+DROP VIEW IF EXISTS position_closed_magic_formula;
 
-CREATE OR REPLACE VIEW position_open AS
+CREATE OR REPLACE VIEW position_closed_magic_formula AS
 SELECT
     p.id id,
     p.status "status",
@@ -14,15 +14,15 @@ SELECT
     pl.nb_of_units_closed "nb_of_units_closed",
     pl.amount_closed "amount_closed",
     pl.amount_closed / pl.nb_of_units_closed "price_closed_average",
+    pl.amount_p_or_l "amount_p_or_l",
     pl.nb_of_units_open "nb_of_units_open",
-    pl.amount_open "amount_open",
-    (pl.nb_of_units_open * ql.qcurrent_price) "amount_open_current",
-    pl.amount_open / pl.nb_of_units_open "price_open_average",
-    ql.qcurrent_price "share_price_current",
-    ql.qtimestamp "share_price_current_date",
-    EXTRACT(DAY FROM COALESCE(close_timestamp, CURRENT_TIMESTAMP(0)) - open_timestamp) "holding_period_days",
-    COALESCE(pl.amount_closed, 0::money) + (pl.nb_of_units_open * ql.qcurrent_price - pl.amount_open) "pl_absolute",
-    ((COALESCE(pl.amount_closed, 0::money) + (pl.nb_of_units_open * ql.qcurrent_price - pl.amount_open)) / pl.amount_opened) * 100 pl_percent,
+    EXTRACT(
+        DAY
+        FROM COALESCE(
+            close_timestamp
+            , CURRENT_TIMESTAMP(0)
+        ) - open_timestamp) "holding_period_days",
+    (pl.amount_closed - pl.amount_opened) / pl.amount_opened * 100 pl_percent,
     st.name "strategy_name"
 FROM
     position p
@@ -110,10 +110,10 @@ FROM
             mto.pid pid,
             mto.nb_of_units nb_of_units_opened,
             mto.amount amount_opened,
-            mtc.nb_of_units nb_of_units_closed,
-            mtc.amount amount_closed,
+            (-1) * mtc.nb_of_units nb_of_units_closed,
+            (-1) * mtc.amount amount_closed,
             mtt.nb_of_units nb_of_units_open,
-            mtt.amount amount_open
+            mtt.amount amount_p_or_l
         FROM
             market_transaction_open mto
         LEFT JOIN market_transaction_closed mtc ON mtc.pid = mto.pid
@@ -121,7 +121,7 @@ FROM
             SELECT
                 mts.pid,
                 SUM(mts.nb_of_units) nb_of_units,
-                SUM(mts.amount) amount
+                (-1) * SUM(mts.amount) amount
             FROM (
                 SELECT
                     mto.pid,
@@ -129,38 +129,24 @@ FROM
                     mto.amount
                 FROM
                     market_transaction_open mto
-            UNION ALL
-            SELECT
-                mtc.pid,
-                mtc.nb_of_units,
-                mtc.amount
-            FROM
-                market_transaction_closed mtc) mts
-        GROUP BY
-            mts.pid) mtt ON (mtt.pid = mtc.pid)
-        OR (mtt.pid = mto.pid)
+                UNION ALL
+                SELECT
+                    mtc.pid,
+                    mtc.nb_of_units,
+                    mtc.amount
+                FROM
+                    market_transaction_closed mtc
+            ) mts
+            GROUP BY
+                mts.pid
+        ) mtt ON (
+            mtt.pid = mtc.pid
+        ) OR (mtt.pid = mto.pid)
     ) pl ON pl.pid = p.id
     JOIN strategy st ON st.id = mt.strategy_id
-    LEFT JOIN (
-        SELECT
-            q.symbol_id qsymbol_id,
-            q.close qcurrent_price,
-            q.timestamp qtimestamp
-        FROM
-            quote q
-            JOIN (
-                SELECT
-                    q.symbol_id qsymbol_id,
-                    MAX(q.timestamp) qtimestamp
-                FROM
-                    quote q
-                GROUP BY
-                    q.symbol_id) ql ON ql.qsymbol_id = q.symbol_id
-                AND q.timestamp = ql.qtimestamp
-    ) ql ON ql.qsymbol_id = s.id
-    AND ql.qtimestamp > p.open_timestamp
 WHERE
-    p.status = 'Open'
+    p.status = 'Closed'
+    AND st.name = 'Magic Formula'
 GROUP BY
     p.id,
     p.status,
@@ -173,10 +159,8 @@ GROUP BY
     pl.nb_of_units_closed,
     pl.amount_closed,
     pl.nb_of_units_open,
-    pl.amount_open,
-    ql.qcurrent_price,
-    ql.qtimestamp,
+    pl.amount_p_or_l,
     st.name;
 
-COMMENT ON VIEW position_open IS E'@name position_open\n@omit update,delete\nThis is the documentation.';
+COMMENT ON VIEW position_closed_magic_formula IS E'@name position_closed_magic_formula\n@omit update,delete\nThis is the documentation.';
 

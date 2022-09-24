@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS position_open;
+DROP VIEW IF EXISTS position_open_magic_formula;
 
-CREATE OR REPLACE VIEW position_open AS
+CREATE OR REPLACE VIEW position_open_magic_formula AS
 SELECT
     p.id id,
     p.status "status",
@@ -161,6 +161,7 @@ FROM
     AND ql.qtimestamp > p.open_timestamp
 WHERE
     p.status = 'Open'
+    AND st.name = 'Magic Formula'
 GROUP BY
     p.id,
     p.status,
@@ -178,5 +179,5 @@ GROUP BY
     ql.qtimestamp,
     st.name;
 
-COMMENT ON VIEW position_open IS E'@name position_open\n@omit update,delete\nThis is the documentation.';
+COMMENT ON VIEW position_open_magic_formula IS E'@name position_open_magic_formula\n@omit update,delete\nThis is the documentation.';
 
