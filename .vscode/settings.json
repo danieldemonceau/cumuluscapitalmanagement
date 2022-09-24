@@ -1,6 +1,12 @@
 {
-    "cSpell.words": [
-        "cumulus"
-    ],
-    "god.tsconfig": "./tsconfig.json"
+  "cSpell.words": [
+    "ALPHAVANTAGE",
+    "APIKEY",
+    "cumulus",
+    "dotenv",
+    "outputsize",
+    "psycopg",
+    "youtube"
+  ],
+  "god.tsconfig": "./tsconfig.json"
 }
