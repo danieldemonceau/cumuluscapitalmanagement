@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS quote CASCADE;
 CREATE TABLE IF NOT EXISTS quote (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    symbol_id INTEGER REFERENCES symbol(id),
+    security_id INTEGER,
     time_interval_id INTEGER REFERENCES time_interval(id),
     timestamp TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     open MONEY NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS quote (
 DROP TABLE IF EXISTS quote_history CASCADE;
 CREATE TABLE quote_history (LIKE quote);
 
-CREATE INDEX IF NOT EXISTS idx_quote_symbol_id ON quote(symbol_id);
+CREATE INDEX IF NOT EXISTS idx_quote_security_id ON quote(security_id);
 CREATE INDEX IF NOT EXISTS idx_quote_time_interval_id ON quote(time_interval_id);
 CREATE INDEX IF NOT EXISTS idx_quote_timestamp ON quote(timestamp);
 CREATE INDEX IF NOT EXISTS idx_quote_open ON quote(open);

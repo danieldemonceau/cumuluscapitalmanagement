@@ -28,7 +28,7 @@ FROM
     position p
     JOIN position_market_transaction pmt ON pmt.position_id = p.id
     JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
-    JOIN symbol s ON s.id = mt.symbol_id
+    JOIN stock s ON s.id = mt.security_id
     JOIN (
         WITH market_transaction_open AS (
             SELECT
@@ -43,7 +43,7 @@ FROM
                 1 = 1
                 -- AND p.status = 'Closed'
                 AND mt.direction = 'Long'
-                AND mt.type = 'Buy'
+                AND mt."type" = 'Buy'
             GROUP BY
                 p.id
             UNION ALL
@@ -59,7 +59,7 @@ FROM
                 1 = 1
                 -- AND p.status = 'Closed'
                 AND mt.direction = 'Short'
-                AND mt.type = 'Sell'
+                AND mt."type" = 'Sell'
             GROUP BY
                 p.id
             UNION ALL
@@ -81,7 +81,7 @@ FROM
                 1 = 1
                 -- AND p.status = 'Closed'
                 AND mt.direction = 'Long'
-                AND mt.type = 'Sell'
+                AND mt."type" = 'Sell'
             GROUP BY
                 p.id
             UNION ALL
@@ -97,7 +97,7 @@ FROM
                 1 = 1
                 -- AND p.status = 'Closed'
                 AND mt.direction = 'Short'
-                AND mt.type = 'Buy'
+                AND mt."type" = 'Buy'
             GROUP BY
                 p.id
             UNION ALL

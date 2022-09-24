@@ -1,10 +1,10 @@
 CREATE OR REPLACE FUNCTION market_transaction_insert_before() RETURNS TRIGGER AS $$
     DECLARE
         v_direction domain_market_transaction_direction = NEW.direction;
-        v_type domain_transaction_type = NEW.type;
+        v_type domain_transaction_type = NEW."type";
         v_amount MONEY = NEW.amount;
         v_nb_of_units DECIMAL = NEW.nb_of_units;
-        v_symbol_id INTEGER = NEW.symbol_id;
+        v_security_id INTEGER = NEW.security_id;
         v_broker_id INTEGER = NEW.broker_id;
 
         v_position_id INTEGER;
@@ -40,7 +40,7 @@ CREATE OR REPLACE FUNCTION market_transaction_insert_before() RETURNS TRIGGER AS
         THEN
             SELECT INTO v_position_id, v_position_nb_of_units_open
             po.id, po.nb_of_units_open
-            FROM position_open_get(v_direction, v_symbol_id, v_broker_id) po;
+            FROM position_open_get(v_direction, v_security_id, v_broker_id) po;
 
             IF COALESCE(v_position_id, 0) = 0
             THEN

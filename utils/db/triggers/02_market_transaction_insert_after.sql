@@ -2,13 +2,13 @@ CREATE OR REPLACE FUNCTION market_transaction_insert_after()
 RETURNS TRIGGER AS $$
     DECLARE
         v_id INTEGER = NEW.id;
-        v_type domain_transaction_type = NEW.type;
+        v_type domain_transaction_type = NEW."type";
         -- v_description TEXT = NEW.description;
         v_execution_timestamp TIMESTAMP WITH TIME ZONE = NEW.execution_timestamp;
         v_broker_id INTEGER = NEW.broker_id;
         v_amount MONEY = NEW.amount;
         v_direction domain_market_transaction_direction = NEW.direction;
-        v_symbol_id INTEGER = NEW.symbol_id;
+        v_security_id INTEGER = NEW.security_id;
         v_nb_of_units DECIMAL = NEW.nb_of_units;
 
         v_position_id INTEGER;
@@ -35,7 +35,7 @@ RETURNS TRIGGER AS $$
             , po.amount_opened
             , po.amount_closed
             , po.nb_of_units_open
-        FROM position_open_get(v_direction, v_symbol_id, v_broker_id) po;
+        FROM position_open_get(v_direction, v_security_id, v_broker_id) po;
 
         -- If
         -- - There is an Open Position

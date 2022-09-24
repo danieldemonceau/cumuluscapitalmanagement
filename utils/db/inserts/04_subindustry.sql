@@ -2,7 +2,6 @@ INSERT INTO subindustry (code, name, industry_id)
 SELECT sii.code code, sii.name name, i.id industry_id
 FROM (
     VALUES
-
         ('10101010', 'Oil & Gas Drilling', '101010'), 
         ('10101020', 'Oil & Gas Equipment & Services', '101010'), 
         ('10102010', 'Integrated Oil & Gas', '101020'), 
@@ -161,7 +160,6 @@ FROM (
         ('60102020', 'Real Estate Operating Companies', '601020'), 
         ('60102030', 'Real Estate Development', '601020'), 
         ('60102040', 'Real Estate Services', '601020')
-
 ) sii(code, name, industry_code)
 JOIN industry i ON i.code = sii.industry_code
 WHERE NOT EXISTS (

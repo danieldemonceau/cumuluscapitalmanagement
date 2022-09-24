@@ -28,7 +28,7 @@ FROM
     position p
     JOIN position_market_transaction pmt ON pmt.position_id = p.id
     JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
-    JOIN symbol s ON s.id = mt.symbol_id
+    JOIN stock s ON s.id = mt.security_id
     JOIN (
         WITH market_transaction_open AS (
             SELECT
@@ -43,7 +43,7 @@ FROM
                 1 = 1
                 -- AND p.status = 'Closed'
                 AND mt.direction = 'Long'
-                AND mt.type = 'Buy'
+                AND mt."type" = 'Buy'
             GROUP BY
                 p.id
             UNION ALL
@@ -59,7 +59,7 @@ FROM
                 1 = 1
                 -- AND p.status = 'Closed'
                 AND mt.direction = 'Short'
-                AND mt.type = 'Sell'
+                AND mt."type" = 'Sell'
             GROUP BY
                 p.id
             UNION ALL
@@ -81,7 +81,7 @@ FROM
                 1 = 1
                 -- AND p.status = 'Closed'
                 AND mt.direction = 'Long'
-                AND mt.type = 'Sell'
+                AND mt."type" = 'Sell'
             GROUP BY
                 p.id
             UNION ALL
@@ -97,7 +97,7 @@ FROM
                 1 = 1
                 -- AND p.status = 'Closed'
                 AND mt.direction = 'Short'
-                AND mt.type = 'Buy'
+                AND mt."type" = 'Buy'
             GROUP BY
                 p.id
             UNION ALL
@@ -143,21 +143,22 @@ FROM
     JOIN strategy st ON st.id = mt.strategy_id
     LEFT JOIN (
         SELECT
-            q.symbol_id qsymbol_id,
+            q.security_id qstock_id,
             q.close qcurrent_price,
             q.timestamp qtimestamp
         FROM
             quote q
             JOIN (
                 SELECT
-                    q.symbol_id qsymbol_id,
+                    q.security_id qstock_id,
                     MAX(q.timestamp) qtimestamp
                 FROM
                     quote q
                 GROUP BY
-                    q.symbol_id) ql ON ql.qsymbol_id = q.symbol_id
-                AND q.timestamp = ql.qtimestamp
-    ) ql ON ql.qsymbol_id = s.id
+                    q.security_id
+            ) ql ON ql.qstock_id = q.security_id
+            AND q.timestamp = ql.qtimestamp
+    ) ql ON ql.qstock_id = s.id
     AND ql.qtimestamp > p.open_timestamp
 WHERE
     p.status = 'Open'

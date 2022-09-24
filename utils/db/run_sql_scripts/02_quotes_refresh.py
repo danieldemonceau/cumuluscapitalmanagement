@@ -43,17 +43,17 @@ def quote_refresh(source_name):
         ) s;
     """
     cur.execute(query)
-    symbolsJSON = cur.fetchall()
+    securitiesJSON = cur.fetchall()
     conn.commit()
 
-    for symbol in symbolsJSON[0][0]:
-        symbol_name = symbol["name"]
-        symbol_outputsize = "full"
+    for security in securitiesJSON[0][0]:
+        security_name = security["name"]
+        security_outputsize = "full"
         url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={}&outputsize={}&apikey={}".format(
-            symbol_name, symbol_outputsize, av_apikey
+            security_name, security_outputsize, av_apikey
         )
         print(url)
-        symbol_time_interval_label = "Daily"
+        security_time_interval_label = "Daily"
         while True:
             try:
                 response = requests.get(url)
@@ -67,19 +67,19 @@ def quote_refresh(source_name):
                 print("--- Trying again")
                 time.sleep(5)
                 continue
-        quotes_list = quotes[f"Time Series ({symbol_time_interval_label})"]
+        quotes_list = quotes[f"Time Series ({security_time_interval_label})"]
         quotes_list_items = quotes_list.items()
         time_interval = "1day"
         # Get the before last quote for this time_interval
         # Anything prior is already in the database
         query = f"""
-            SELECT s.id "symbol_id", ti.id "time_interval_id", q.timestamp "timestamp"
+            SELECT s.id "security_id", ti.id "time_interval_id", q.timestamp "timestamp"
             FROM quote q
-            JOIN symbol s ON s.id = q.symbol_id
-            JOIN symbol_type st ON st.id = s.symbol_type_id
+            JOIN security s ON s.id = q.security_id
+            JOIN security_type st ON st.id = s.security_type_id
             JOIN time_interval ti ON ti.id = q.time_interval_id
             JOIN source so ON so.id = q.source_id
-            WHERE s.name = '{symbol_name}'
+            WHERE s.name = '{security_name}'
             AND ti.name = '{time_interval}'
             AND so.name = '{source_name}'
             AND st.name = 'Stock'
@@ -121,13 +121,13 @@ def quote_refresh(source_name):
                 quote_datetime_utc_format
             )
             quote_query_insert = f"""
-                INSERT INTO quote (symbol_id, time_interval_id, timestamp, open, high, low, close, source_id, volume)
-                SELECT s.id "symbol_id", ti.id "time_interval_id", '{quote_datetime_utc}' "timestamp", {quote['1. open']} "open", {quote['2. high']} "high", {quote['3. low']} "low", {quote['4. close']} "close", so.id "source_id", {quote['5. volume']} "volume"
-                FROM symbol s
-                JOIN symbol_type st ON st.id = s.symbol_type_id
+                INSERT INTO quote (security_id, time_interval_id, timestamp, open, high, low, close, source_id, volume)
+                SELECT s.id "security_id", ti.id "time_interval_id", '{quote_datetime_utc}' "timestamp", {quote['1. open']} "open", {quote['2. high']} "high", {quote['3. low']} "low", {quote['4. close']} "close", so.id "source_id", {quote['5. volume']} "volume"
+                FROM security s
+                JOIN security_type st ON st.id = s.security_type_id
                 , time_interval ti
                 , source so
-                WHERE s.name = '{symbol_name}'
+                WHERE s.name = '{security_name}'
                 AND ti.name = '{time_interval}'
                 AND so.name = '{source_name}'
                 AND st.name = 'Stock'
@@ -135,7 +135,7 @@ def quote_refresh(source_name):
                     SELECT q.id
                     FROM quote q
                     WHERE 1 = 1
-                    AND (q.symbol_id = s.id)
+                    AND (q.security_id = s.id)
                     AND (q.time_interval_id = ti.id)
                     AND (q.timestamp = '{quote_datetime_utc}')
                     AND (q.source_id = so.id)

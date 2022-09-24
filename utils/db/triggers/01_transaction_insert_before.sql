@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION trigger_transaction_insert_before()
 RETURNS TRIGGER AS $$
 
     DECLARE
-        v_type TEXT = NEW.type;
+        v_type TEXT = NEW."type";
         v_amount MONEY = NEW.amount;
     BEGIN
         

@@ -4,7 +4,7 @@ CREATE OR REPLACE VIEW position_get_market_transactions_get_details AS
 SELECT
 p.id pid
 , mt.id mtid
-, mt.type mttype
+, mt."type" mttype
 , mt.description mtdescription
 , mt.execution_timestamp mtexecution_timestamp
 , b.name bname
@@ -18,6 +18,6 @@ FROM position p
 JOIN position_market_transaction pmt ON pmt.position_id = p.id
 JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
 JOIN broker b ON b.id = mt.broker_id
-JOIN symbol s ON s.id = mt.symbol_id
+JOIN security s ON s.id = mt.security_id
 WHERE 1 = 1
 ORDER BY execution_timestamp ASC;

@@ -71,7 +71,6 @@ FROM (
         ('551050', 'Independent Power and Renewable Electricity Producers', '5510'), 
         ('601010', 'Equity Real Estate Investment Trusts (REITs)', '6010'), 
         ('601020', 'Real Estate Management & Development', '6010')
-
 ) ii(code, name, industry_group_code)
 JOIN industry_group ig ON ig.code = ii.industry_group_code
 WHERE NOT EXISTS (

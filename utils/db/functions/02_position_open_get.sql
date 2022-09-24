@@ -1,13 +1,13 @@
 CREATE OR REPLACE FUNCTION position_open_get(
     p_direction domain_market_transaction_direction,
-    p_symbol_id INTEGER,
+    p_security_id INTEGER,
     p_broker_id INTEGER
 )
 RETURNS TABLE (
     id INTEGER,
     status DOMAIN_POSITION_STATUS,
     direction domain_market_transaction_direction,
-    symbol_name TEXT,
+    security_name TEXT,
     
     open_timestamp TIMESTAMP WITH TIME ZONE,
     close_timestamp TIMESTAMP WITH TIME ZONE,
@@ -39,7 +39,7 @@ AS $$
         p.id id,
         p.status status, 
         mt.direction direction, 
-        s.name symbol_name, 
+        s.name security_name, 
         p.open_timestamp open_timestamp, 
         p.close_timestamp close_timestamp,
         EXTRACT(DAY FROM COALESCE(p.close_timestamp, CURRENT_TIMESTAMP(0)) - p.open_timestamp)::INTEGER holding_period_days,
@@ -57,7 +57,7 @@ AS $$
         FROM position p
         JOIN position_market_transaction pmt ON pmt.position_id = p.id
         JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
-        JOIN symbol s ON s.id = mt.symbol_id
+        JOIN security s ON s.id = mt.security_id
         JOIN broker b ON b.id = mt.broker_id
         LEFT JOIN position_group pg ON pg.id = p.position_group_id
         JOIN (
@@ -71,7 +71,7 @@ AS $$
                 WHERE 1 = 1
                 AND p.status = 'Open'
                 AND mt.direction = p_direction
-                AND mt.type = CASE WHEN p_direction = 'Long' THEN 'Buy' WHEN p_direction = 'Short' THEN 'Sell' END
+                AND mt."type" = CASE WHEN p_direction = 'Long' THEN 'Buy' WHEN p_direction = 'Short' THEN 'Sell' END
                 GROUP BY p.id
 
                 UNION ALL
@@ -90,7 +90,7 @@ AS $$
                 WHERE 1 = 1
                 AND p.status = 'Open'
                 AND mt.direction = p_direction
-                AND mt.type = CASE WHEN p_direction = 'Long' THEN 'Sell' WHEN p_direction = 'Short' THEN 'Buy' END
+                AND mt."type" = CASE WHEN p_direction = 'Long' THEN 'Sell' WHEN p_direction = 'Short' THEN 'Buy' END
                 GROUP BY p.id
 
                 UNION ALL
@@ -117,7 +117,7 @@ AS $$
         WHERE 1 = 1
         AND p.status = 'Open'
         AND mt.direction = p_direction
-        AND s.id = p_symbol_id
+        AND s.id = p_security_id
         AND b.id = p_broker_id
         GROUP BY 
             p.id
@@ -152,7 +152,7 @@ RETURNS TABLE (
     id INTEGER,
     status DOMAIN_POSITION_STATUS,
     direction domain_market_transaction_direction,
-    symbol_name TEXT,
+    security_name TEXT,
     
     open_timestamp TIMESTAMP WITH TIME ZONE,
     close_timestamp TIMESTAMP WITH TIME ZONE,
@@ -184,7 +184,7 @@ AS $$
         p.id id,
         p.status status, 
         mt.direction direction, 
-        s.name symbol_name, 
+        s.name security_name, 
         p.open_timestamp open_timestamp, 
         p.close_timestamp close_timestamp,
         EXTRACT(DAY FROM COALESCE(p.close_timestamp, CURRENT_TIMESTAMP(0)) - p.open_timestamp)::INTEGER holding_period_days,
@@ -202,7 +202,7 @@ AS $$
         FROM position p
         JOIN position_market_transaction pmt ON pmt.position_id = p.id
         JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
-        JOIN symbol s ON s.id = mt.symbol_id
+        JOIN security s ON s.id = mt.security_id
         LEFT JOIN position_group pg ON pg.id = p.position_group_id
         JOIN (
             WITH market_transaction_open AS (
@@ -215,7 +215,7 @@ AS $$
                 WHERE 1 = 1
                 AND p.status = 'Open'
                 AND mt.direction = 'Long'
-                AND mt.type = 'Buy'
+                AND mt."type" = 'Buy'
                 AND p.id = p_id
                 GROUP BY p.id
 
@@ -230,7 +230,7 @@ AS $$
                 WHERE 1 = 1
                 AND p.status = 'Open'
                 AND mt.direction = 'Short'
-                AND mt.type = 'Sell'
+                AND mt."type" = 'Sell'
                 AND p.id = p_id
                 GROUP BY p.id
 
@@ -250,7 +250,7 @@ AS $$
                 WHERE 1 = 1
                 AND p.status = 'Open'
                 AND mt.direction = 'Long'
-                AND mt.type = 'Sell'
+                AND mt."type" = 'Sell'
                 AND p.id = p_id
                 GROUP BY p.id
 
@@ -266,7 +266,7 @@ AS $$
                 AND p.id = p_id
                 AND p.status = 'Open'
                 AND mt.direction = 'Short'
-                AND mt.type = 'Buy'
+                AND mt."type" = 'Buy'
                 GROUP BY p.id
 
                 UNION ALL

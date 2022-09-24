@@ -4,7 +4,7 @@ SELECT
 p.id id,
 p.status status, 
 mt.direction direction, 
-s.name symbol_name, 
+s.name security_name, 
 p.open_timestamp open_timestamp, 
 p.close_timestamp close_timestamp,
 EXTRACT(DAY FROM COALESCE(p.close_timestamp, CURRENT_TIMESTAMP(0)) - p.open_timestamp)::INTEGER holding_period_days,
@@ -22,7 +22,7 @@ pg.name
 FROM position p
 JOIN position_market_transaction pmt ON pmt.position_id = p.id
 JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
-JOIN symbol s ON s.id = mt.symbol_id
+JOIN security s ON s.id = mt.security_id
 LEFT JOIN position_group pg ON pg.id = p.position_group_id
 JOIN (
     WITH market_transaction_open AS (
@@ -34,7 +34,7 @@ JOIN (
         JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
         WHERE 1 = 1
         AND mt.direction = 'Long'
-        AND mt.type = 'Buy'
+        AND mt."type" = 'Buy'
         GROUP BY p.id
 
         UNION ALL
@@ -47,7 +47,7 @@ JOIN (
         JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
         WHERE 1 = 1
         AND mt.direction = 'Short'
-        AND mt.type = 'Sell'
+        AND mt."type" = 'Sell'
         GROUP BY p.id
 
         UNION ALL
@@ -65,7 +65,7 @@ JOIN (
         JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
         WHERE 1 = 1
         AND mt.direction = 'Long'
-        AND mt.type = 'Sell'
+        AND mt."type" = 'Sell'
         GROUP BY p.id
 
         UNION ALL
@@ -78,7 +78,7 @@ JOIN (
         JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
         WHERE 1 = 1
         AND mt.direction = 'Short'
-        AND mt.type = 'Buy'
+        AND mt."type" = 'Buy'
         GROUP BY p.id
 
         UNION ALL
