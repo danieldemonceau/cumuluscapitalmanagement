@@ -16,7 +16,7 @@ const AcknowledgementOfCountry = () => {
             width={217}
             height={325}
           ></Image>
-          <p className="text-sm">
+          <p className="text-sm italic">
             Photo by{" "}
             <a
               href="https://unsplash.com/@davidclode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
@@ -25,7 +25,7 @@ const AcknowledgementOfCountry = () => {
             >
               David Clode
             </a>{" "}
-            on{" "}
+            (
             <a
               href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
               target={`_blank`}
@@ -33,6 +33,7 @@ const AcknowledgementOfCountry = () => {
             >
               Unsplash
             </a>
+            )
           </p>
         </div>
         <div className="basis-2/5">
