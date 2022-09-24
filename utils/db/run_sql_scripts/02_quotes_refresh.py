@@ -38,7 +38,7 @@ def quote_refresh(source_name):
     query = f"""
         SELECT json_agg(s)
         FROM (
-            SELECT po."Asset" name
+            SELECT po."asset" name
             FROM position_open po
         ) s;
     """
