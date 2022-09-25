@@ -24,11 +24,11 @@ export const useTableColumnsOpenPositions = () => {
         },
         {
           Header: "Current Unit Price",
-          accessor: "sharePriceCurrent",
+          accessor: "priceCurrent",
         },
         {
           Header: "Current Unit Price Date",
-          accessor: "sharePriceCurrentDate",
+          accessor: "priceCurrentDate",
         },
         {
           Header: "P/L %",
@@ -65,7 +65,7 @@ export const useTableColumnsClosedPositions = () => {
           accessor: "closeTimestamp",
         },
         {
-          Header: "Avg Unit Price Open",
+          Header: "Avg Unit Price Closed",
           accessor: "priceClosedAverage",
         },
         {

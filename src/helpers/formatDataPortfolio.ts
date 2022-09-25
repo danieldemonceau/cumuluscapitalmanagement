@@ -5,16 +5,14 @@ export const formatDataPortfolioOpenPositions = (
   data: PositionOpen[]
 ): PositionOpen[] => {
   const dataFormatted = data
-    .filter((d) => d.sharePriceCurrent !== null)
+    .filter((d) => d.priceCurrent !== null)
     .map((d) => {
       return {
         ...d,
         openTimestamp: d.openTimestamp && formatDate(d.openTimestamp),
         priceOpenedAverage: +d.priceOpenedAverage?.toFixed(2),
-        sharePriceCurrent:
-          d.sharePriceCurrent && +d.sharePriceCurrent?.toFixed(2),
-        sharePriceCurrentDate:
-          d.sharePriceCurrentDate && formatDate(d.sharePriceCurrentDate),
+        priceCurrent: d.priceCurrent && +d.priceCurrent?.toFixed(2),
+        priceCurrentDate: d.priceCurrentDate && formatDate(d.priceCurrentDate),
         plPercent: d.plPercent && +d.plPercent?.toFixed(2),
       };
     });

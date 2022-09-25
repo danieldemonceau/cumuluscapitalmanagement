@@ -4,8 +4,8 @@ export interface PositionOpen {
   asset: string;
   openTimestamp: string;
   priceOpenedAverage: number;
-  sharePriceCurrent?: number;
-  sharePriceCurrentDate?: string;
+  priceCurrent?: number;
+  priceCurrentDate?: string;
   plPercent: number;
   strategyName: string;
   getSortByToggleProps?(): () => Record<string, unknown>;

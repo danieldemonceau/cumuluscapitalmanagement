@@ -126,7 +126,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="uppercase group">
-            <Link href={`/strategies/acquirersmultiple`}>
+            <Link href={`/strategies/marketdollarcostaveraging`}>
               <div className="flex flex-col transition ease-in-out duration-300 delay-150 group-hover:scale-110 cursor-pointer">
                 <div className="flex flex-col h-full align-middle justify-center mx-3 mb-1">
                   <FontAwesomeIcon
@@ -138,7 +138,7 @@ const Navbar = () => {
                 </div>
                 <div className="text-base text-center flex flex-col h-full align-middle justify-center">
                   <p className="text-gray-800 group-hover:text-blue-800">
-                    Dollar-Cost <br />
+                    Market Dollar-Cost <br />
                     Averaging
                   </p>
                 </div>

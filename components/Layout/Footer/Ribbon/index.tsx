@@ -39,7 +39,7 @@ const Ribbon = () => {
             Privacy
           </a>
           <a
-            href={`https://${domainName}`}
+            href={`/sitecredits`}
             className="justify-between basis-6/12"
             target={`_self`}
           >

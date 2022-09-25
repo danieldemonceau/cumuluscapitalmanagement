@@ -37,7 +37,7 @@ const Description = () => {
                   className="text-blue-700 hover:text-blue-300"
                   target={`_self`}
                 >
-                  Dollar Cost Averaging
+                  Market Dollar Cost Averaging
                 </a>
               </li>
             </ul>
