@@ -18,8 +18,8 @@ SELECT
     pl.amount_open "amount_open",
     (pl.nb_of_units_open * ql.qcurrent_price) "amount_open_current",
     pl.amount_open / pl.nb_of_units_open "price_open_average",
-    ql.qcurrent_price "share_price_current",
-    ql.qtimestamp "share_price_current_date",
+    ql.qcurrent_price "price_current",
+    ql.qtimestamp "price_current_date",
     EXTRACT(DAY FROM COALESCE(close_timestamp, CURRENT_TIMESTAMP(0)) - open_timestamp) "holding_period_days",
     COALESCE(pl.amount_closed, 0::money) + (pl.nb_of_units_open * ql.qcurrent_price - pl.amount_open) "pl_absolute",
     ((COALESCE(pl.amount_closed, 0::money) + (pl.nb_of_units_open * ql.qcurrent_price - pl.amount_open)) / pl.amount_opened) * 100 pl_percent,
@@ -143,22 +143,22 @@ FROM
     JOIN strategy st ON st.id = mt.strategy_id
     LEFT JOIN (
         SELECT
-            q.security_id qstock_id,
+            q.security_id qsecurity_id,
             q.close qcurrent_price,
             q.timestamp qtimestamp
         FROM
             quote q
             JOIN (
                 SELECT
-                    q.security_id qstock_id,
+                    q.security_id qsecurity_id,
                     MAX(q.timestamp) qtimestamp
                 FROM
                     quote q
                 GROUP BY
                     q.security_id
-            ) ql ON ql.qstock_id = q.security_id
+            ) ql ON ql.qsecurity_id = q.security_id
             AND q.timestamp = ql.qtimestamp
-    ) ql ON ql.qstock_id = s.id
+    ) ql ON ql.qsecurity_id = s.id
     AND ql.qtimestamp > p.open_timestamp
 WHERE
     p.status = 'Open'

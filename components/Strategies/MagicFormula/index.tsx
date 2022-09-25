@@ -11,10 +11,10 @@ import {
   useTableColumnsClosedPositions,
 } from "@/components/Portfolio/useTableColumns";
 import Image from "next/image";
-// import MagicFormulaImage1 from "./MagicFormulaImage1.png";
-import MagicFormulaImage11 from "./MagicFormulaImage11.png";
+import MagicFormulaImage1 from "./MagicFormulaImage1.png";
 import MagicFormulaImage2 from "./MagicFormulaImage2.png";
 import MagicFormulaImage3 from "./MagicFormulaImage3.png";
+import DreamAICaption from "@/components/common/Caption/DreamAICaption";
 
 const MagicFormula = ({
   positionOpen,
@@ -62,7 +62,7 @@ const MagicFormula = ({
         <div className="flex flex-row my-5">
           <div className="basis-1/12"></div>
           <div className="flex flex-col basis-10/12">
-            <div id="whatisit" className="flex mt-16 mb-16 scroll-mt-10">
+            <div id="whatisit" className="flex mt-16 mb-16 scroll-mt-14">
               <div className="basis-6/12 align-middle justify-center my-auto text-center">
                 <h1>What Is It?</h1>
               </div>
@@ -97,10 +97,10 @@ const MagicFormula = ({
                 </p>
               </div>
             </div>
-            <div className="mx-auto justify-center align-middle mt-14 scroll-mt-10">
+            <div className="mx-auto justify-center align-middle mt-14 scroll-mt-14">
               <YoutubeEmbed embedId="fzig7KJFuNU" />
             </div>
-            <div id="inpractice" className="flex mt-14 mb-14 scroll-mt-10">
+            <div id="inpractice" className="flex mt-14 mb-14 scroll-mt-14">
               <div className="basis-5/12 text-center mt-32">
                 <h1>In Practice</h1>
               </div>
@@ -187,15 +187,16 @@ const MagicFormula = ({
                 </div>
               </div>
             </div>
-            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
+            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-14">
               <Image
-                src={MagicFormulaImage11}
+                src={MagicFormulaImage1}
                 alt={`Art Images Banner`}
                 width={1045}
                 height={464}
               ></Image>
+              <DreamAICaption />
             </div>
-            <div id="wanthigherreturns" className="flex mb-16 scroll-mt-10">
+            <div id="wanthigherreturns" className="flex mb-16 scroll-mt-14">
               <div className="basis-5/12">
                 <h1>Want higher returns?</h1>
               </div>
@@ -253,15 +254,16 @@ const MagicFormula = ({
                 </div>
               </div>
             </div>
-            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
+            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-14">
               <Image
                 src={MagicFormulaImage2}
                 alt={`Art Images Banner`}
                 width={1045}
                 height={464}
               ></Image>
+              <DreamAICaption />
             </div>
-            <div id="magicFormulaExplanation" className="flex scroll-mt-10">
+            <div id="magicFormulaExplanation" className="flex scroll-mt-14">
               <div className="basis-5/12 pr-9">
                 <h1>The "Magic Formula" formula</h1>
               </div>
@@ -313,13 +315,14 @@ const MagicFormula = ({
                 </div>
               </div>
             </div>
-            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
+            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-14">
               <Image
                 src={MagicFormulaImage3}
                 alt={`Art Images Banner`}
                 width={1045}
                 height={464}
               ></Image>
+              <DreamAICaption />
             </div>
             {openPositionData.length > 0 && (
               <div>
@@ -332,7 +335,7 @@ const MagicFormula = ({
             )}
             {closedPositionData.length > 0 && (
               <div>
-                <h1 id="closedpositions scroll-mt-10">Closed Positions</h1>
+                <h1 id="closedpositions scroll-mt-14">Closed Positions</h1>
                 <TableClosedPositions
                   columns={columnsClosed}
                   data={closedPositionData}
