@@ -10,7 +10,10 @@ import {
   useTableColumnsOpenPositions,
   useTableColumnsClosedPositions,
 } from "@/components/Portfolio/useTableColumns";
-// import Image from "next/image";
+import Image from "next/image";
+import TheAcquirersMultipleImage1 from "./TheAcquirersMultipleImage1.png";
+import TheAcquirersMultipleImage2 from "./TheAcquirersMultipleImage2.png";
+import DreamAICaption from "@/components/common/Caption/DreamAICaption";
 
 const TheAcquirersMultiple = ({
   positionOpen,
@@ -46,9 +49,7 @@ const TheAcquirersMultiple = ({
               <div>|</div>
               <Link href="#inpractice">In Practice</Link>
               <div>|</div>
-              <Link href="#wanthigherreturns">Get higher returns</Link>
-              <div>|</div>
-              <Link href="#TheAcquirersMultipleExplanation">The Formula</Link>
+              <Link href="#theAcquirersMultipleExplanation">The Formula</Link>
               <div>|</div>
               <Link href="#currentporfolio">Current Portfolio</Link>
               <div>|</div>
@@ -60,7 +61,7 @@ const TheAcquirersMultiple = ({
         <div className="flex flex-row my-5">
           <div className="basis-1/12"></div>
           <div className="flex flex-col basis-10/12">
-            <div id="whatisit" className="flex mt-16 mb-16 scroll-mt-10">
+            <div id="whatisit" className="flex mt-16 mb-16 scroll-mt-14">
               <div className="basis-6/12 align-middle justify-center my-auto text-center">
                 <h1>What Is It?</h1>
               </div>
@@ -88,10 +89,10 @@ const TheAcquirersMultiple = ({
                 </p>
               </div>
             </div>
-            <div className="mx-auto justify-center align-middle mt-14 scroll-mt-10">
+            <div className="mx-auto justify-center align-middle mt-14 scroll-mt-14">
               <YoutubeEmbed embedId="nsQYjz9XI2c" />
             </div>
-            <div id="inpractice" className="flex mt-14 mb-14 scroll-mt-10">
+            <div id="inpractice" className="flex mt-14 mb-14 scroll-mt-14">
               <div className="basis-5/12 text-center mt-32">
                 <h1>In Practice</h1>
               </div>
@@ -162,25 +163,18 @@ const TheAcquirersMultiple = ({
                 </div>
               </div>
             </div>
-            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
-              {/* <Image
-                src={TheAcquirersMultipleImage11}
+            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-14">
+              <Image
+                src={TheAcquirersMultipleImage1}
                 alt={`Art Images Banner`}
                 width={1045}
                 height={464}
-              ></Image> */}
-            </div>
-            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
-              {/* <Image
-                src={TheAcquirersMultipleImage2}
-                alt={`Art Images Banner`}
-                width={1045}
-                height={464}
-              ></Image> */}
+              ></Image>
+              <DreamAICaption />
             </div>
             <div
               id="theAcquirersMultipleExplanation"
-              className="flex scroll-mt-10"
+              className="flex scroll-mt-14"
             >
               <div className="basis-5/12 pr-9">
                 <h1>The Acquirer's Multiple formula</h1>
@@ -223,13 +217,14 @@ const TheAcquirersMultiple = ({
                 </div>
               </div>
             </div>
-            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-10">
-              {/* <Image
-                src={TheAcquirersMultipleImage3}
+            <div className="align-middle justify-center mx-auto mt-16 mb-16 scroll-mt-14">
+              <Image
+                src={TheAcquirersMultipleImage2}
                 alt={`Art Images Banner`}
                 width={1045}
                 height={464}
-              ></Image> */}
+              ></Image>
+              <DreamAICaption />
             </div>
             {openPositionData.length > 0 && (
               <div>
