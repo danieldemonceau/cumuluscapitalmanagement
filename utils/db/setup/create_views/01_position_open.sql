@@ -6,6 +6,7 @@ SELECT
     p.status "status",
     mt.direction "type",
     s.name "asset",
+    st.name "security type name",
     p.open_timestamp "open_timestamp",
     p.close_timestamp "close_timestamp",
     pl.nb_of_units_opened "nb_of_units_opened",
@@ -18,17 +19,18 @@ SELECT
     pl.amount_open "amount_open",
     (pl.nb_of_units_open * ql.qcurrent_price) "amount_open_current",
     pl.amount_open / pl.nb_of_units_open "price_open_average",
-    ql.qcurrent_price "share_price_current",
-    ql.qtimestamp "share_price_current_date",
+    ql.qcurrent_price "price_current",
+    ql.qtimestamp "price_current_date",
     EXTRACT(DAY FROM COALESCE(close_timestamp, CURRENT_TIMESTAMP(0)) - open_timestamp) "holding_period_days",
     COALESCE(pl.amount_closed, 0::money) + (pl.nb_of_units_open * ql.qcurrent_price - pl.amount_open) "pl_absolute",
     ((COALESCE(pl.amount_closed, 0::money) + (pl.nb_of_units_open * ql.qcurrent_price - pl.amount_open)) / pl.amount_opened) * 100 pl_percent,
-    st.name "strategy_name"
+    str.name "strategy_name"
 FROM
     position p
     JOIN position_market_transaction pmt ON pmt.position_id = p.id
     JOIN market_transaction mt ON mt.id = pmt.market_transaction_id
     JOIN security s ON s.id = mt.security_id
+    JOIN security_type st ON st.id = s.security_type_id
     JOIN (
         WITH market_transaction_open AS (
             SELECT
@@ -140,7 +142,7 @@ FROM
             mts.pid) mtt ON (mtt.pid = mtc.pid)
         OR (mtt.pid = mto.pid)
     ) pl ON pl.pid = p.id
-    JOIN strategy st ON st.id = mt.strategy_id
+    JOIN strategy str ON str.id = mt.strategy_id
     LEFT JOIN (
         SELECT
             q.security_id qsecurity_id,
@@ -166,6 +168,7 @@ GROUP BY
     p.status,
     mt.direction,
     s.name,
+    st.name,
     p.open_timestamp,
     p.close_timestamp,
     pl.nb_of_units_opened,
@@ -176,7 +179,7 @@ GROUP BY
     pl.amount_open,
     ql.qcurrent_price,
     ql.qtimestamp,
-    st.name;
+    str.name;
 
 COMMENT ON VIEW position_open IS E'@name position_open\n@omit update,delete\nThis is the documentation.';
 

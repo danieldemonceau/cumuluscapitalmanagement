@@ -18,8 +18,8 @@ SELECT
     pl.amount_p_or_l "amount_p_or_l",
     (pl.nb_of_units_open * ql.qcurrent_price) "amount_open_current",
     -- pl.amount_p_or_l / pl.nb_of_units_open "price_open_average",
-    ql.qcurrent_price "share_price_current",
-    ql.qtimestamp "share_price_current_date",
+    ql.qcurrent_price "price_current",
+    ql.qtimestamp "price_current_date",
     EXTRACT(
         DAY
         FROM COALESCE(
