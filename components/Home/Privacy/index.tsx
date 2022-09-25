@@ -10,9 +10,9 @@ const Privacy = () => {
               <div className="basis-10/12">
                 <h2>INTRODUCTION</h2>
                 <p>
-                  This document sets out the privacy policy of [insert] Pty Ltd
-                  ABN [insert] (referred to in this privacy policy as ‘we’,
-                  ‘us’, or ‘our’).
+                  This document sets out the privacy policy of Fluffy Clouds
+                  Avenue Pty Ltd ABN 69 658 245 857 (referred to in this privacy
+                  policy as ‘we’, ‘us’, or ‘our’).
                 </p>
                 <p>
                   We take our privacy obligations seriously and we’ve created
