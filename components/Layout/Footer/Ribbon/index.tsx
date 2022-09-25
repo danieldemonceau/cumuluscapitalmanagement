@@ -1,4 +1,3 @@
-import React from "react";
 import meta from "@/src/data/meta";
 const domainName = meta.domainName;
 
@@ -18,21 +17,21 @@ const Ribbon = () => {
         </div>
         <div className="flex flex-row justify-center space-x-2 text-right w-auto">
           <a
-            href={`https://${domainName}`}
+            href={`/disclaimer`}
             className="justify-between basis-2/12"
             target={`_self`}
           >
             Disclaimer
           </a>
           <a
-            href={`https://${domainName}`}
+            href={`/terms`}
             className="justify-between basis-2/12"
             target={`_self`}
           >
             Terms
           </a>
           <a
-            href={`https://${domainName}`}
+            href={`/privacy`}
             className="justify-between basis-2/12"
             target={`_self`}
           >

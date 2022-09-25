@@ -49,7 +49,7 @@ const MarketDollarCostAveraging = ({
               <div>|</div>
               <Link href="#inpractice">In Practice</Link>
               <div>|</div>
-              <Link href="#dollarCostAveragingExplanation">The Formula</Link>
+              <Link href="#dollarCostAveragingExplanation">Description</Link>
               <div>|</div>
               <Link href="#currentporfolio">Current Portfolio</Link>
               <div>|</div>

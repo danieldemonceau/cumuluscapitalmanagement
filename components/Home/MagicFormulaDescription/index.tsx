@@ -1,4 +1,3 @@
-import React from "react";
 import moneySeedImage from "@/components/Home/Description/money-seed.jpg";
 import Image from "next/image";
 
