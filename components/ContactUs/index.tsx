@@ -6,7 +6,6 @@ import { CREATE_COMMENTS } from "../ApolloClient/createComments";
 import React from "react";
 
 const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
-  console.log("recaptchaSiteKey", recaptchaSiteKey);
   const [name, setName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [isEmailAddressValid, setIsEmailAddressValid] = useState(false);
