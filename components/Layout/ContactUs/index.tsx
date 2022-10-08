@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const ContactUs = () => {
   return (
     <>
@@ -9,7 +11,7 @@ const ContactUs = () => {
           </div>
           <div className=" align-middle my-auto">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Contact Us!
+              <Link href="/contactus">Contact Us!</Link>
             </button>
           </div>
         </div>

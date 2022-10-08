@@ -63,10 +63,10 @@ const Navbar = () => {
           </div>
           <div>|</div>
           <div className="text-sm group text-center text-black flex flex-col h-full align-middle justify-center cursor-pointer">
-            Investors
+            <Link href="/investors">Investors</Link>
           </div>
           <div className="text-sm group text-center text-black flex flex-col h-full align-middle justify-center cursor-pointer">
-            Contact Us
+            <Link href="/contactus">Contact Us</Link>
           </div>
         </div>
       </nav>
