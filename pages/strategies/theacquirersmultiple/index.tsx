@@ -30,13 +30,18 @@ const Index = ({
 export const getServerSideProps = async () => {
   // Get last Quotes
   const responsePositionOpen = await axios({
-    // baseURL: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}`,
-    // ${
+    // baseURL: `${process.env.GRAPHQL_PROTOCOL}://${
+    //   process.env.GRAPHQL_DOMAIN_NAME
+    // }${
     //   process.env.GRAPHQL_PORT && +process.env.GRAPHQL_PORT === 80
     //     ? ""
     //     : ":" + process.env.GRAPHQL_PORT
     // }`,
-    url: `/api/graphql`,
+    url: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}${
+      process.env.GRAPHQL_PORT && +process.env.GRAPHQL_PORT === 80
+        ? ""
+        : ":" + process.env.GRAPHQL_PORT
+    }/api/graphql`,
     method: "post",
     headers: {
       "content-type": "application/json",
@@ -44,18 +49,45 @@ export const getServerSideProps = async () => {
     data: { query: ALL_POSITIONS_OPEN_THE_ACQUIRERS_MULTIPLE },
   });
 
+  // const responsePositionOpen = fetch("/api/graphql", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     query: `
+  //       query GetLearnWithJasonEpisodes($now: DateTime!) {
+  //         allEpisode(limit: 10, sort: {date: ASC}, where: {date: {gte: $now}}) {
+  //           date
+  //           title
+  //           guest {
+  //             name
+  //             twitter
+  //           }
+  //           description
+  //         }
+  //       }
+  //     `,
+  //   }),
+  // });
+
   const positionOpen: PositionOpen[] = formatDataPortfolioOpenPositions(
     responsePositionOpen.data.data.allPositionOpenTheAcquirersMultiples.nodes
   );
 
   const responsePositionClosed = await axios({
-    // baseURL: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}`,
-    // ${
+    // baseURL: `${process.env.GRAPHQL_PROTOCOL}://${
+    //   process.env.GRAPHQL_DOMAIN_NAME
+    // }${
     //   process.env.GRAPHQL_PORT && +process.env.GRAPHQL_PORT === 80
     //     ? ""
     //     : ":" + process.env.GRAPHQL_PORT
     // }`,
-    url: `/api/graphql`,
+    url: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}${
+      process.env.GRAPHQL_PORT && +process.env.GRAPHQL_PORT === 80
+        ? ""
+        : ":" + process.env.GRAPHQL_PORT
+    }/api/graphql`,
     method: "post",
     headers: {
       "content-type": "application/json",
