@@ -1,14 +1,14 @@
 import type { NextPage } from "next";
 import HeroHeader from "./HeroHeader";
 import RibbonStrategies from "./RibbonStrategies";
-import MagicFormulaDescription from "./MagicFormulaDescription";
+import HomeDescription from "./HomeDescription";
 
 const Index: NextPage = () => {
   return (
     <>
       <HeroHeader />
       <RibbonStrategies />
-      <MagicFormulaDescription />
+      <HomeDescription />
     </>
   );
 };
