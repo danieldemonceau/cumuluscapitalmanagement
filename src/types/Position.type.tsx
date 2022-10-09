@@ -9,6 +9,7 @@ export interface PositionOpen {
   plPercent: number;
   strategyName: string;
   getSortByToggleProps?(): () => Record<string, unknown>;
+  sortBy?(): () => Record<string, unknown>;
 }
 export interface PositionClosed {
   id: number;
@@ -21,4 +22,5 @@ export interface PositionClosed {
   plPercent: number;
   strategyName: string;
   getSortByToggleProps?(): () => Record<string, unknown>;
+  sortBy?(): () => Record<string, unknown>;
 }
