@@ -30,7 +30,7 @@ const Index = ({
 export const getServerSideProps = async () => {
   // Get last Quotes
   const responsePositionOpen = await axios({
-    baseURL: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}`,
+    // baseURL: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}`,
     // ${
     //   process.env.GRAPHQL_PORT && +process.env.GRAPHQL_PORT === 80
     //     ? ""
@@ -49,7 +49,7 @@ export const getServerSideProps = async () => {
   );
 
   const responsePositionClosed = await axios({
-    baseURL: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}`,
+    // baseURL: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}`,
     // ${
     //   process.env.GRAPHQL_PORT && +process.env.GRAPHQL_PORT === 80
     //     ? ""
