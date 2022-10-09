@@ -13,15 +13,30 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "types": ["jest", "node", "@types/testing-library__jest-dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./components/*"],
+      "@/src/*": ["./src/*"],
+      "@/utils/*": ["./utils/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
     "**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "types/react-table/index.d.ts",
-    "index.d.ts"
+    "src/types/react-table/index.d.ts",
+    "index.d.ts",
+    "src/eval.macro.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modulesold", "cypress"],
+  "ts-node": {
+    // these options are overrides used only by ts-node
+    // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }

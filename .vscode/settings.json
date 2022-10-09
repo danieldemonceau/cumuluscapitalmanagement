@@ -4,8 +4,11 @@
     "APIKEY",
     "cumulus",
     "dotenv",
+    "DreamAICaption",
     "outputsize",
     "psycopg",
+    "recaptcha",
+    "sitekey",
     "youtube"
   ],
   "god.tsconfig": "./tsconfig.json"
