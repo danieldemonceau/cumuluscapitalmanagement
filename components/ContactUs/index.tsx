@@ -15,8 +15,6 @@ const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
   const [isMessageSent, setIsMessageSent] = useState<boolean>(false);
 
   const sendForm = async () => {
-    console.log("CLICK CLICK");
-
     const postComment = await axios({
       baseURL: ``,
       url: `/api/graphql`,
