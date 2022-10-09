@@ -52,7 +52,6 @@ export const getServerSideProps = async () => {
   const positionOpen: PositionOpen[] = formatDataPortfolioOpenPositions(
     responsePositionOpen.data.data.allPositionOpenMagicFormulas.nodes
   );
-  console.log("test");
 
   const responsePositionClosed = await axios({
     // baseURL: `${process.env.GRAPHQL_PROTOCOL}://${
