@@ -7,7 +7,6 @@ import {
 // import Head from "next/head";
 // import styles from "../styles/Home.module.css";
 import MagicFormula from "@/components/Strategies/MagicFormula";
-import meta, { httpProtocol } from "@/src/data/meta";
 import {
   formatDataPortfolioOpenPositions,
   formatDataPortfolioClosedPositions,
@@ -31,7 +30,7 @@ const Index = ({
 export const getServerSideProps = async () => {
   // Get last Quotes
   const responsePositionOpen = await axios({
-    baseURL: `${httpProtocol}://${meta.domainName}:${process.env.PORT}`,
+    baseURL: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}:${process.env.GRAPHQL_PORT}`,
     url: `/api/graphql`,
     method: "post",
     headers: {
@@ -45,7 +44,7 @@ export const getServerSideProps = async () => {
   );
 
   const responsePositionClosed = await axios({
-    baseURL: `${httpProtocol}://${meta.domainName}:${process.env.PORT}`,
+    baseURL: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}:${process.env.GRAPHQL_PORT}`,
     url: `/api/graphql`,
     method: "post",
     headers: {
