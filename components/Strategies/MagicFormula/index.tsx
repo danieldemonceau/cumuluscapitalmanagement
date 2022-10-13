@@ -324,7 +324,7 @@ const MagicFormula = ({
               ></Image>
               <DreamAICaption />
             </div>
-            {openPositionData.length > 0 && (
+            {openPositionData?.length > 0 && (
               <div>
                 <h1 id="currentporfolio">Current Portfolio</h1>
                 <TableOpenPositions

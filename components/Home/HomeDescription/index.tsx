@@ -59,7 +59,7 @@ const index = () => {
             </li>
           </ol>
         </div>
-        <div className="m-4 basis-2/6 align-middle justify-center mt-10">
+        <div className="m-4 basis-2/6 align-middle justify-center mt-10 2xl:block xl:block lg:block hidden my-auto">
           <Image
             src={moneySeedImage}
             className="h-4/5 object-cover object-top"
