@@ -29,7 +29,7 @@
     "**/*.tsx",
     "src/types/react-table/index.d.ts",
     "index.d.ts",
-    "src/eval.macro.js"
+    "server.ts"
   ],
   "exclude": ["node_modulesold", "cypress"],
   "ts-node": {
