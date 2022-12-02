@@ -38,7 +38,7 @@ def quote_refresh(source_name):
     query = f"""
         SELECT json_agg(s)
         FROM (
-            SELECT po."asset" name
+            SELECT po."asset" "name", po."security type name" security_type_name
             FROM position_open po
         ) s;
     """
@@ -48,8 +48,9 @@ def quote_refresh(source_name):
 
     for security in securitiesJSON[0][0]:
         security_name = security["name"]
+        security_type_name = security["security_type_name"]
         security_outputsize = "full"
-        url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={}&outputsize={}&apikey={}".format(
+        url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={}&outputsize={}&apikey={}".format(
             security_name, security_outputsize, av_apikey
         )
         print(url)
@@ -82,7 +83,7 @@ def quote_refresh(source_name):
             WHERE s.name = '{security_name}'
             AND ti.name = '{time_interval}'
             AND so.name = '{source_name}'
-            AND st.name = 'Stock'
+            AND st.name = '{security_type_name}'
             ORDER BY q.timestamp DESC
             LIMIT 1
             OFFSET 1
@@ -101,7 +102,11 @@ def quote_refresh(source_name):
                 "1900-01-01", quote_datetime_format_day
             )
             quotes_last_datetime = quotes_last_datetime.replace(tzinfo=timezone.utc)
+        count = 0
         for key, value in quotes_list_items:
+            count = count + 1
+            if count > 10:
+                break
             quote_datetime = key
             quote = value
             try:
@@ -122,7 +127,7 @@ def quote_refresh(source_name):
             )
             quote_query_insert = f"""
                 INSERT INTO quote (security_id, time_interval_id, timestamp, open, high, low, close, source_id, volume)
-                SELECT s.id "security_id", ti.id "time_interval_id", '{quote_datetime_utc}' "timestamp", {quote['1. open']} "open", {quote['2. high']} "high", {quote['3. low']} "low", {quote['4. close']} "close", so.id "source_id", {quote['5. volume']} "volume"
+                SELECT s.id "security_id", ti.id "time_interval_id", '{quote_datetime_utc}' "timestamp", {quote['1. open']} "open", {quote['2. high']} "high", {quote['3. low']} "low", {quote['4. close']} "close", so.id "source_id", {quote['6. volume']} "volume"
                 FROM security s
                 JOIN security_type st ON st.id = s.security_type_id
                 , time_interval ti
@@ -130,7 +135,7 @@ def quote_refresh(source_name):
                 WHERE s.name = '{security_name}'
                 AND ti.name = '{time_interval}'
                 AND so.name = '{source_name}'
-                AND st.name = 'Stock'
+                AND st.name = '{security_type_name}'
                 AND NOT EXISTS (
                     SELECT q.id
                     FROM quote q

@@ -22,8 +22,10 @@ def main(folder):
     ) as conn:
         with conn.cursor() as cur:
             for sql_file in sorted(os.listdir(folder)):
-                if os.path.isfile(os.path.join(folder, sql_file)) and re.match(
-                    r"^[0-9]{2}", sql_file
+                if (
+                    os.path.isfile(os.path.join(folder, sql_file))
+                    and re.match(r"^[0-9]{2}", sql_file)
+                    and sql_file.endswith("sql")
                 ):
                     print(sql_file)
                     cur.execute(open(os.path.join(folder, sql_file), "r").read())
@@ -32,6 +34,9 @@ def main(folder):
 
 
 if __name__ == "__main__":
+    print("Scripts - Create Sequence")
+    folder = "../setup/create_sequence"
+    main(folder)
     print("Scripts - Create Tables")
     folder = "../setup/create_tables"
     main(folder)

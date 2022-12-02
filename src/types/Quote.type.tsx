@@ -1,6 +1,6 @@
 export interface Quote {
   "Global Quote": {
-    "01. symbol": string;
+    "01. stock": string;
     "02. open": string;
     "03. high": string;
     "04. low": string;
