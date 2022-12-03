@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-// import ContactUs from "./ContactUs";
+import ContactUs from "./ContactUs";
 import NoFinancialAdviceDisclaimer from "./NoFinancialAdviceDisclaimer";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       <NoFinancialAdviceDisclaimer />
       <main>{children}</main>
-      {/* <ContactUs /> */}
+      <ContactUs />
       <Footer />
     </>
   );

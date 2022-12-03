@@ -30,7 +30,7 @@ const Navbar = () => {
     <>
       <nav className=" top-0 z-10 h-20">
         <div
-          className={`flex flex-row flex-wrap bg-white ${
+          className={`relative flex flex-row flex-wrap bg-white ${
             isShrink ? "nav-menu-shrunk" : "nav-menu-grown"
           } justify-center items-center space-x-2 2xl:space-x-10 xl:space-x-10 lg:space-x-10 md:space-x-10 sm:space-x-10 text-center 2xl:flex xl:flex lg:flex md:flex sm:flex`}
         >

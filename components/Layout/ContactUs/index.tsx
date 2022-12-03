@@ -5,7 +5,7 @@ const ContactUs = () => {
     <>
       <section className="bg-slate-700 text-white p-16">
         <div className="flex flex-row space-x-10">
-          <div className="ml-64 align-middle my-auto">
+          <div className="align-middle my-auto float-left">
             <div className="text-4xl">Inspired?</div>
             <div>Please let us know!</div>
           </div>
