@@ -1,9 +1,9 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import ContactUs from "./ContactUs";
+// import ContactUs from "./ContactUs";
 import NoFinancialAdviceDisclaimer from "./NoFinancialAdviceDisclaimer";
 
-const Layout = ({ children }: any) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {/* <Head></Head> */}
@@ -12,7 +12,7 @@ const Layout = ({ children }: any) => {
       <Navbar />
       <NoFinancialAdviceDisclaimer />
       <main>{children}</main>
-      <ContactUs />
+      {/* <ContactUs /> */}
       <Footer />
     </>
   );

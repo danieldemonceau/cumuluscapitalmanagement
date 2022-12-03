@@ -23,7 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Meta />
         <ApolloProvider client={apolloClient}>
           {/* <Layout title={pageProps.title} className="h-full"> */}
-          <Layout className="h-full">
+          <Layout>
             <Component {...pageProps} />
           </Layout>
         </ApolloProvider>

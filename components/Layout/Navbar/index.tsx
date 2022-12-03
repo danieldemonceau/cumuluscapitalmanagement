@@ -28,13 +28,13 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-10 h-20">
+      <nav className=" top-0 z-10 h-20">
         <div
-          className={`flex flex-row bg-white ${
+          className={`flex flex-row flex-wrap bg-white ${
             isShrink ? "nav-menu-shrunk" : "nav-menu-grown"
-          } justify-center items-center space-x-10 text-center`}
+          } justify-center items-center space-x-2 2xl:space-x-10 xl:space-x-10 lg:space-x-10 md:space-x-10 sm:space-x-10 text-center 2xl:flex xl:flex lg:flex md:flex sm:flex`}
         >
-          <div className="absolute left-0 ml-6">
+          <div className="absolute left-0 ml-6 2xl:block xl:block lg:block md:block hidden">
             <a href="https://fluffyclouds.com.au" target={`_self`}>
               <Image
                 src={CloudImage}
@@ -52,9 +52,7 @@ const Navbar = () => {
             onMouseLeave={() => setStrategyMenusIsVisible(() => false)}
           >
             <div className="flex flex-row">
-              <Link href="#portfolio" className="">
-                Strategies
-              </Link>
+              <div className="">Strategies</div>
               <ChevronDownIcon className="h-6 w-6 my-auto" aria-hidden="true" />
             </div>
           </div>
@@ -69,6 +67,24 @@ const Navbar = () => {
             <Link href="/contactus">Contact Us</Link>
           </div>
         </div>
+        {/* <div>
+          <div className="align-middle flex flex-row flex-wrap bg-white justify-left items-center space-x-10 text-center 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden p-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-14 h-14"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </div>
+        </div> */}
       </nav>
       {/* Ribbon with Submenus */}
       <nav

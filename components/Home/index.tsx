@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
-import HeroHeader from "./HeroHeader";
+// import HeroHeader from "./HeroHeader";
 import RibbonStrategies from "./RibbonStrategies";
 import HomeDescription from "./HomeDescription";
 
 const Index: NextPage = () => {
   return (
     <>
-      <HeroHeader />
+      {/* <HeroHeader /> */}
       <RibbonStrategies />
       <HomeDescription />
     </>

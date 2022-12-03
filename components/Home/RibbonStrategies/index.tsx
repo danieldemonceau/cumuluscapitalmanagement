@@ -11,7 +11,7 @@ import Link from "next/link";
 const FeatureStrategies = () => {
   return (
     <section className="h-full bg-gray-900">
-      <div className="flex flex-row h-20 2xl:mx-20 xl:mx-20 lg:mx-20 mx-10">
+      <div className="flex flex-row flex-wrap h-20 2xl:mx-20 xl:mx-20 lg:mx-20 mx-10">
         <div className="group basis-1/4 lg:text-xl md:text-base text-center text-gray-100 flex flex-col h-full align-middle justify-center text-base">
           Three Strategies
         </div>
