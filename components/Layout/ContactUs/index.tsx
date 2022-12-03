@@ -1,9 +1,9 @@
-import Link from "next/link";
-
+// import Link from "next/link";
+//
 const ContactUs = () => {
   return (
     <>
-      <section className="bg-slate-700 text-white p-16">
+      {/* <section className="bg-slate-700 text-white p-16">
         <div className="flex flex-row space-x-10">
           <div className="ml-64 align-middle my-auto">
             <div className="text-4xl">Inspired?</div>
@@ -15,7 +15,7 @@ const ContactUs = () => {
             </button>
           </div>
         </div>
-      </section>{" "}
+      </section>{" "} */}
     </>
   );
 };
