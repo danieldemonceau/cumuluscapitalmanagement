@@ -62,7 +62,10 @@ const MagicFormula = ({
         <div className="flex flex-row my-5">
           <div className="basis-1/12"></div>
           <div className="flex flex-col basis-10/12">
-            <div id="whatisit" className="flex mt-16 mb-16 scroll-mt-14">
+            <div
+              id="whatisit"
+              className="flex flex-row flex-wrap mt-16 mb-16 scroll-mt-14"
+            >
               <div className="basis-6/12 align-middle justify-center my-auto text-center">
                 <h1>What Is It?</h1>
               </div>
