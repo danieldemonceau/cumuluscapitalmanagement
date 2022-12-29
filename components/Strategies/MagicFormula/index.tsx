@@ -40,8 +40,8 @@ const MagicFormula = ({
     <>
       <div className="font-openSans">
         <div className="flex flex-row bg-blue-100">
-          <div className="basis-2/12"></div>
-          <div className="basis-8/12 flex flex-col w-full py-10 align-middle text-left text-black space-y-3">
+          <div className="basis-1/12"></div>
+          <div className="basis-9/12 flex flex-col w-full py-10 align-middle text-left text-black space-y-3">
             <div className="text-4xl text-left">The Magic Formula Strategy</div>
             <div className="flex flex-row space-x-3">
               <Link href="#whatisit">What Is It?</Link>
@@ -64,7 +64,7 @@ const MagicFormula = ({
           <div className="flex flex-col basis-10/12">
             <div
               id="whatisit"
-              className="flex flex-row flex-wrap mt-16 mb-16 scroll-mt-14"
+              className="md:flex md:flex-row lg:flex lg:flex-row xl:flex xl:flex-row 2xl:flex 2xl:flex-row sm:flex-wrap mt-16 mb-16 scroll-mt-14"
             >
               <div className="basis-6/12 align-middle justify-center my-auto text-center">
                 <h1>What Is It?</h1>
@@ -100,10 +100,11 @@ const MagicFormula = ({
                 </p>
               </div>
             </div>
-            <div className="mx-auto justify-center align-middle mt-14 scroll-mt-14">
-              <YoutubeEmbed embedId="fzig7KJFuNU" />
-            </div>
-            <div id="inpractice" className="flex mt-14 mb-14 scroll-mt-14">
+            <YoutubeEmbed embedId="fzig7KJFuNU" />
+            <div
+              id="inpractice"
+              className="md:flex md:flex-row lg:flex lg:flex-row xl:flex xl:flex-row 2xl:flex 2xl:flex-row sm:flex-wrap mt-14 mb-14 scroll-mt-14"
+            >
               <div className="basis-5/12 text-center mt-32">
                 <h1>In Practice</h1>
               </div>
@@ -199,8 +200,11 @@ const MagicFormula = ({
               ></Image>
               <DreamAICaption />
             </div>
-            <div id="wanthigherreturns" className="flex mb-16 scroll-mt-14">
-              <div className="basis-5/12">
+            <div
+              id="wanthigherreturns"
+              className="md:flex md:flex-row lg:flex lg:flex-row xl:flex xl:flex-row 2xl:flex 2xl:flex-row sm:flex-wrap mb-16 scroll-mt-14"
+            >
+              <div className="basis-5/12 text-center">
                 <h1>Want higher returns?</h1>
               </div>
               <div className="basis-6/12">
@@ -266,8 +270,11 @@ const MagicFormula = ({
               ></Image>
               <DreamAICaption />
             </div>
-            <div id="magicFormulaExplanation" className="flex scroll-mt-14">
-              <div className="basis-5/12 pr-9">
+            <div
+              id="magicFormulaExplanation"
+              className="md:flex md:flex-row lg:flex lg:flex-row xl:flex xl:flex-row 2xl:flex 2xl:flex-row sm:flex-wrap scroll-mt-14"
+            >
+              <div className="basis-5/12 text-center pr-9">
                 <h1>The "Magic Formula" formula</h1>
               </div>
               <div className="basis-6/12">

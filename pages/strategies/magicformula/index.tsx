@@ -53,6 +53,7 @@ export const getServerSideProps = async () => {
     readAPI = false;
 
   if (!readAPI) {
+    console.log("READ FROM CACHE");
     const positionOpen: PositionOpen[] = await loadJsonFile(
       path.join(process.cwd(), "cache", fileNamePositionsOpen)
     );
@@ -74,6 +75,7 @@ export const getServerSideProps = async () => {
 
     return { props: { positionOpen, positionClosed } };
   }
+  console.log("READ FROM API");
 
   // If not, get the data from the API
   const responsePositionOpen = await axios({
