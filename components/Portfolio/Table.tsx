@@ -29,7 +29,7 @@ export const TableOpenPositions = ({
   return (
     <table
       {...getTableProps()}
-      className="table-auto mx-auto justify-center w-4/6"
+      className="table-auto mx-auto justify-center w-5/6 text-xs"
     >
       <thead>
         {headerGroups.map((headerGroup) => {
@@ -99,7 +99,7 @@ export const TableOpenPositions = ({
                     scope="row"
                     key={key}
                     {...restCellProps}
-                    className={`bg-white flex-1 align-middle justify-center text-center px-3 py-2 ${color}`}
+                    className={`bg-white flex-1 align-middle justify-center text-center px-2 py-1 ${color}`}
                   >
                     {`${valuePrefix}${cell.value}${valueSuffix}`}
                   </td>
