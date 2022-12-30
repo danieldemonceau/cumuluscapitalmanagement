@@ -32,55 +32,61 @@ const About = () => {
               ></Image>
             </div>
           </section>
-          <section className="p-10 m-4 flex flex-row">
-            <h2>Values</h2>
-            <div className="p-10 m-4 basis-8/12 flex flex-col">
-              <p>
-                Investing in the markets goes beyond the personal gain. It comes
-                with responsibility and hence "Responsible Investing" is the
-                motto at Cumulus Capital Management. We favour investment in
-                assets having one or more of the following criteria, to name
-                just a few of them
-              </p>
-              <ul>
-                <li>High Environmental, Social, and Governance (ESG) Score</li>
-                <li>
-                  Renewable and low-carbon energy Production, and raw material
-                  involved
-                </li>
-                <li>General Sustainability</li>
-                <li>Vegan food production</li>
-                <li>Vertical Farming</li>
-                <li>Electric Mobility (mobility, charging stations, etc.)</li>
-              </ul>
-              <p>
-                By deduction, we won't invest in assets in the following
-                industries
-              </p>
-              <ul>
-                <li>Oil & Gas</li>
-                <li>Weapons and Firearms</li>
-              </ul>
+          <section className="p-10 m-4 flex flex-col">
+            <div className="basis-10/12">
+              <h2>Values</h2>
+              <div className="basis-5/12">
+                <p>
+                  Investing in the markets goes beyond the personal gain. It
+                  comes with responsibility and hence "Responsible Investing" is
+                  the motto at Cumulus Capital Management. We favour investment
+                  in assets having one or more of the following criteria, to
+                  name just a few of them
+                </p>
+                <ul>
+                  <li>
+                    High Environmental, Social, and Governance (ESG) Score
+                  </li>
+                  <li>
+                    Renewable and low-carbon energy Production, and raw material
+                    involved
+                  </li>
+                  <li>General Sustainability</li>
+                  <li>Vegan food production</li>
+                  <li>Vertical Farming</li>
+                  <li>Electric Mobility (mobility, charging stations, etc.)</li>
+                </ul>
+                <p>
+                  By deduction, we won't invest in assets in the following
+                  industries
+                </p>
+                <ul>
+                  <li>Oil & Gas</li>
+                  <li>Weapons and Firearms</li>
+                </ul>
+              </div>
             </div>
-            <div className="mt-auto mr-1 mb-auto basis-2/12 align-middle justify-center">
-              <Image
-                src={AboutImage2}
-                className="object-cover object-center"
-                alt="Hero Image"
-                layout="responsive"
-                // height={`1000px`}
-              ></Image>
+            <div className="flex flex-row m-4 basis-2/12 align-middle justify-center">
+              <div className="mt-auto mr-1 mb-auto basis-2/12 align-middle justify-center">
+                <Image
+                  src={AboutImage2}
+                  className="object-cover object-center"
+                  alt="Hero Image"
+                  layout="responsive"
+                  // height={`1000px`}
+                ></Image>
+              </div>
+              <div className="mt-auto mb-auto basis-2/12 align-middle justify-center">
+                <Image
+                  src={AboutImage3}
+                  className="object-cover object-center"
+                  alt="Hero Image"
+                  layout="responsive"
+                  // height={`1000px`}
+                ></Image>
+              </div>
             </div>
-            <div className="mt-auto mb-auto basis-2/12 align-middle justify-center">
-              <Image
-                src={AboutImage3}
-                className="object-cover object-center"
-                alt="Hero Image"
-                layout="responsive"
-                // height={`1000px`}
-              ></Image>
-            </div>
-          </section>{" "}
+          </section>
           <section>
             <h2>Purpose</h2>
             <p>
