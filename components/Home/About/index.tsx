@@ -27,7 +27,6 @@ const About = () => {
                 src={AboutImage1}
                 className="object-cover object-center"
                 alt="Hero Image"
-                layout="responsive"
                 // height={`1000px`}
               ></Image>
             </div>
@@ -72,7 +71,6 @@ const About = () => {
                   src={AboutImage2}
                   className="object-cover object-center"
                   alt="Hero Image"
-                  layout="responsive"
                   // height={`1000px`}
                 ></Image>
               </div>
@@ -81,7 +79,6 @@ const About = () => {
                   src={AboutImage3}
                   className="object-cover object-center"
                   alt="Hero Image"
-                  layout="responsive"
                   // height={`1000px`}
                 ></Image>
               </div>

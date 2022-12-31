@@ -18,7 +18,7 @@ const FeatureStrategies = () => {
         <div className="group flex flex-row basis-1/4 cursor-pointer justify-center">
           <Link
             href={`/strategies/magicformula`}
-            className="group flex flex-row basis-1/4"
+            className="group flex flex-row"
           >
             <div className="flex flex-row transition ease-in-out duration-300 delay-150 group-hover:-translate-y-1 group-hover:scale-110">
               <div className="flex flex-col h-full align-middle justify-center mx-3">
@@ -42,7 +42,7 @@ const FeatureStrategies = () => {
         <div className="group flex flex-row basis-1/4 cursor-pointer justify-center">
           <Link
             href={`/strategies/theacquirersmultiple`}
-            className="group flex flex-row basis-1/4"
+            className="group flex flex-row"
           >
             <div className="flex flex-row transition ease-in-out duration-300 delay-150 group-hover:-translate-y-1 group-hover:scale-110">
               <div className="flex flex-col h-full align-middle justify-center mx-3">
@@ -62,7 +62,7 @@ const FeatureStrategies = () => {
         <div className="group flex flex-row basis-1/4 cursor-pointer justify-center">
           <Link
             href={`/strategies/marketdollarcostaveraging`}
-            className="group flex flex-row basis-1/4"
+            className="group flex flex-row"
           >
             <div className="flex flex-row transition ease-in-out duration-300 delay-150 group-hover:-translate-y-1 group-hover:scale-110">
               <div className="flex flex-col h-full align-middle justify-center mx-3">

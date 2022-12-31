@@ -46,8 +46,7 @@ const Description = () => {
               src={moneySeedImage}
               className="h-4/5 object-cover object-top"
               alt="Hero Image"
-              layout="responsive"
-              height={`500px`}
+              height={500}
             ></Image>
           </div>
         </div>

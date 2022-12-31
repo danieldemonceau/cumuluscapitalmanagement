@@ -11,8 +11,7 @@ const Hero = () => {
             className="h-4/5 object-cover object-top"
             src={heroImage}
             alt="Hero Image"
-            layout="responsive"
-            height={`2100px`}
+            height={2100}
           />
           <div className="absolute h-full w-full top-0">
             <div className="flex flex-row h-full relative">
