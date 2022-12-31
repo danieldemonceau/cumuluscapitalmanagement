@@ -13,9 +13,9 @@ const AcknowledgementOfCountry = () => {
             <Image
               src={paperBarkTree}
               alt={`Image of Paper Bark Tree`}
-              layout={`responsive`}
               width={217}
               height={325}
+              priority={true}
             ></Image>
             <p className="text-sm italic">
               Photo by{" "}
@@ -68,7 +68,6 @@ const AcknowledgementOfCountry = () => {
                 <Image
                   src={AustraliaMap}
                   alt={`Map of Australia`}
-                  layout={`intrinsic`}
                   width={75}
                   height={75}
                 ></Image>

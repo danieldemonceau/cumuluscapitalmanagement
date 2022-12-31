@@ -1,7 +1,7 @@
 import Head from "next/head";
 import meta from "@/src/data/meta";
 
-const Meta = ({ keywords, author }: any) => {
+const Meta = ({ keywords, author }: { keywords: string; author: string }) => {
   return (
     <Head>
       <meta charSet="UTF-8" />
