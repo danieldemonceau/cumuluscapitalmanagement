@@ -153,10 +153,8 @@ const MagicFormula = ({
                   </li>
                   <li>
                     Optional: For higher return, please see{" "}
-                    <Link href="#wanthigherreturns">
-                      <a href="#wanthigherreturns" target={"_self"}>
-                        here
-                      </a>
+                    <Link href="#wanthigherreturns" target={"_self"}>
+                      here
                     </Link>
                   </li>
                   <li>

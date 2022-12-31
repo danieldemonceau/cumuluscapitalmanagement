@@ -1,6 +1,6 @@
 import { useTable, Column, useSortBy } from "react-table";
 import { PositionOpen, PositionClosed } from "@/src/types/Position.type";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon, ChevronUpIcon } from "components/common/heroicons";
 
 export const TableOpenPositions = ({
   columns,
@@ -50,12 +50,12 @@ export const TableOpenPositions = ({
                   >
                     {column.render("Header")}
                     {/* Add a sort direction indicator */}
-                    <span>
+                    <span className="h-5 w-5 inline">
                       {column.isSorted ? (
                         column.isSortedDesc ? (
-                          <ChevronDownIcon className="h-5 w-5 inline" />
+                          <ChevronDownIcon />
                         ) : (
-                          <ChevronUpIcon className="h-5 w-5 inline" />
+                          <ChevronUpIcon />
                         )
                       ) : (
                         ""
@@ -161,12 +161,12 @@ export const TableClosedPositions = ({
                   >
                     {column.render("Header")}
                     {/* Add a sort direction indicator */}
-                    <span>
+                    <span className="h-5 w-5 inline">
                       {column.isSorted ? (
                         column.isSortedDesc ? (
-                          <ChevronDownIcon className="h-5 w-5 inline" />
+                          <ChevronDownIcon />
                         ) : (
-                          <ChevronUpIcon className="h-5 w-5 inline" />
+                          <ChevronUpIcon />
                         )
                       ) : (
                         ""

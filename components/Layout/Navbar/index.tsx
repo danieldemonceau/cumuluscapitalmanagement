@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CloudImage from "./clouds.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "components/common/heroicons";
 import { useEffect, useState } from "react";
 import {
   faMagicWandSparkles,
@@ -53,7 +53,7 @@ const Navbar = () => {
           >
             <div className="flex flex-row">
               <div className="">Strategies</div>
-              <ChevronDownIcon className="h-6 w-6 my-auto" aria-hidden="true" />
+              <ChevronDownIcon />
             </div>
           </div>
           <div className="group text-xl text-center text-black flex flex-col h-full align-middle justify-center cursor-pointer">
