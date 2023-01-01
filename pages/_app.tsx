@@ -8,8 +8,8 @@ import Meta from "@/components/Meta";
 import { ApolloProvider } from "@apollo/client";
 import { apolloClient } from "@/components/ApolloClient";
 
-import { Provider } from "react-redux";
-import { store } from "@/src//state/store";
+// import { Provider } from "react-redux";
+// import { store } from "@/src//state/store";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -18,16 +18,16 @@ config.autoAddCss = false;
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <Provider store={store}>
-        <NextSeo {...SEO} />
-        <Meta />
-        <ApolloProvider client={apolloClient}>
-          {/* <Layout title={pageProps.title} className="h-full"> */}
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ApolloProvider>
-      </Provider>
+      {/* <Provider store={store}> */}
+      <NextSeo {...SEO} />
+      <Meta />
+      <ApolloProvider client={apolloClient}>
+        {/* <Layout title={pageProps.title} className="h-full"> */}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+      {/* </Provider> */}
     </>
   );
 };
