@@ -41,4 +41,10 @@ start_stop_postgresql.sh
 # sql
 create_db.sql
 create_role.sql
+utils/db/inserts/*.sql
 
+# cache folder
+/cache
+
+# zip files
+*.zip
