@@ -1,0 +1,44 @@
+CREATE OR REPLACE FUNCTION position_open_get(
+    p_direction domain_market_transaction_direction,
+    p_stock_id INTEGER,
+    p_broker_id INTEGER
+)
+RETURNS TABLE (
+    id INTEGER,
+    status DOMAIN_POSITION_STATUS,
+    direction domain_market_transaction_direction,
+    stock_name TEXT,
+    
+    open_timestamp TIMESTAMP WITH TIME ZONE,
+    close_timestamp TIMESTAMP WITH TIME ZONE,
+    holding_period_days INTEGER,
+
+    nb_of_units_opened DECIMAL, 
+    amount_opened MONEY, 
+    nb_of_units_closed DECIMAL, 
+    amount_closed MONEY, 
+    nb_of_units_open DECIMAL, 
+    amount_open MONEY,
+
+    pl MONEY,
+    pl_percent DECIMAL,
+    position_group_name TEXT
+)
+AS $$
+
+    DECLARE
+        v_position_id INTEGER;
+    BEGIN
+
+        RAISE NOTICE '- - - - - - - - - - - - - - - - - - - - - ';
+        RAISE NOTICE 'FUNCTION position_open_get - START';
+        RAISE NOTICE '- - - - - - - - - - - - - - - - - - - - - ';
+
+        RAISE NOTICE '- - - - - - - - - - - - - - - - - - - - - ';
+        RAISE NOTICE 'FUNCTION position_open_get - END';
+        RAISE NOTICE '- - - - - - - - - - - - - - - - - - - - - ';
+
+    END;
+
+$$ LANGUAGE plpythonu;
+
