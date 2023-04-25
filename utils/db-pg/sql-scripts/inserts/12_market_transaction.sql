@@ -1,6 +1,7 @@
 -- '2022-3-14'
 -- MAGIC FORMULA
 -- BUYs
+;
 INSERT INTO market_transaction (direction, type, description, execution_timestamp, broker_id, amount, security_id, nb_of_units, strategy_id)
 SELECT
     'Long' "direction",
