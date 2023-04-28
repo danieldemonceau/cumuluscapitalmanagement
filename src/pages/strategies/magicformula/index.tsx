@@ -78,7 +78,7 @@ export const getServerSideProps = async () => {
   console.log("READ FROM API");
 
   // If not, get the data from the API
-  const responsePositionOpen = await axios({
+  const urlForm = {
     url: `${process.env.GRAPHQL_PROTOCOL}://${process.env.GRAPHQL_DOMAIN_NAME}${
       process.env.GRAPHQL_PORT && +process.env.GRAPHQL_PORT === 80
         ? ""
@@ -89,7 +89,10 @@ export const getServerSideProps = async () => {
       "content-type": "application/json",
     },
     data: { query: ALL_POSITIONS_OPEN_MAGIC_FORMULA },
-  });
+  };
+  console.log(urlForm);
+  const responsePositionOpen = await axios(urlForm);
+  console.log("READ FROM API - DONE");
 
   const positionOpen: PositionOpen[] = formatDataPortfolioOpenPositions(
     responsePositionOpen.data.data.allPositionOpenMagicFormulas.nodes
