@@ -1,0 +1,849 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model broker {
+  id               Int                      @id @default(autoincrement())
+  name             String
+  description      String?
+  sys_period       Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  transaction      transaction[]
+  transaction_type transaction_type[]
+
+  @@index([description], map: "idx_broker_description")
+  @@index([name], map: "idx_broker_name")
+  @@index([sys_period], map: "idx_broker_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model broker_history {
+  id          Int
+  name        String
+  description String?
+  sys_period  Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model comment {
+  id         Int                      @id @default(autoincrement())
+  name       String
+  email      String?
+  message    String
+  sys_period Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+
+  @@index([email], map: "idx_comment_email")
+  @@index([name], map: "idx_comment_name")
+  @@index([sys_period], map: "idx_comment_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model comment_history {
+  id         Int
+  name       String
+  email      String?
+  message    String
+  sys_period Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model environment_variables {
+  id         Int                      @id @default(autoincrement())
+  key        String
+  value      String?
+  sys_period Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+
+  @@index([value], map: "idx_environment_variables_description")
+  @@index([key], map: "idx_environment_variables_name")
+  @@index([sys_period], map: "idx_environment_variables_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model environment_variables_history {
+  id         Int
+  key        String
+  value      String?
+  sys_period Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model etf {
+  id               Int                      @id @default(autoincrement())
+  name             String
+  full_name        String
+  description      String?
+  security_type_id Int?
+  exchange_id      Int?
+  sys_period       Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model etf_history {
+  id               Int
+  name             String
+  full_name        String
+  description      String?
+  security_type_id Int?
+  exchange_id      Int?
+  sys_period       Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model exchange {
+  id         Int                      @id @default(autoincrement())
+  name       String
+  city       String
+  sys_period Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  security   security[]
+
+  @@index([city], map: "idx_exchange_city")
+  @@index([name], map: "idx_exchange_name")
+  @@index([sys_period], map: "idx_exchange_sys_period")
+  @@index([id], map: "idx_security_exchange_id")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model exchange_history {
+  id         Int
+  name       String
+  city       String
+  sys_period Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model industry {
+  id                Int                      @id @default(autoincrement())
+  code              String
+  name              String
+  industry_group_id Int?
+  sys_period        Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  industry_group    industry_group?          @relation(fields: [industry_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  subindustry       subindustry[]
+
+  @@index([name], map: "idx_industry_name")
+  @@index([sys_period], map: "idx_industry_sys_period")
+}
+
+model industry_group {
+  id         Int                      @id @default(autoincrement())
+  code       String
+  name       String
+  sector_id  Int?
+  sys_period Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  industry   industry[]
+  sector     sector?                  @relation(fields: [sector_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([name], map: "idx_industry_group_name")
+  @@index([sys_period], map: "idx_industry_group_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model industry_group_history {
+  id         Int
+  code       String
+  name       String
+  sector_id  Int?
+  sys_period Unsupported("tstzrange")
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model industry_history {
+  id                Int
+  code              String
+  name              String
+  industry_group_id Int?
+  sys_period        Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model market_transaction {
+  id                          Int                           @id @default(autoincrement())
+  type                        String
+  description                 String?
+  execution_timestamp         DateTime                      @default(dbgenerated("CURRENT_TIMESTAMP(0)")) @db.Timestamptz(6)
+  broker_id                   Int?
+  amount                      Decimal                       @db.Money
+  sys_period                  Unsupported("tstzrange")      @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  direction                   String
+  security_id                 Int?
+  price_per_asset             Decimal                       @default(dbgenerated("(amount / (nb_of_units)::double precision)")) @db.Money
+  nb_of_units                 Decimal                       @db.Decimal
+  strategy_id                 Int?
+  strategy                    strategy?                     @relation(fields: [strategy_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  position_market_transaction position_market_transaction[]
+
+  @@index([direction], map: "idx_market_transaction_direction")
+  @@index([nb_of_units], map: "idx_market_transaction_nb_of_units")
+  @@index([price_per_asset], map: "idx_market_transaction_price_per_asset")
+  @@index([security_id], map: "idx_market_transaction_security_id")
+  @@index([strategy_id], map: "idx_market_transaction_strategy_id")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model market_transaction_history {
+  id                  Int
+  type                String
+  description         String?
+  execution_timestamp DateTime                 @db.Timestamptz(6)
+  broker_id           Int?
+  amount              Decimal                  @db.Money
+  sys_period          Unsupported("tstzrange")
+  direction           String
+  security_id         Int?
+  price_per_asset     Decimal                  @db.Money
+  nb_of_units         Decimal                  @db.Decimal
+  strategy_id         Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model market_transaction_position_history {
+  id                    Int
+  position_id           Int?
+  market_transaction_id Int?
+
+  @@ignore
+}
+
+model position {
+  id                          Int                           @id @default(autoincrement())
+  status                      String
+  open_timestamp              DateTime                      @default(dbgenerated("CURRENT_TIMESTAMP(0)")) @db.Timestamptz(6)
+  close_timestamp             DateTime?                     @db.Timestamptz(6)
+  holding_period_days         Int?
+  pl                          Decimal?                      @db.Money
+  pl_percent                  Decimal?                      @db.Decimal
+  position_group_id           Int?
+  position_group              position_group?               @relation(fields: [position_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  position_market_transaction position_market_transaction[]
+  position_position_group     position_position_group[]
+
+  @@index([close_timestamp], map: "idx_position_close_timestamp")
+  @@index([holding_period_days], map: "idx_position_holding_period_days")
+  @@index([open_timestamp], map: "idx_position_open_timestamp")
+  @@index([pl], map: "idx_position_pl")
+  @@index([pl_percent], map: "idx_position_pl_percent")
+  @@index([position_group_id], map: "idx_position_position_group_id")
+  @@index([status], map: "idx_position_status")
+}
+
+model position_group {
+  id                      Int                       @id @default(autoincrement())
+  name                    String
+  description             String?
+  sys_period              Unsupported("tstzrange")  @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  position                position[]
+  position_position_group position_position_group[]
+
+  @@index([description], map: "idx_position_group_description")
+  @@index([name], map: "idx_position_group_name")
+  @@index([sys_period], map: "idx_position_group_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model position_group_history {
+  id          Int
+  name        String
+  description String?
+  sys_period  Unsupported("tstzrange")
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model position_history {
+  id                  Int
+  status              String
+  open_timestamp      DateTime  @db.Timestamptz(6)
+  close_timestamp     DateTime? @db.Timestamptz(6)
+  holding_period_days Int?
+  pl                  Decimal?  @db.Money
+  pl_percent          Decimal?  @db.Decimal
+  position_group_id   Int?
+
+  @@ignore
+}
+
+model position_market_transaction {
+  id                    Int                 @id @default(autoincrement())
+  position_id           Int?
+  market_transaction_id Int?
+  market_transaction    market_transaction? @relation(fields: [market_transaction_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  position              position?           @relation(fields: [position_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([market_transaction_id], map: "idx_market_transaction_id")
+  @@index([position_id], map: "idx_market_transaction_position_id")
+}
+
+model position_position_group {
+  id                Int                      @id @default(autoincrement())
+  position_group_id Int?
+  position_id       Int?
+  sys_period        Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  position_group    position_group?          @relation(fields: [position_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  position          position?                @relation(fields: [position_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([position_group_id], map: "idx_position_position_group_position_group_id")
+  @@index([position_id], map: "idx_position_position_group_position_id")
+  @@index([sys_period], map: "idx_position_position_group_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model position_position_group_history {
+  id                Int
+  position_group_id Int?
+  position_id       Int?
+  sys_period        Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model quote {
+  id               Int                      @id @default(autoincrement())
+  security_id      Int?
+  time_interval_id Int?
+  timestamp        DateTime                 @default(dbgenerated("CURRENT_TIMESTAMP(0)")) @db.Timestamptz(6)
+  open             Decimal                  @db.Money
+  high             Decimal                  @db.Money
+  low              Decimal                  @db.Money
+  close            Decimal                  @db.Money
+  source_id        Int?
+  volume           Int?
+  sys_period       Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  source           source?                  @relation(fields: [source_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  time_interval    time_interval?           @relation(fields: [time_interval_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([close], map: "idx_quote_close")
+  @@index([high], map: "idx_quote_high")
+  @@index([low], map: "idx_quote_low")
+  @@index([open], map: "idx_quote_open")
+  @@index([security_id], map: "idx_quote_security_id")
+  @@index([source_id], map: "idx_quote_source_id")
+  @@index([sys_period], map: "idx_quote_sys_period")
+  @@index([time_interval_id], map: "idx_quote_time_interval_id")
+  @@index([timestamp], map: "idx_quote_timestamp")
+  @@index([volume], map: "idx_quote_volume")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model quote_history {
+  id               Int
+  security_id      Int?
+  time_interval_id Int?
+  timestamp        DateTime                 @db.Timestamptz(6)
+  open             Decimal                  @db.Money
+  high             Decimal                  @db.Money
+  low              Decimal                  @db.Money
+  close            Decimal                  @db.Money
+  source_id        Int?
+  volume           Int?
+  sys_period       Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model sector {
+  id             Int                      @id @default(autoincrement())
+  code           String
+  name           String
+  sys_period     Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  industry_group industry_group[]
+
+  @@index([name], map: "idx_sector_name")
+  @@index([sys_period], map: "idx_sector_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model sector_history {
+  id         Int
+  code       String
+  name       String
+  sys_period Unsupported("tstzrange")
+
+  @@ignore
+}
+
+/// This table has subclasses and requires additional setup for migrations. Visit https://pris.ly/d/table-inheritance for more info.
+model security {
+  id               Int                      @id @default(autoincrement())
+  name             String
+  full_name        String
+  description      String?
+  security_type_id Int?
+  exchange_id      Int?
+  sys_period       Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  exchange         exchange?                @relation(fields: [exchange_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  security_type    security_type?           @relation(fields: [security_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([description], map: "idx_security_description")
+  @@index([full_name], map: "idx_security_full_name")
+  @@index([name], map: "idx_security_name")
+  @@index([sys_period], map: "idx_security_sys_period")
+  @@index([security_type_id], map: "idx_security_type_id")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model security_history {
+  id               Int
+  name             String
+  full_name        String
+  description      String?
+  security_type_id Int?
+  exchange_id      Int?
+  sys_period       Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model security_type {
+  id         Int                      @id @default(autoincrement())
+  name       String
+  sys_period Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  security   security[]
+
+  @@index([name], map: "idx_security_type_name")
+  @@index([sys_period], map: "idx_security_type_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model security_type_history {
+  id         Int
+  name       String
+  sys_period Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model source {
+  id         Int                      @id @default(autoincrement())
+  name       String
+  sys_period Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  quote      quote[]
+
+  @@index([name], map: "idx_source_name")
+  @@index([sys_period], map: "idx_source_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model source_history {
+  id         Int
+  name       String
+  sys_period Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model stock {
+  id               Int                      @id @default(autoincrement())
+  name             String
+  full_name        String
+  description      String?
+  security_type_id Int?
+  exchange_id      Int?
+  sys_period       Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  subindustry_id   Int?
+  subindustry      subindustry?             @relation(fields: [subindustry_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model stock_history {
+  id               Int
+  name             String
+  full_name        String
+  description      String?
+  security_type_id Int?
+  exchange_id      Int?
+  sys_period       Unsupported("tstzrange")
+  subindustry_id   Int?
+
+  @@ignore
+}
+
+model strategy {
+  id                 Int                      @id @default(autoincrement())
+  name               String
+  description        String?
+  sys_period         Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  market_transaction market_transaction[]
+
+  @@index([description], map: "strategy_description")
+  @@index([name], map: "strategy_name")
+  @@index([sys_period], map: "strategy_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model strategy_history {
+  id          Int
+  name        String
+  description String?
+  sys_period  Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model subindustry {
+  id          Int                      @id @default(autoincrement())
+  code        String
+  name        String
+  industry_id Int?
+  sys_period  Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  stock       stock[]
+  industry    industry?                @relation(fields: [industry_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([id], map: "idx_etf_subindustry_id")
+  @@index([id], map: "idx_stock_subindustry_id")
+  @@index([name], map: "idx_subindustry_name")
+  @@index([sys_period], map: "idx_subindustry_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model subindustry_history {
+  id          Int
+  code        String
+  name        String
+  industry_id Int?
+  sys_period  Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model time_interval {
+  id         Int                      @id @default(autoincrement())
+  name       String
+  sys_period Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  quote      quote[]
+
+  @@index([name], map: "idx_time_interval_name")
+  @@index([sys_period], map: "idx_time_interval_sys_period")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model time_interval_history {
+  id         Int
+  name       String
+  sys_period Unsupported("tstzrange")
+
+  @@ignore
+}
+
+model transaction {
+  id                  Int                      @id @default(autoincrement())
+  description         String?
+  execution_timestamp DateTime                 @default(dbgenerated("CURRENT_TIMESTAMP(0)")) @db.Timestamptz(6)
+  broker_id           Int?
+  amount              Decimal                  @db.Money
+  sys_period          Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  broker              broker?                  @relation(fields: [broker_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([amount], map: "idx_transaction_type_amount")
+  @@index([broker_id], map: "idx_transaction_type_broker_id")
+  @@index([description], map: "idx_transaction_type_description")
+  @@index([execution_timestamp], map: "idx_transaction_type_execution_execution_timestamp")
+  @@index([sys_period], map: "idx_transaction_type_sys_period")
+}
+
+/// This table has subclasses and requires additional setup for migrations. Visit https://pris.ly/d/table-inheritance for more info.
+model transaction_type {
+  id                  Int                      @id @default(autoincrement())
+  type                String
+  description         String?
+  execution_timestamp DateTime                 @default(dbgenerated("CURRENT_TIMESTAMP(0)")) @db.Timestamptz(6)
+  broker_id           Int?
+  amount              Decimal                  @db.Money
+  sys_period          Unsupported("tstzrange") @default(dbgenerated("tstzrange(CURRENT_TIMESTAMP(0), NULL::timestamp with time zone)"))
+  broker              broker?                  @relation(fields: [broker_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([type], map: "idx_transaction_type_type")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model transaction_type_history {
+  id                  Int
+  type                String
+  description         String?
+  execution_timestamp DateTime                 @db.Timestamptz(6)
+  broker_id           Int?
+  amount              Decimal                  @db.Money
+  sys_period          Unsupported("tstzrange")
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view position_details {
+  id                  Int?
+  status              String
+  direction           String
+  security_name       String?
+  open_timestamp      DateTime? @db.Timestamptz(6)
+  close_timestamp     DateTime? @db.Timestamptz(6)
+  holding_period_days Int?
+  nb_of_units_opened  Decimal?  @db.Decimal
+  amount_opened       Decimal?  @db.Money
+  nb_of_units_closed  Decimal?  @db.Decimal
+  amount_closed       Decimal?  @db.Money
+  nb_of_units_open    Decimal?  @db.Decimal
+  amount_open         Decimal?  @db.Money
+  pl                  Decimal?  @db.Money
+  pl_percent          Decimal?  @db.Decimal
+  name                String?
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view position_get_market_transactions {
+  pid                   Int?
+  mtid                  Int?
+  mttype                String
+  mtdescription         String?
+  mtexecution_timestamp DateTime?                 @db.Timestamptz(6)
+  mtbroker_id           Int?
+  mtamount              Decimal?                  @db.Money
+  mtsys_period          Unsupported("tstzrange")?
+  mtdirection           String
+  mtsecurity_id         Int?
+  mtprice_per_asset     Decimal?                  @db.Money
+  mtnb_of_units         Decimal?                  @db.Decimal
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view position_get_market_transactions_get_details {
+  pid                   Int?
+  mtid                  Int?
+  mttype                String
+  mtdescription         String?
+  mtexecution_timestamp DateTime?                 @db.Timestamptz(6)
+  bname                 String?
+  mtamount              Decimal?                  @db.Money
+  mtsys_period          Unsupported("tstzrange")?
+  mtdirection           String
+  sname                 String?
+  mtprice_per_asset     Decimal?                  @db.Money
+  mtnb_of_units         Decimal?                  @db.Decimal
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view position_open {
+  id                   Int?
+  status               String
+  type                 String
+  asset                String?
+  security_type_name   String    @map("security type name")
+  open_timestamp       DateTime? @db.Timestamptz(6)
+  close_timestamp      DateTime? @db.Timestamptz(6)
+  nb_of_units_opened   Decimal?  @db.Decimal
+  amount_opened        Decimal?  @db.Money
+  price_opened_average Decimal?  @db.Money
+  nb_of_units_closed   Decimal?  @db.Decimal
+  amount_closed        Decimal?  @db.Money
+  price_closed_average Decimal?  @db.Money
+  nb_of_units_open     Decimal?  @db.Decimal
+  amount_open          Decimal?  @db.Money
+  amount_open_current  Decimal?  @db.Money
+  price_open_average   Decimal?  @db.Money
+  price_current        Decimal?  @db.Money
+  price_current_date   DateTime? @db.Timestamptz(6)
+  holding_period_days  Decimal?  @db.Decimal
+  pl_absolute          Decimal?  @db.Money
+  pl_percent           Float?
+  strategy_name        String
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view position_open_magic_formula {
+  id                   Int       @id @default(autoincrement())
+  status               String
+  type                 String
+  asset                String
+  open_timestamp       DateTime  @db.Timestamptz(6)
+  close_timestamp      DateTime? @db.Timestamptz(6)
+  nb_of_units_opened   Decimal   @db.Decimal
+  amount_opened        Decimal   @db.Money
+  price_opened_average Decimal   @db.Money
+  nb_of_units_closed   Decimal?  @db.Decimal
+  amount_closed        Decimal?  @db.Money
+  price_closed_average Decimal?  @db.Money
+  nb_of_units_open     Decimal?  @db.Decimal
+  amount_open          Decimal?  @db.Money
+  amount_open_current  Decimal?  @db.Money
+  price_open_average   Decimal?  @db.Money
+  price_current        Decimal   @db.Money
+  price_current_date   DateTime  @db.Timestamptz(6)
+  holding_period_days  Decimal?  @db.Decimal
+  pl_absolute          Decimal?  @db.Money
+  pl_percent           Float
+  strategy_name        String
+
+  @@index([id], map: "idx_magic_id")
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view position_open_the_acquirers_multiple {
+  id                   Int       @id @default(autoincrement())
+  status               String
+  type                 String
+  asset                String
+  open_timestamp       DateTime  @db.Timestamptz(6)
+  close_timestamp      DateTime? @db.Timestamptz(6)
+  nb_of_units_opened   Decimal   @db.Decimal
+  amount_opened        Decimal   @db.Money
+  price_opened_average Decimal   @db.Money
+  nb_of_units_closed   Decimal?  @db.Decimal
+  amount_closed        Decimal?  @db.Money
+  price_closed_average Decimal?  @db.Money
+  nb_of_units_open     Decimal   @db.Decimal
+  amount_open          Decimal   @db.Money
+  amount_open_current  Decimal   @db.Money
+  price_open_average   Decimal   @db.Money
+  price_current        Decimal   @db.Money
+  price_current_date   DateTime  @db.Timestamptz(6)
+  holding_period_days  Decimal   @db.Decimal
+  pl_absolute          Decimal   @db.Money
+  pl_percent           Float
+  strategy_name        String
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view position_open_market_dollar_cost_averaging {
+  id                   Int       @id @default(autoincrement())
+  status               String
+  type                 String
+  asset                String
+  open_timestamp       DateTime  @db.Timestamptz(6)
+  close_timestamp      DateTime? @db.Timestamptz(6)
+  nb_of_units_opened   Decimal   @db.Decimal
+  amount_opened        Decimal   @db.Money
+  price_opened_average Decimal   @db.Money
+  nb_of_units_closed   Decimal?  @db.Decimal
+  amount_closed        Decimal?  @db.Money
+  price_closed_average Decimal?  @db.Money
+  nb_of_units_open     Decimal   @db.Decimal
+  amount_open          Decimal   @db.Money
+  amount_open_current  Decimal   @db.Money
+  price_open_average   Decimal   @db.Money
+  price_current        Decimal   @db.Money
+  price_current_date   DateTime  @db.Timestamptz(6)
+  holding_period_days  Decimal   @db.Decimal
+  pl_absolute          Decimal   @db.Money
+  pl_percent           Float
+  strategy_name        String
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view position_closed {
+  id                   Int?
+  status               String
+  type                 String
+  asset                String?
+  open_timestamp       DateTime? @db.Timestamptz(6)
+  close_timestamp      DateTime? @db.Timestamptz(6)
+  nb_of_units_opened   Decimal?  @db.Decimal
+  amount_opened        Decimal?  @db.Money
+  price_opened_average Decimal?  @db.Money
+  nb_of_units_closed   Decimal?  @db.Decimal
+  amount_closed        Decimal?  @db.Money
+  price_closed_average Decimal?  @db.Money
+  nb_of_units_open     Decimal?  @db.Decimal
+  amount_p_or_l        Decimal?  @db.Money
+  amount_open_current  Decimal?  @db.Money
+  price_current        Decimal?  @db.Money
+  price_current_date   DateTime? @db.Timestamptz(6)
+  holding_period_days  Decimal?  @db.Decimal
+  pl_absolute          Decimal?  @db.Money
+  pl_percent           Float?
+  strategy_name        String
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view position_closed_magic_formula {
+  id                   Int      @id @default(autoincrement())
+  status               String
+  type                 String
+  asset                String
+  open_timestamp       DateTime @db.Timestamptz(6)
+  close_timestamp      DateTime @db.Timestamptz(6)
+  nb_of_units_opened   Decimal  @db.Decimal
+  amount_opened        Decimal  @db.Money
+  price_opened_average Decimal  @db.Money
+  nb_of_units_closed   Decimal  @db.Decimal
+  amount_closed        Decimal  @db.Money
+  price_closed_average Decimal  @db.Money
+  amount_p_or_l        Decimal  @db.Money
+  nb_of_units_open     Decimal  @db.Decimal
+  holding_period_days  Decimal  @db.Decimal
+  pl_percent           Float
+  strategy_name        String
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view position_closed_the_acquirers_multiple {
+  id                   Int      @id @default(autoincrement())
+  status               String
+  type                 String
+  asset                String
+  open_timestamp       DateTime @db.Timestamptz(6)
+  close_timestamp      DateTime @db.Timestamptz(6)
+  nb_of_units_opened   Decimal  @db.Decimal
+  amount_opened        Decimal  @db.Money
+  price_opened_average Decimal  @db.Money
+  nb_of_units_closed   Decimal  @db.Decimal
+  amount_closed        Decimal  @db.Money
+  price_closed_average Decimal  @db.Money
+  amount_p_or_l        Decimal  @db.Money
+  nb_of_units_open     Decimal  @db.Decimal
+  holding_period_days  Decimal  @db.Decimal
+  pl_percent           Float
+  strategy_name        String
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view position_closed_market_dollar_cost_averaging {
+  id                   Int      @id @default(autoincrement())
+  status               String
+  type                 String
+  asset                String
+  open_timestamp       DateTime @db.Timestamptz(6)
+  close_timestamp      DateTime @db.Timestamptz(6)
+  nb_of_units_opened   Decimal  @db.Decimal
+  amount_opened        Decimal  @db.Money
+  price_opened_average Decimal  @db.Money
+  nb_of_units_closed   Decimal  @db.Decimal
+  amount_closed        Decimal  @db.Money
+  price_closed_average Decimal  @db.Money
+  amount_p_or_l        Decimal  @db.Money
+  nb_of_units_open     Decimal  @db.Decimal
+  holding_period_days  Decimal  @db.Decimal
+  pl_percent           Float
+  strategy_name        String
+}
