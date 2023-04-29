@@ -5,8 +5,6 @@ import Layout from "@/components/Layout";
 import { NextSeo } from "next-seo";
 import SEO from "../../next-seo.config";
 import Meta from "@/components/Meta";
-import { ApolloProvider } from "@apollo/client";
-import { apolloClient } from "@/components/ApolloClient";
 
 import type { AppType } from "next/app";
 import { trpc } from "../utils/trpc";
@@ -24,12 +22,10 @@ const App: AppType = ({ Component, pageProps }: AppProps) => {
       {/* <Provider store={store}> */}
       <NextSeo {...SEO} />
       <Meta />
-      <ApolloProvider client={apolloClient}>
-        {/* <Layout title={pageProps.title} className="h-full"> */}
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
+      {/* <Layout title={pageProps.title} className="h-full"> */}
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
       {/* </Provider> */}
     </>
   );
