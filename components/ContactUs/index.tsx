@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import validator from "validator";
 import ReCAPTCHA from "react-google-recaptcha";
-import axios from "axios";
-import { CREATE_COMMENTS } from "../ApolloClient/createComments";
+// import axios from "axios";
 import React from "react";
 
 const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
@@ -12,19 +11,20 @@ const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [message, setMessage] = useState("");
   const [disableButton, setDisableButton] = useState<boolean>(true);
-  const [isMessageSent, setIsMessageSent] = useState<boolean>(false);
+  // const [isMessageSent, setIsMessageSent] = useState<boolean>(false);
+  const [isMessageSent] = useState<boolean>(false);
 
   const sendForm = async () => {
-    const postComment = await axios({
-      baseURL: ``,
-      url: `/api/graphql`,
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      data: { query: CREATE_COMMENTS(emailAddress, message, name) },
-    });
-    if (postComment.data.data.createComment.comment.id) setIsMessageSent(true);
+    // const postComment = await axios({
+    //   baseURL: ``,
+    //   url: `/api/graphql`,
+    //   method: "post",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   data: { query: CREATE_COMMENTS(emailAddress, message, name) },
+    // });
+    // if (postComment.data.data.createComment.comment.id) setIsMessageSent(true);
   };
 
   const captchaElRef: React.RefObject<ReCAPTCHA> = React.createRef();
