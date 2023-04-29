@@ -70,25 +70,28 @@ const TheAcquirersMultiple = ({
               </div>
               <div className="basis-5/12">
                 <p>
-                  The Acquirer's Multiple is a contrarian investment strategy
-                  suited to long-term investors, and it approaches investing
-                  from an organized, disciplined, and unemotional perspective.
-                  The method identifies deeply undervalued stocks to hold for
-                  one year and which will see a Regression to the mean
+                  The Acquirer's Multiple is a proven contrarian investment
+                  strategy that's particularly well-suited to long-term
+                  investors. By taking an organized, disciplined, and
+                  unemotional approach to investing, the method helps identify
+                  deeply undervalued stocks that can be held for one year to see
+                  a regression to the mean.
                 </p>
                 <p>
-                  Tobias Carlisle describes his method in his book{" "}
+                  In his book, "The Acquirer's Multiple: How the Billionaire
+                  Contrarians of Deep Value Beat the Market," Tobias Carlisle
+                  describes this powerful investment method. With a track record
+                  of success, the strategy would have delivered an average
+                  annual return of 18.6% between 1973 and 2017, compared to just
+                  10.2% per year for the S&P500.
                   <a
                     href="http://amzn.to/2zUj7mk"
-                    target={"_blank"}
-                    rel={"noreferrer"}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    "The Acquirer's Multiple: How the Billionaire Contrarians of
-                    Deep Value Beat the Market"
-                  </a>
-                  . The method would have had an 18.6% return per year on
-                  average between 1973 and 2017 (vs 10.2% per year for the
-                  S&P500){" "}
+                    Check out the book
+                  </a>{" "}
+                  to learn more.
                 </p>
               </div>
             </div>

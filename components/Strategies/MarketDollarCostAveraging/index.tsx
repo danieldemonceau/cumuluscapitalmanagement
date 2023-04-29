@@ -70,22 +70,28 @@ const MarketDollarCostAveraging = ({
               </div>
               <div className="basis-5/12">
                 <p>
-                  Market Dollar-Cost Averaging (DCA) invests the same amount
-                  automatically in the same security at regular intervals,
-                  regardless of the price of the security. The strategy is a
-                  Systematic Investment Plan (SIP) in its simplest form, and
-                  helps build wealth by ignoring the volatility.
+                  Market Dollar-Cost Averaging (DCA) is a reliable investment
+                  strategy that involves investing the same fixed amount in the
+                  same security at regular intervals, regardless of its price.
+                  It's a type of Systematic Investment Plan (SIP) that helps
+                  investors avoid the impact of market volatility and make
+                  consistent progress towards their financial goals.
                 </p>
                 <p>
-                  Cumulus Capital Management considers that the client doesn't
-                  start with a significant amount to invest and has instead
-                  savings building up over time and coming from regular returns
-                  (paychecks, investment returns, rents, etc.).
+                  At Cumulus Capital Management, we recognize that some
+                  investors may not have a significant amount of money to invest
+                  upfront. Instead, savings may accumulate over time through
+                  regular income sources like paychecks, investment returns, or
+                  rental income. DCA is an excellent approach for such investors
+                  as it allows them to gradually build their investment
+                  portfolios without worrying about market timing or volatility.
                 </p>
                 <p>
-                  Long-time investors starting with a large amount, on the other
-                  hand, should do their due diligence on whether or not a
-                  lump-sum investing is more suitable.
+                  Long-time investors starting with a large amount of money
+                  should consider whether lump-sum investing is more suitable.
+                  In such cases, it's crucial to conduct proper due diligence
+                  and seek professional advice to ensure that the investment
+                  aligns with their financial goals and risk tolerance.
                 </p>
               </div>
             </div>

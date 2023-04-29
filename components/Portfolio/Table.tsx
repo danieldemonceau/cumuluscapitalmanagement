@@ -101,7 +101,9 @@ export const TableOpenPositions = ({
                     {...restCellProps}
                     className={`bg-white flex-1 align-middle justify-center text-center px-2 py-1 ${color}`}
                   >
-                    {`${valuePrefix}${cell.value}${valueSuffix}`}
+                    {`${valuePrefix}${
+                      isNaN(cell.value) ? cell.value : cell.value.toFixed(2)
+                    }${valueSuffix}`}
                   </td>
                 );
               })}
@@ -212,7 +214,9 @@ export const TableClosedPositions = ({
                     {...restCellProps}
                     className={`bg-white flex-1 align-middle justify-center text-center px-3 py-2 ${color}`}
                   >
-                    {`${valuePrefix}${cell.value}${valueSuffix}`}
+                    {`${valuePrefix}${
+                      isNaN(cell.value) ? cell.value : cell.value.toFixed(2)
+                    }${valueSuffix}`}
                   </td>
                 );
               })}

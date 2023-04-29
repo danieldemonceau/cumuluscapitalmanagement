@@ -71,32 +71,35 @@ const MagicFormula = ({
               </div>
               <div className="basis-5/12">
                 <p>
-                  The Magic Formula is an easy-to-follow method particularly
-                  suited to <b>long-term Investors</b> as it approaches
-                  investing from an organized, disciplined, and unemotional
-                  perspective
+                  The Magic Formula is an organized, disciplined, and
+                  unemotional approach to investing that is particularly
+                  suitable for <b>long-term investors</b>. It's an
+                  easy-to-follow method that can help investors achieve their
+                  financial goals with confidence.
                 </p>
                 <p>
-                  The Method was developed by Joel Greenblatt and described in
-                  his books{" "}
+                  The Magic Formula was developed by Joel Greenblatt and is
+                  described in his books{" "}
                   <a
                     href="https://www.amazon.com/Little-Book-That-Beats-Market/dp/0471733067/"
                     target={"_blank"}
                     rel={"noreferrer"}
                   >
                     "The Little Book That Beats the Market"
-                  </a>{" "}
-                  and
+                  </a>
+                  and{" "}
                   <a
                     href="https://www.amazon.com/Little-Book-Still-Beats-Market/dp/0470624159"
                     target={"_blank"}
                     rel={"noreferrer"}
                   >
                     "The Little Book That Still Beats the Market"
-                  </a>
-                  . The Author claims the method to beat the S&P500, used as the
-                  market benchmark, by providing{" "}
-                  <b>annualized returns of over 30%</b>.{" "}
+                  </a>{" "}
+                  According to the author, the method can beat the S&P500, which
+                  is often used as a market benchmark, by providing{" "}
+                  <b>annualized returns of over 30%</b>. With its proven track
+                  record, the Magic Formula can be a valuable tool for investors
+                  looking to build a strong investment portfolio.
                 </p>
               </div>
             </div>
