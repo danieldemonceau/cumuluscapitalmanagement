@@ -3,29 +3,117 @@
  * On a bigger app, you will probably want to split this file up into multiple files.
  */
 import * as trpcNext from "@trpc/server/adapters/next";
-import { z } from "zod";
-import { publicProcedure, router } from "../../../server/trpc";
+import { pc, router } from "../../../server/trpc/trpc";
+import { createContext } from "../../../server/trpc/context";
+import { prisma } from "@/src/server/utils/prisma";
 
 const appRouter = router({
-  greeting: publicProcedure
-    // This is the input schema of your procedure
-    // 💡 Tip: Try changing this and see type errors on the client straight away
-    .input(
-      z.object({
-        name: z.string().nullish(),
-      })
-    )
-    .query(({ input }) => {
-      // This is what you're returning to your client
-      return {
-        text: `hello ${input?.name ?? "world"}`,
-        // 💡 Tip: Try adding a new property here and see it propagate to the client straight-away
-      };
-    }),
-  // 💡 Tip: Try adding a new procedure here and see if you can use it in the client!
-  // getUser: publicProcedure.query(() => {
-  //   return { id: '1', name: 'bob' };
-  // }),
+  getExchangeList: pc.query(async () => {
+    const exchanges = await prisma.exchange.findMany();
+    return exchanges;
+  }),
+  getAllPositionOpenMagicFormulas: pc.query(async () => {
+    const allPositionOpenMagicFormulas =
+      await prisma.position_open_magic_formula.findMany({
+        select: {
+          id: true,
+          type: true,
+          asset: true,
+          open_timestamp: true,
+          price_opened_average: true,
+          price_current: true,
+          price_current_date: true,
+          pl_percent: true,
+          strategy_name: true,
+        },
+      });
+    return allPositionOpenMagicFormulas;
+  }),
+  getAllPositionClosedMagicFormulas: pc.query(async () => {
+    const allPositionClosedMagicFormulas =
+      await prisma.position_closed_magic_formula.findMany({
+        select: {
+          id: true,
+          type: true,
+          asset: true,
+          open_timestamp: true,
+          price_opened_average: true,
+          close_timestamp: true,
+          price_closed_average: true,
+          pl_percent: true,
+          strategy_name: true,
+        },
+      });
+    return allPositionClosedMagicFormulas;
+  }),
+  getAllPositionOpenTheAcquirersMultiples: pc.query(async () => {
+    const allPositionOpenTheAcquirersMultiple =
+      await prisma.position_open_the_acquirers_multiple.findMany({
+        select: {
+          id: true,
+          type: true,
+          asset: true,
+          open_timestamp: true,
+          price_opened_average: true,
+          price_current: true,
+          price_current_date: true,
+          pl_percent: true,
+          strategy_name: true,
+        },
+      });
+    return allPositionOpenTheAcquirersMultiple;
+  }),
+  getAllPositionClosedTheAcquirersMultiples: pc.query(async () => {
+    const allPositionClosedTheAcquirersMultiples =
+      await prisma.position_closed_the_acquirers_multiple.findMany({
+        select: {
+          id: true,
+          type: true,
+          asset: true,
+          open_timestamp: true,
+          price_opened_average: true,
+          close_timestamp: true,
+          price_closed_average: true,
+          pl_percent: true,
+          strategy_name: true,
+        },
+      });
+    return allPositionClosedTheAcquirersMultiples;
+  }),
+  getAllPositionOpenMarketDollarCostAveraging: pc.query(async () => {
+    const allPositionOpenMarketDollarCostAveraging =
+      await prisma.position_open_market_dollar_cost_averaging.findMany({
+        select: {
+          id: true,
+          type: true,
+          asset: true,
+          open_timestamp: true,
+          price_opened_average: true,
+          price_current: true,
+          price_current_date: true,
+          pl_percent: true,
+          strategy_name: true,
+        },
+      });
+    return allPositionOpenMarketDollarCostAveraging;
+  }),
+  getAllPositionClosedMarketDollarCostAveraging: pc.query(async () => {
+    const allPositionClosedMarketDollarCostAveraging =
+      await prisma.position_closed_market_dollar_cost_averaging.findMany({
+        select: {
+          id: true,
+          type: true,
+          asset: true,
+          open_timestamp: true,
+          price_opened_average: true,
+          close_timestamp: true,
+          price_closed_average: true,
+          pl_percent: true,
+          strategy_name: true,
+        },
+      });
+    return allPositionClosedMarketDollarCostAveraging;
+  }),
 });
 
 // export only the type definition of the API
@@ -35,5 +123,5 @@ export type AppRouter = typeof appRouter;
 // export API handler
 export default trpcNext.createNextApiHandler({
   router: appRouter,
-  createContext: () => ({}),
+  createContext,
 });

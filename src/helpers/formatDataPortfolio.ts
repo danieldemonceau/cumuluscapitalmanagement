@@ -1,35 +1,46 @@
 import formatDate from "./formatDate";
-import { PositionOpen, PositionClosed } from "../types/Position.type";
+import {
+  PositionOpen,
+  PositionClosed,
+  PositionOpenPrisma,
+  PositionClosedPrisma,
+} from "../types/Position.type";
 
 export const formatDataPortfolioOpenPositions = (
-  data: PositionOpen[]
+  data: PositionOpenPrisma[]
 ): PositionOpen[] => {
-  const dataFormatted = data
-    .filter((d) => d.priceCurrent !== null)
-    .map((d) => {
-      return {
-        ...d,
-        openTimestamp: d.openTimestamp && formatDate(d.openTimestamp),
-        priceOpenedAverage: +d.priceOpenedAverage?.toFixed(2),
-        priceCurrent: d.priceCurrent && +d.priceCurrent?.toFixed(2),
-        priceCurrentDate: d.priceCurrentDate && formatDate(d.priceCurrentDate),
-        plPercent: d.plPercent && +d.plPercent?.toFixed(2),
-      };
-    });
+  const dataFormatted = data.map((d) => {
+    const { id, type, asset, strategy_name: strategyName } = d;
+    return {
+      id,
+      type,
+      asset,
+      openTimestamp: formatDate(d.open_timestamp),
+      priceOpenedAverage: Number(Number(d.price_opened_average).toFixed(2)),
+      priceCurrent: Number(Number(d.price_current).toFixed(2)),
+      priceCurrentDate: formatDate(d.price_current_date),
+      plPercent: Number(d.pl_percent?.toFixed(2)),
+      strategyName,
+    };
+  });
   return dataFormatted;
 };
 
 export const formatDataPortfolioClosedPositions = (
-  data: PositionClosed[]
+  data: PositionClosedPrisma[]
 ): PositionClosed[] => {
   const dataFormatted = data.map((d) => {
+    const { id, type, asset, strategy_name: strategyName } = d;
     return {
-      ...d,
-      openTimestamp: d.openTimestamp && formatDate(d.openTimestamp),
-      priceOpenedAverage: +d.priceOpenedAverage?.toFixed(2),
-      closeTimestamp: d.closeTimestamp && formatDate(d.closeTimestamp),
-      priceClosedAverage: +d.priceClosedAverage?.toFixed(2),
-      plPercent: d.plPercent && +d.plPercent?.toFixed(2),
+      id,
+      type,
+      asset,
+      openTimestamp: formatDate(d.open_timestamp),
+      priceOpenedAverage: Number(Number(d.price_opened_average).toFixed(2)),
+      closeTimestamp: formatDate(d.close_timestamp),
+      priceClosedAverage: Number(Number(d.price_closed_average).toFixed(2)),
+      plPercent: Number(d.pl_percent?.toFixed(2)),
+      strategyName,
     };
   });
   return dataFormatted;

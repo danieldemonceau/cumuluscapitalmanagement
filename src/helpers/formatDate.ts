@@ -1,7 +1,16 @@
-const formatDate = (date: string) => {
-  // const [dateStr] = new Date(date).toISOString().split("T");
-  const [dateStr] = date.split("T");
-  return dateStr;
+import moment from "moment-timezone";
+
+const formatDate = (inputDate: Date) => {
+  const clientTimeZoneId = moment.tz.guess();
+
+  const inputTimeZoneId = moment(inputDate).tz() ?? "Australia/Melbourne";
+
+  const formattedDate = moment(inputDate)
+    .tz(inputTimeZoneId)
+    .tz(clientTimeZoneId)
+    .format("YYYY-MM-DD");
+
+  return formattedDate;
 };
 
 export default formatDate;

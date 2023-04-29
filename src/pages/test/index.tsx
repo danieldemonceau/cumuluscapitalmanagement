@@ -1,13 +1,9 @@
-/**
- * This is a Next.js page.
- */
 import { trpc } from "../../utils/trpc";
 
-export default function IndexPage() {
-  // 💡 Tip: CMD+Click (or CTRL+Click) on `greeting` to go to the server definition
-  const result = trpc.greeting.useQuery({ name: "daniel" });
-
-  if (!result.data) {
+const IndexPage = () => {
+  const { data: openPositionsMagicFormula } =
+    trpc.getAllPositionOpenMagicFormulas.useQuery();
+  if (!openPositionsMagicFormula) {
     return (
       <div style={styles}>
         <h1>Loading...</h1>
@@ -16,16 +12,12 @@ export default function IndexPage() {
   }
   return (
     <div style={styles}>
-      {/**
-       * The type is defined and can be autocompleted
-       * 💡 Tip: Hover over `data` to see the result type
-       * 💡 Tip: CMD+Click (or CTRL+Click) on `text` to go to the server definition
-       * 💡 Tip: Secondary click on `text` and "Rename Symbol" to rename it both on the client & server
-       */}
-      <h1>{result.data.text}</h1>
+      {<h1>{JSON.stringify(openPositionsMagicFormula)}</h1>}
     </div>
   );
-}
+};
+
+export default IndexPage;
 
 const styles = {
   width: "100vw",
