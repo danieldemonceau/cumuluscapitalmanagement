@@ -43,7 +43,7 @@ const MagicFormula = ({
           <div className="basis-1/12"></div>
           <div className="basis-9/12 flex flex-col w-full py-10 align-middle text-left text-black space-y-3">
             <div className="text-4xl text-left">The Magic Formula Strategy</div>
-            <div className="flex flex-row space-x-3">
+            <div className="flex flex-row space-x-3 w-full sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12">
               <Link href="#whatisit">What Is It?</Link>
               <div>|</div>
               <Link href="#inpractice">In Practice</Link>
