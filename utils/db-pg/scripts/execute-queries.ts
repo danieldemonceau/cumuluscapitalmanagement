@@ -68,8 +68,9 @@ const executeQueries = async () => {
 
       const sql = fs.readFileSync(sqlFile, "utf-8");
 
+      console.info(`Reading ${sqlFile}`);
+
       // Execute the SQL
-      await client.query(`;`);
       await client.query(sql);
 
       // Verify that the SQL was executed correctly
