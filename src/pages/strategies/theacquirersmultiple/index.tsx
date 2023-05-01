@@ -9,19 +9,17 @@ import { trpc } from "@/src/utils/trpc";
 const Index = () => {
   const { data: openPositionsTheAcquirersMultiple } =
     trpc.getAllPositionOpenTheAcquirersMultiples.useQuery();
-  if (!openPositionsTheAcquirersMultiple) return;
   const positionOpen: PositionOpen[] = formatDataPortfolioOpenPositions(
-    openPositionsTheAcquirersMultiple
+    openPositionsTheAcquirersMultiple ?? []
   );
 
   const { data: closedPositionsTheAcquirersMultiple } =
     trpc.getAllPositionClosedTheAcquirersMultiples.useQuery();
-  if (!closedPositionsTheAcquirersMultiple) return;
   console.log(
     `closedPositionsTheAcquirersMultiple: ${closedPositionsTheAcquirersMultiple}`
   );
   const positionClosed: PositionClosed[] = formatDataPortfolioClosedPositions(
-    closedPositionsTheAcquirersMultiple
+    closedPositionsTheAcquirersMultiple ?? []
   );
 
   return (

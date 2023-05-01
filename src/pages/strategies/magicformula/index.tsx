@@ -9,16 +9,14 @@ import { trpc } from "@/src/utils/trpc";
 const Index = () => {
   const { data: openPositionsMagicFormula } =
     trpc.getAllPositionOpenMagicFormulas.useQuery();
-  if (!openPositionsMagicFormula) return;
   const positionOpen: PositionOpen[] = formatDataPortfolioOpenPositions(
-    openPositionsMagicFormula
+    openPositionsMagicFormula ?? []
   );
 
   const { data: closedPositionsMagicFormula } =
     trpc.getAllPositionClosedMagicFormulas.useQuery();
-  if (!closedPositionsMagicFormula) return;
   const positionClosed: PositionClosed[] = formatDataPortfolioClosedPositions(
-    closedPositionsMagicFormula
+    closedPositionsMagicFormula ?? []
   );
 
   return (

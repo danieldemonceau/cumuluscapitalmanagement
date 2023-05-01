@@ -9,16 +9,14 @@ import { trpc } from "@/src/utils/trpc";
 const Index = () => {
   const { data: openPositionsMarketDollarCostAveraging } =
     trpc.getAllPositionOpenMarketDollarCostAveraging.useQuery();
-  if (!openPositionsMarketDollarCostAveraging) return;
   const positionOpen: PositionOpen[] = formatDataPortfolioOpenPositions(
-    openPositionsMarketDollarCostAveraging
+    openPositionsMarketDollarCostAveraging ?? []
   );
 
   const { data: closedPositionsMarketDollarCostAveraging } =
     trpc.getAllPositionClosedMarketDollarCostAveraging.useQuery();
-  if (!closedPositionsMarketDollarCostAveraging) return;
   const positionClosed: PositionClosed[] = formatDataPortfolioClosedPositions(
-    closedPositionsMarketDollarCostAveraging
+    closedPositionsMarketDollarCostAveraging ?? []
   );
 
   return (
