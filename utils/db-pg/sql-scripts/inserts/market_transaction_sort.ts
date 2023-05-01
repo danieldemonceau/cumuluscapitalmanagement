@@ -50,6 +50,6 @@ export const marketTransactionSort = (filename: string) => {
 
   fs.writeFileSync(
     filename,
-    queries.map((query) => query.statement).join(";\n\n") + ";"
+    `;` + queries.map((query) => query.statement).join(";\n\n") + ";"
   );
 };
