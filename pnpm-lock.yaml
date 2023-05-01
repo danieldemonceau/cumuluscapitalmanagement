@@ -108,6 +108,9 @@ devDependencies:
   '@types/node':
     specifier: 18.11.18
     version: 18.11.18
+  '@types/prop-types':
+    specifier: ^15.7.5
+    version: 15.7.5
   '@types/react':
     specifier: 18.0.26
     version: 18.0.26
