@@ -9,7 +9,11 @@
     "psycopg",
     "recaptcha",
     "sitekey",
+    "TRPC",
     "youtube"
   ],
-  "god.tsconfig": "./tsconfig.json"
+  "god.tsconfig": "./tsconfig.json",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }
