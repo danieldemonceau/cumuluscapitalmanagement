@@ -151,7 +151,9 @@ const loadNewTransactions = async () => {
                     AND mt.description = ''
                     AND mt.execution_timestamp = '${executionDate}'
                     AND mt.broker_id = b.id
+                    AND mt.amount = ${amount}::MONEY
                     AND mt.security_id = s.id
+                    AND mt.nb_of_units = ${units}
                     AND mt.strategy_id = st.id);`;
       return sql;
     });

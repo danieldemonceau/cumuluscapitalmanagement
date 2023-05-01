@@ -36,7 +36,7 @@ const ETF_TICKERS = [
   "ARKF",
   "ARKK",
   "ARKQ",
-  "FIW.US",
+  "FIW",
   "ICLN",
   "KRBN",
   "LIT",
@@ -51,6 +51,15 @@ const ETF_TICKERS = [
   "VONG",
   "VOO",
 ];
+
+const TICKER_CONVERT: { [key: string]: string } = {
+  "FIW.US": "FIW",
+  "MT.US": "MT",
+  "STLA.US": "STLA",
+  "WPP.L": "WPP",
+  "WPP.l": "WPP",
+  NOKI: "NOK",
+};
 
 const MAGIC_FORMULA_TICKERS = [
   "AMR",
@@ -89,7 +98,7 @@ const MAGIC_FORMULA_TICKERS = [
 const loadNewTransactions = async () => {
   const [inputFile] = process.argv.slice(2);
 
-  const MIN_STOCK_AMOUNT = 210;
+  const MIN_STOCK_AMOUNT = 150;
   const MIN_ETF_AMOUNT = 15;
   const ALLOWED_TYPES = ["Open Position", "Position closed"];
   const ALLOWED_ASSET_TYPES = ["Stocks", "ETF"];
@@ -141,7 +150,8 @@ const loadNewTransactions = async () => {
         `${year}-${month}-${day}T${hour}:${minute}:${second}.000Z`
       ).toISOString();
 
-      const ticker = details.substring(0, details.indexOf("/"));
+      let ticker = details.substring(0, details.indexOf("/"));
+      if (ticker in TICKER_CONVERT) ticker = TICKER_CONVERT[ticker];
       const amount = Number(Amount);
       const units = Number(Units);
       assetType;
@@ -188,7 +198,9 @@ const loadNewTransactions = async () => {
                     AND mt.description = ''
                     AND mt.execution_timestamp = '${executionDate}'
                     AND mt.broker_id = b.id
+                    AND mt.amount = ${amount}::MONEY
                     AND mt.security_id = s.id
+                    AND mt.nb_of_units = ${units}
                     AND mt.strategy_id = st.id);`;
       return sql;
     });
