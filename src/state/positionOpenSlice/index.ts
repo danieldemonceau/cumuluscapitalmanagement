@@ -3,15 +3,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 import { PositionOpen } from "../../types/Position.type";
 
-// Define the initial state using that type
 const initialState: PositionOpen[] = [];
 
 export const positionOpenSlice = createSlice({
   name: "positionOpen",
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    loadPositionOpens: (state, action: PayloadAction<PositionOpen[]>) => {
+    loadPositionOpens: (_state, action: PayloadAction<PositionOpen[]>) => {
       return action.payload;
     },
   },
