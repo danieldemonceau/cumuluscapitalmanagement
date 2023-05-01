@@ -14,7 +14,8 @@ const Index = () => {
               <li>Powered by Next.js</li>
               <li>Typescript</li>
               <li>Tailwind</li>
-              <li>GraphQL</li>
+              <li>tRPC</li>
+              <li>prisma</li>
               <li>PostgreSQL</li>
               <li>Axios</li>
               <li>Fontawesome</li>
