@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Column } from "react-table";
+import { Column, SortByFn } from "react-table";
 import { PositionOpen, PositionClosed } from "@/src/types/Position.type";
 
 export const useTableColumnsOpenPositions = () => {
@@ -33,7 +33,7 @@ export const useTableColumnsOpenPositions = () => {
         {
           Header: "P/L %",
           accessor: "plPercent",
-          sortType: sort,
+          sortType: sortPositionOpen,
         },
       ],
       []
@@ -71,7 +71,7 @@ export const useTableColumnsClosedPositions = () => {
         {
           Header: "P/L %",
           accessor: "plPercent",
-          sortType: sort,
+          sortType: sortPositionClosed,
         },
       ],
       []
@@ -79,10 +79,35 @@ export const useTableColumnsClosedPositions = () => {
   ];
 };
 
-const sort = (rowA: any, rowB: any, id: string) => {
+const sortPositionOpen: string | SortByFn<PositionOpen> | undefined = (
+  rowA,
+  rowB,
+  id
+) => {
   const a = rowA.values[id];
   const b = rowB.values[id];
+
   if (a > b) return 1;
   if (a < b) return -1;
   return 0;
 };
+const sortPositionClosed: string | SortByFn<PositionClosed> | undefined = (
+  rowA,
+  rowB,
+  id
+) => {
+  const a = rowA.values[id];
+  const b = rowB.values[id];
+
+  if (a > b) return 1;
+  if (a < b) return -1;
+  return 0;
+};
+
+// const sort = (rowA: any, rowB: any, id: string) => {
+//   const a = rowA.values[id];
+//   const b = rowB.values[id];
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+//   return 0;
+// };
