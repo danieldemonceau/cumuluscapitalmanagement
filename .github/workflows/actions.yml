@@ -2,7 +2,7 @@ name: Refresh quotes
 
 on:
   schedule:
-    - cron: "30 16 * * * TZ='America/New_York'"
+    - cron: "30 21 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
