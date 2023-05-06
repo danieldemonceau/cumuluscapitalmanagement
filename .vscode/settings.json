@@ -6,7 +6,7 @@
     "dotenv",
     "DreamAICaption",
     "outputsize",
-    "psycopg",
+    "psycopg2",
     "recaptcha",
     "sitekey",
     "TRPC",
