@@ -8,7 +8,7 @@ CREATE OR REPLACE FUNCTION market_transaction_insert_before() RETURNS TRIGGER AS
         v_broker_id INTEGER = NEW.broker_id;
 
         v_position_id INTEGER;
-        v_position_nb_of_units_open INTEGER;
+        v_position_nb_of_units_open DECIMAL;
 
     BEGIN
         RAISE NOTICE '- - - - - - - - - - - - - - - - - - - - - ';
