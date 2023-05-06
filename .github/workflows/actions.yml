@@ -3,7 +3,7 @@ name: Refresh quotes
 on:
   schedule:
     - cron: "30 21 * * *"
-  workflow_dispatch
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
