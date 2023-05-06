@@ -3,7 +3,7 @@
 
 
 import os
-import psycopg
+import psycopg2
 from dotenv import load_dotenv
 import re
 
@@ -17,7 +17,7 @@ db_password = os.getenv("DB_PASSWORD")
 
 
 def main(folder):
-    with psycopg.connect(
+    with psycopg2.connect(
         f"host={db_host} port={db_port} dbname={db_name} user={db_username} password={db_password}"
     ) as conn:
         with conn.cursor() as cur:
