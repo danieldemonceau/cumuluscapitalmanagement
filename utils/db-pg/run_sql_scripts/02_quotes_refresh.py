@@ -1,6 +1,6 @@
 import http.client
 import json
-import psycopg
+import psycopg2
 import requests
 from datetime import datetime, timezone
 import time
@@ -28,7 +28,7 @@ def quote_refresh(source_name):
     # This is because of the limitation of 5 requests / minute, thus 12 seconds wait between API Calls
     time_sleep = 6
 
-    conn = psycopg.connect(
+    conn = psycopg2.connect(
         f"host='{db_hostname}' port='{db_port}' dbname='{db_name}' user='{db_username}' password='{db_password}'"
     )
 
