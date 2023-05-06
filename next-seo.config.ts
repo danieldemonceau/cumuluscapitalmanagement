@@ -19,7 +19,7 @@ const config = {
     maxVideoPreview: -1,
   },
   disableGooglebot: false,
-  description: `Capital Management Company specialised in the three following investment strategies: The Magic Formula, The Acquirer's Multiple, and The Dollar-Cost Averaging`,
+  description: `Capital Management Company specialises in three following investment strategies: The Magic Formula, The Acquirer's Multiple, and The Dollar-Cost Averaging`,
   canonical: `https://${domainName}/`,
   // additionalLinkTags: "",
   twitter: {
@@ -34,7 +34,7 @@ const config = {
     url: `${domainName}`,
     type: "website",
     title: `${domainName}`,
-    description: `Capital Management Company specialised in the three following investment strategies: The Magic Formula, The Acquirer's Multiple, and The Dollar-Cost Averaging`,
+    description: `Capital Management Company specialises in three following investment strategies: The Magic Formula, The Acquirer's Multiple, and The Dollar-Cost Averaging`,
     locale: "en_AU",
     site_name: `${domainName}`,
     profile: {
