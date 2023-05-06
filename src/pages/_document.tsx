@@ -5,6 +5,7 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
+import { NEXT_PUBLIC_GA_MEASUREMENT_ID } from "@/lib/gtag";
 
 class MyDocument extends Document {
   render(): JSX.Element {
@@ -36,6 +37,21 @@ class MyDocument extends Document {
             <link
               href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
               rel="stylesheet"
+            />{" "}
+            <meta charSet="utf-8" />
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
+                        page: window.location.pathname
+                    });`,
+              }}
             />
           </Head>
           <body>

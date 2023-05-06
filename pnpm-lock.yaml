@@ -37,6 +37,9 @@ dependencies:
   '@trpc/server':
     specifier: ^10.21.1
     version: 10.21.1
+  '@types/gtag.js':
+    specifier: ^0.0.12
+    version: 0.0.12
   '@types/pg':
     specifier: ^8.6.6
     version: 8.6.6
@@ -1263,6 +1266,10 @@ packages:
     dependencies:
       '@types/node': 18.11.18
     dev: true
+
+  /@types/gtag.js@0.0.12:
+    resolution: {integrity: sha512-YQV9bUsemkzG81Ea295/nF/5GijnD2Af7QhEofh7xu+kvCN6RdodgNwwGWXB5GMI3NoyvQo0odNctoH/qLMIpg==}
+    dev: false
 
   /@types/hoist-non-react-statics@3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}

@@ -2,9 +2,11 @@
   "cSpell.words": [
     "ALPHAVANTAGE",
     "APIKEY",
+    "changefreq",
     "cumulus",
     "dotenv",
     "DreamAICaption",
+    "gtag",
     "outputsize",
     "psycopg2",
     "recaptcha",
