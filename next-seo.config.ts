@@ -1,13 +1,12 @@
 import meta from "./src/data/meta";
 
-const author = meta.author;
 const domainName = meta.domainName;
 const websiteNameShort = meta.websiteNameShort;
 
 const config = {
   titleTemplate: `${websiteNameShort} | %s`,
-  title: `${websiteNameShort} | %s`,
-  defaultTitle: `${websiteNameShort} | %s`,
+  title: ``,
+  defaultTitle: `${websiteNameShort}`,
   noindex: false,
   nofollow: false,
   additionRobotsProps: {
@@ -35,7 +34,7 @@ const config = {
     url: `${domainName}`,
     type: "website",
     title: `${domainName}`,
-    description: `Personal Branding Website of ${author}`,
+    description: `Website for the investment company Cumulus Capital Management`,
     locale: "en_AU",
     site_name: `${domainName}`,
     profile: {
