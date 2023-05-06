@@ -12,6 +12,7 @@ const Hero = () => {
             src={heroImage}
             alt="Hero Image"
             height={2100}
+            priority={true}
           />
           <div className="absolute h-full w-full top-0">
             <div className="flex flex-row h-full relative">

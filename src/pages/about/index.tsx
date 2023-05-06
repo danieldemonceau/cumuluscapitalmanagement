@@ -1,7 +1,19 @@
 import About from "@/components/Home/About";
+import { NextSeo } from "next-seo";
+import SEO from "../../../next-seo.config";
 
 export const Index = () => {
-  return <About />;
+  return (
+    <>
+      <NextSeo
+        {...{
+          ...SEO,
+          title: "About",
+        }}
+      />
+      <About />
+    </>
+  );
 };
 
 export const getServerSideProps = async () => {

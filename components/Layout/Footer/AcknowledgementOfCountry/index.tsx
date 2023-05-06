@@ -14,7 +14,6 @@ const AcknowledgementOfCountry = () => {
               src={paperBarkTree}
               alt={`Image of Paper Bark Tree`}
               width={217}
-              height={325}
               priority={true}
             ></Image>
             <p className="text-sm italic">

@@ -1,7 +1,19 @@
 import ContactUs from "@/components/ContactUs";
+import { NextSeo } from "next-seo";
+import SEO from "../../../next-seo.config";
 
 const index = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
-  return <ContactUs recaptchaSiteKey={recaptchaSiteKey} />;
+  return (
+    <>
+      <NextSeo
+        {...{
+          ...SEO,
+          title: "Contact us",
+        }}
+      />
+      <ContactUs recaptchaSiteKey={recaptchaSiteKey} />
+    </>
+  );
 };
 
 export const getServerSideProps = async () => {

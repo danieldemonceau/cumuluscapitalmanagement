@@ -5,6 +5,8 @@ import {
 } from "@/src/helpers/formatDataPortfolio";
 import { PositionClosed, PositionOpen } from "@/src/types/Position.type";
 import { trpc } from "@/src/utils/trpc";
+import SEO from "../../../../next-seo.config";
+import { NextSeo } from "next-seo";
 
 const Index = () => {
   const { data: openPositionsMarketDollarCostAveraging } =
@@ -21,6 +23,12 @@ const Index = () => {
 
   return (
     <>
+      <NextSeo
+        {...{
+          ...SEO,
+          title: "DCA",
+        }}
+      />
       <MarketDollarCostAveraging
         positionOpen={positionOpen}
         positionClosed={positionClosed}

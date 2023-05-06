@@ -8,7 +8,12 @@ const Meta = ({ keywords, author }: { keywords: string; author: string }) => {
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" href="/favicon.ico" />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/images/favicon.ico"
+      />
     </Head>
   );
 };

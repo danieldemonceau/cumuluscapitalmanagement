@@ -1,7 +1,18 @@
 import Privacy from "@/components/Home/Privacy";
+import { NextSeo } from "next-seo";
+import SEO from "../../../next-seo.config";
 
 const index = () => {
-  return <Privacy />;
+  return;
+  <>
+    <NextSeo
+      {...{
+        ...SEO,
+        title: "Privacy",
+      }}
+    />
+    <Privacy />
+  </>;
 };
 
 export const getServerSideProps = async () => {
