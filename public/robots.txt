@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://cumuluscapitalmanagement.com
+
+# Sitemaps
+Sitemap: https://cumuluscapitalmanagement.com/sitemap.xml

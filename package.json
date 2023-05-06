@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
@@ -37,6 +38,7 @@
     "moment-timezone": "^0.5.43",
     "next": "^13.4.1",
     "next-seo": "^5.15.0",
+    "next-sitemap": "^4.0.9",
     "pg": "^8.10.0",
     "pnpm": "^8.4.0",
     "prop-types": "^15.8.1",
@@ -45,6 +47,7 @@
     "react-google-recaptcha": "^2.1.0",
     "react-redux": "^8.0.5",
     "react-table": "^7.8.0",
+    "sharp": "^0.32.1",
     "superjson": "^1.12.3",
     "validator": "^13.7.0",
     "xlsx": "^0.18.5"
