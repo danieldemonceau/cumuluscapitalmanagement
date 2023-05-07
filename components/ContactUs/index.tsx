@@ -1,30 +1,26 @@
-import { useEffect, useState } from "react";
-import validator from "validator";
+import { FormEvent, useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 // import axios from "axios";
 import React from "react";
+import * as z from "zod";
 
 const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
   const [name, setName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [isEmailAddressValid, setIsEmailAddressValid] = useState(false);
+  const [isNameValid, setIsNameValid] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(false);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [message, setMessage] = useState("");
   const [disableButton, setDisableButton] = useState<boolean>(true);
-  // const [isMessageSent, setIsMessageSent] = useState<boolean>(false);
-  const [isMessageSent] = useState<boolean>(false);
+  const [isMessageSent, setIsMessageSent] = useState<boolean>(false);
 
-  const sendForm = async () => {
-    // const postComment = await axios({
-    //   baseURL: ``,
-    //   url: `/api/graphql`,
-    //   method: "post",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   data: { query: CREATE_COMMENTS(emailAddress, message, name) },
-    // });
-    // if (postComment.data.data.createComment.comment.id) setIsMessageSent(true);
+  const nameSchema = z.string().nonempty();
+  const emailSchema = z.string().email().nonempty();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsMessageSent(true);
+    console.log(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
   };
 
   const captchaElRef: React.RefObject<ReCAPTCHA> = React.createRef();
@@ -33,14 +29,17 @@ const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
     if (token && token !== "") {
       setIsCaptchaValid(true);
     }
+    if (!(token && token !== "")) {
+      setIsCaptchaValid(false);
+    }
   };
 
   useEffect(() => {
     if (isMessageSent) {
       setDisableButton(true);
       setName(() => "");
-      setEmailAddress(() => "");
-      setIsEmailAddressValid(() => false);
+      setEmail(() => "");
+      setIsEmailValid(() => false);
       setIsCaptchaValid(false);
       setMessage(() => "");
       captchaElRef?.current?.reset();
@@ -48,29 +47,33 @@ const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
   }, [isMessageSent, captchaElRef]);
 
   useEffect(() => {
-    validator.isEmail(emailAddress)
-      ? setIsEmailAddressValid(true)
-      : setIsEmailAddressValid(false);
-  }, [emailAddress]);
+    try {
+      nameSchema.parse(name);
+      setIsNameValid(() => true);
+    } catch (err: unknown) {
+      // if (err instanceof Error) setError(err.message);
+      setIsNameValid(() => false);
+    }
+  }, [name, nameSchema]);
 
   useEffect(() => {
-    if (
-      name !== "" &&
-      emailAddress !== "" &&
-      message !== "" &&
-      isCaptchaValid
-    ) {
+    try {
+      emailSchema.parse(email);
+      setIsEmailValid(() => true);
+    } catch (err: unknown) {
+      // if (err instanceof Error) setError(err.message);
+      setIsEmailValid(() => false);
+    }
+  }, [email, emailSchema]);
+
+  useEffect(() => {
+    if (isNameValid && isEmailValid && message !== "" && isCaptchaValid) {
       setDisableButton(() => false);
     }
-    if (
-      name === "" ||
-      emailAddress === "" ||
-      message === "" ||
-      !isCaptchaValid
-    ) {
+    if (!isNameValid || !isEmailValid || message === "" || !isCaptchaValid) {
       setDisableButton(() => true);
     }
-  }, [name, emailAddress, message, isCaptchaValid, disableButton]);
+  }, [isNameValid, isEmailValid, message, isCaptchaValid, disableButton]);
 
   return (
     <div className="flex flex-row my-5 font-openSans">
@@ -84,86 +87,95 @@ const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
               <p>We will contact you back shortly</p>
             </div>
           ) : (
-            ""
-          )}
-          <form className="w-full max-w-lg align-middle justify-center mx-auto text-left">
-            <div className="flex flex-wrap w-full mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-first-name"
-              >
-                Your Name
-              </label>
-              <input
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white ${
-                  name === "" ? "border-red-500" : ""
-                }`}
-                id="grid-first-name"
-                type="text"
-                placeholder="Jane"
-                value={name}
-                onChange={(e) => setName(() => e.target.value)}
-              />
-            </div>
-            <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full px-3">
+            <form
+              className="w-full max-w-lg align-middle justify-center mx-auto text-left"
+              onSubmit={handleSubmit}
+            >
+              <div className="flex flex-wrap w-full mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
+                  htmlFor="name"
                 >
-                  E-mail
+                  Your Name
                 </label>
                 <input
-                  className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" ${
-                    isEmailAddressValid ? "" : "border-red-500"
+                  className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white ${
+                    isNameValid ? "border-red-500" : ""
                   }`}
-                  id="email"
-                  type="email"
-                  value={emailAddress}
-                  onChange={(e) => setEmailAddress(() => e.target.value)}
+                  id="name"
+                  type="text"
+                  placeholder="Jane Doe"
+                  value={name}
+                  name="name"
+                  autoComplete="name"
+                  required
+                  onChange={(e) => setName(() => e.target.value)}
                 />
               </div>
-            </div>
-            <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full px-3">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Message
-                </label>
-                <textarea
-                  className={`no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none ${
-                    message === "" ? "border-red-500" : ""
-                  }`}
-                  id="message"
-                  value={message}
-                  onChange={(e) => setMessage(() => e.target.value)}
-                ></textarea>
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full px-3">
+                  <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="email"
+                  >
+                    E-mail
+                  </label>
+                  <input
+                    className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" ${
+                      isEmailValid ? "" : "border-red-500"
+                    }`}
+                    id="email"
+                    type="email"
+                    placeholder="Jane.Doe@email.com"
+                    value={email}
+                    name="email"
+                    autoComplete="email"
+                    required
+                    onChange={(e) => setEmail(() => e.target.value)}
+                  />
+                </div>
               </div>
-            </div>
-            <ReCAPTCHA
-              // ref={(r) => setCaptcha(r)}
-              ref={captchaElRef}
-              sitekey={recaptchaSiteKey}
-              onChange={onCaptchaChange}
-            />
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full px-3">
+                  <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="message"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    className={`no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none ${
+                      message === "" ? "border-red-500" : ""
+                    }`}
+                    id="message"
+                    value={message}
+                    name="message"
+                    required
+                    onChange={(e) => setMessage(() => e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
+              <ReCAPTCHA
+                // ref={(r) => setCaptcha(r)}
+                ref={captchaElRef}
+                sitekey={recaptchaSiteKey}
+                onChange={onCaptchaChange}
+              />
 
-            <div className="md:flex md:items-center">
-              <div className="md:w-1/3">
-                <button
-                  className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded disabled:opacity-25"
-                  type="button"
-                  value={message}
-                  disabled={disableButton}
-                  onClick={sendForm}
-                >
-                  Send
-                </button>
+              <div className="md:flex md:items-center">
+                <div className="md:w-1/3">
+                  <button
+                    className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded disabled:opacity-25"
+                    type="submit"
+                    disabled={disableButton}
+                  >
+                    Send
+                  </button>
+                </div>
+                <div className="md:w-2/3"></div>
               </div>
-              <div className="md:w-2/3"></div>
-            </div>
-          </form>
+            </form>
+          )}
         </div>
       </div>
       <div className="basis-1/12"></div>
