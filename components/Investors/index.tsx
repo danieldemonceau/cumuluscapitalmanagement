@@ -5,7 +5,6 @@ import InvestorsImage1 from "./InvestorsImage1.png";
 const Investors = () => {
   return (
     <div>
-      {" "}
       <div className="font-openSans">
         <div className="flex flex-row my-5">
           <div className="basis-1/12"></div>
