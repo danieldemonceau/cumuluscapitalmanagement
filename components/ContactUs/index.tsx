@@ -19,8 +19,26 @@ const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const res = await fetch("/api/sendgrid", {
+      body: JSON.stringify({
+        name,
+        email,
+        message: message,
+        subject: `CCM: Contact Form Submission from ${name}`,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    const { error } = await res.json();
+    if (error) {
+      console.error(error);
+      return;
+    }
     setIsMessageSent(true);
-    console.log(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
   };
 
   const captchaElRef: React.RefObject<ReCAPTCHA> = React.createRef();
