@@ -627,8 +627,9 @@ const getEmailTemplate = (name: string) => {
                                           font-size: 20px;
                                           line-height: 30px;
                                         "
+                                        href="https://${meta.companyUrl}"
                                       >
-                                        Cumulus Capital Management
+                                        ${meta.websiteNameLong}
                                       </div>
                                     </div>
                                     <p
@@ -645,43 +646,6 @@ const getEmailTemplate = (name: string) => {
                                       "
                                     >
                                       ${meta.address.streetAddress}, ${meta.address.addressCountryLong}
-                                    </p>
-                                  </td>
-                                </tr>
-                                <tr style="border-collapse: collapse">
-                                  <td
-                                    esdev-links-color="#333333"
-                                    align="center"
-                                    class="es-m-txt-c"
-                                    style="padding: 0; margin: 0"
-                                  >
-                                    <p
-                                      style="
-                                        margin: 0;
-                                        -webkit-text-size-adjust: none;
-                                        -ms-text-size-adjust: none;
-                                        mso-line-height-rule: exactly;
-                                        font-family: arial, 'helvetica neue',
-                                          helvetica, sans-serif;
-                                        line-height: 20px;
-                                        color: #999999;
-                                        font-size: 13px;
-                                      "
-                                    >
-                                      <a
-                                        href=""
-                                        target="_blank"
-                                        style="
-                                          -webkit-text-size-adjust: none;
-                                          -ms-text-size-adjust: none;
-                                          mso-line-height-rule: exactly;
-                                          text-decoration: none;
-                                          color: #999999;
-                                          font-size: 14px;
-                                        "
-                                        class="unsubscribe"
-                                        >Unsubscribe</a
-                                      >
                                     </p>
                                   </td>
                                 </tr>
