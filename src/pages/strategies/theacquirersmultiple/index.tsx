@@ -17,9 +17,6 @@ const Index = () => {
 
   const { data: closedPositionsTheAcquirersMultiple } =
     trpc.getAllPositionClosedTheAcquirersMultiples.useQuery();
-  console.log(
-    `closedPositionsTheAcquirersMultiple: ${closedPositionsTheAcquirersMultiple}`
-  );
   const positionClosed: PositionClosed[] = formatDataPortfolioClosedPositions(
     closedPositionsTheAcquirersMultiple ?? []
   );
