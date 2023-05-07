@@ -1,4 +1,9 @@
-const author = "Daniel Demonceau, Fluffy Clouds Avenue Pty Ltd";
+const authorName = "Daniel Demonceau";
+const authorRole = "Founder & Tech Lead";
+const authorEmail = "daniel.demonceau@cumuluscapitalmanagement.com";
+const authorCompany = "Fluffy Clouds Avenue Pty Ltd";
+const authorCompanyACN = "ACN 658 245 857";
+const authorFull = `${authorName}, ${authorRole}, ${authorCompany}`;
 const authorCompanyUrl = "FluffyCloudsAvenue.com";
 const authorWebsiteUrl = "daniel.fashion";
 const domainName = "cumuluscapitalmanagement.com";
@@ -14,7 +19,8 @@ const address = {
   addressLocality: "Melbourne",
   addressRegion: "VIC",
   postalCode: "3000",
-  addressCountry: "AU",
+  addressCountryLong: "Australia",
+  addressCountryShort: "AU",
 };
 const geo = {
   "@type": "GeoCoordinates",
@@ -28,11 +34,16 @@ const contactPoint = {
 };
 
 const meta = {
-  author,
+  authorName,
+  authorFull,
+  authorCompany,
+  authorCompanyACN,
+  authorRole,
+  authorEmail,
   domainName,
   websiteNameShort,
   websiteNameLong,
-  keywords: `${author}, ${authorCompanyUrl}, ${authorWebsiteUrl}, Investment, Investing, Capital, Wealth, Funds, Melbourne, Australia, Magic Fomula, Acquirer's Multiple, ${domainName}, FInance`,
+  keywords: `${authorFull}, ${authorCompanyUrl}, ${authorWebsiteUrl}, Investment, Investing, Capital, Wealth, Funds, Melbourne, Australia, Magic Fomula, Acquirer's Multiple, ${domainName}, FInance`,
   address,
   geo,
   contactPoint,

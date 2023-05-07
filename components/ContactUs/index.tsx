@@ -24,8 +24,8 @@ const ContactUs = ({ recaptchaSiteKey }: { recaptchaSiteKey: string }) => {
       body: JSON.stringify({
         name,
         email,
-        message: message,
-        subject: `CCM: Contact Form Submission from ${name}`,
+        message,
+        subject: `Cumulus Contact Form Submission`,
       }),
       headers: {
         "Content-Type": "application/json",

@@ -13,7 +13,7 @@ const Meta = ({ keywords, author }: { keywords: string; author: string }) => {
   );
 };
 
-const author = meta.author;
+const author = meta.authorName;
 const keywords = meta.keywords;
 
 Meta.defaultProps = {
