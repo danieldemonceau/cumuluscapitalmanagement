@@ -6,6 +6,7 @@ import Document, {
   NextScript,
 } from "next/document";
 import { NEXT_PUBLIC_GA_MEASUREMENT_ID } from "@/lib/gtag";
+// import Script from "next/script";
 
 class MyDocument extends Document {
   render(): JSX.Element {
@@ -53,6 +54,12 @@ class MyDocument extends Document {
                     });`,
               }}
             />
+            {/* <Script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID}`}
+              strategy="lazyOnload"
+              crossOrigin="anonymous"
+            /> */}
           </Head>
           <body>
             <Main />
