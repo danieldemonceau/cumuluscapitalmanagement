@@ -2,6 +2,7 @@ import Image from "next/image";
 import AboutImage1 from "./AboutImage1.jpg";
 import AboutImage2 from "./AboutImage2.jpg";
 import AboutImage3 from "./AboutImage3.jpg";
+import meta from "@/src/data/meta";
 
 const About = () => {
   return (
@@ -87,9 +88,8 @@ const About = () => {
           <section>
             <h2>Purpose</h2>
             <p>
-              This website has been created by Daniel Demonceau, TechLead and
-              founder of Fluffy Clouds Avenue Pty Ltd, to share his investment
-              strategies with the community.
+              This website has been created by {meta.authorFull}, to share his
+              investment strategies with the community.
             </p>
           </section>{" "}
         </div>

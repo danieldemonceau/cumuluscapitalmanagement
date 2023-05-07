@@ -1,3 +1,5 @@
+import meta from "@/src/data/meta";
+
 const Privacy = () => {
   return (
     <>
@@ -199,7 +201,7 @@ const Privacy = () => {
                   or to access or correct your personal information, or make a
                   complaint, please contact us using the details set out below:
                 </p>
-                <p>Name: Daniel Demonceau</p>
+                <p>Name: {meta.authorName}</p>
                 <p>Email: daniel.demonceau@yahoo.com</p>
                 <p>Our privacy policy was last updated on 25 February 2022.</p>
               </div>

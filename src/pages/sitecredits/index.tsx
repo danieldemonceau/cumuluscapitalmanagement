@@ -1,5 +1,6 @@
 import { NextSeo } from "next-seo";
 import SEO from "../../../next-seo.config";
+import meta from "@/src/data/meta";
 
 const Index = () => {
   return (
@@ -18,8 +19,7 @@ const Index = () => {
               <h1>Credits</h1>
               <ul>
                 <li>
-                  Created by Daniel Demonceau, Fluffy Clouds Avenue Pty Ltd ACN
-                  658 245 857
+                  Created by {meta.authorFull} {meta.authorCompanyACN}
                 </li>
                 <li>Powered by Next.js</li>
                 <li>Typescript</li>
