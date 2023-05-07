@@ -86,7 +86,7 @@ const executeQueries = async () => {
     // Commit transaction
     await client.query("COMMIT");
 
-    console.log("All SQL files executed successfully!");
+    console.info("All SQL files executed successfully!");
   } catch (error) {
     console.error(`Error executing SQL: ${error}`);
 

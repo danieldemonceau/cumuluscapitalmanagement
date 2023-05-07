@@ -233,7 +233,7 @@ const loadNewTransactions = async () => {
 
     for (const security of securitiesInFile) {
       if (!securityNamesInDb.includes(security)) {
-        console.log(`Name ${security} not found in security table`);
+        console.info(`Name ${security} not found in security table`);
       }
     }
   }
