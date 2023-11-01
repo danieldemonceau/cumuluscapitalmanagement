@@ -3,6 +3,12 @@ import * as fs from "fs";
 import { Client } from "pg";
 import dotenv from "dotenv";
 import { marketTransactionSort } from "./market_transaction_sort";
+import {
+  tickersExcluded,
+  tickersEtf,
+  tickersMagicFormula,
+  tickersToConvert,
+} from "./tickers";
 
 interface TransactionXLSX {
   Date: string;
@@ -18,86 +24,7 @@ interface TransactionXLSX {
   NWA: number;
 }
 
-const EXCLUDE_TICKERS = [
-  "BABA",
-  "ENEL",
-  "MIDD.L",
-  "NNDM",
-  "RUN",
-  "SPCE",
-  "SPY5.L",
-  "SQQQ",
-  "TTCF",
-  "VZ",
-  "Z",
-];
-
-const ETF_TICKERS = [
-  "ARKF",
-  "ARKK",
-  "ARKQ",
-  "FIW",
-  "ICLN",
-  "KRBN",
-  "LIT",
-  "QCLN",
-  "QQQ",
-  "TAN",
-  "URA",
-  "VEA",
-  "VGK",
-  "VGT",
-  "VNQ",
-  "VONG",
-  "VOO",
-];
-
-const TICKER_CONVERT: { [key: string]: string } = {
-  "FIW.US": "FIW",
-  "MT.US": "MT",
-  "STLA.US": "STLA",
-  "WPP.L": "WPP",
-  "WPP.l": "WPP",
-  NOKI: "NOK",
-};
-
-const MAGIC_FORMULA_TICKERS = [
-  "AMR",
-  "ASRT",
-  "ASTL",
-  "ATKR",
-  "BCC",
-  "BKE",
-  "CCRN",
-  "DDS",
-  "DKS",
-  "HDSN",
-  "HPQ",
-  "IRWD",
-  "JAKK",
-  "JILL",
-  "LEU",
-  "LLY",
-  "LPX",
-  "MLI",
-  "MLI",
-  "MSB",
-  "NUE",
-  "OCUP",
-  "PRPH",
-  "RS",
-  "RYI",
-  "SIGA",
-  "VIR",
-  "WFG",
-  "WIRE",
-  "X",
-  "ZYME",
-];
-
-const loadNewTransactions = async () => {
-  const [inputFile] = process.argv.slice(2);
-
+const loadNewTransactions = async ([inputFile]: string[]) => {
   const MIN_STOCK_AMOUNT = 150;
   const MIN_ETF_AMOUNT = 15;
   const ALLOWED_TYPES = ["Open Position", "Position closed"];
@@ -118,7 +45,7 @@ const loadNewTransactions = async () => {
         ALLOWED_ASSET_TYPES.includes(assetType) &&
         ((assetType === "Stocks" && Amount >= MIN_STOCK_AMOUNT) ||
           (assetType === "ETF" && Amount >= MIN_ETF_AMOUNT)) &&
-        !EXCLUDE_TICKERS.includes(Details.substring(0, Details.indexOf("/")))
+        !tickersExcluded.includes(Details.substring(0, Details.indexOf("/")))
       );
     })
     .sort((a, b) => {
@@ -151,14 +78,14 @@ const loadNewTransactions = async () => {
       ).toISOString();
 
       let ticker = details.substring(0, details.indexOf("/"));
-      if (ticker in TICKER_CONVERT) ticker = TICKER_CONVERT[ticker];
+      if (ticker in tickersToConvert) ticker = tickersToConvert[ticker];
       const amount = Number(Amount);
       const units = Number(Units);
       assetType;
 
       if (!securitiesInFile.includes(ticker)) securitiesInFile.push(ticker);
 
-      const sql = `INSERT INTO market_transaction(direction, type, description, execution_timestamp, broker_id, amount, security_id, nb_of_units, strategy_id)
+      return `INSERT INTO market_transaction(direction, type, description, execution_timestamp, broker_id, amount, security_id, nb_of_units, strategy_id)
         SELECT
             'Long' "direction",
             '${type === "Open Position" ? "Buy" : "Sell"}' "type",
@@ -178,9 +105,9 @@ const loadNewTransactions = async () => {
             AND b.name = 'etoro'
             AND s.name = '${ticker}'
             AND st.name = '${
-              ETF_TICKERS.includes(ticker)
+              tickersEtf.includes(ticker)
                 ? "Market Dollar-Cost Averaging"
-                : MAGIC_FORMULA_TICKERS.includes(ticker)
+                : tickersMagicFormula.includes(ticker)
                 ? "Magic Formula"
                 : "The Acquirer''s Multiple"
             }'
@@ -202,7 +129,6 @@ const loadNewTransactions = async () => {
                     AND mt.security_id = s.id
                     AND mt.nb_of_units = ${units}
                     AND mt.strategy_id = st.id);`;
-      return sql;
     });
 
   const outputFile = `./12_market_transaction.sql`;
@@ -241,4 +167,4 @@ const loadNewTransactions = async () => {
   client.end();
 };
 
-loadNewTransactions();
+loadNewTransactions(process.argv.slice(2));
