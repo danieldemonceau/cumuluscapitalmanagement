@@ -7,6 +7,7 @@
     "dotenv",
     "DreamAICaption",
     "gtag",
+    "nextjs",
     "outputsize",
     "psycopg2",
     "recaptcha",

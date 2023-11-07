@@ -38,13 +38,21 @@ yarn-error.log*
 #db
 connect.sh
 start_stop_postgresql.sh
+00_db_setup/**/*
+01_create_role.sql
+
 # sql
 create_db.sql
 create_role.sql
 utils/db/inserts/*.sql
+04_inserts/**/*
+inserts/**/*
 
 # cache folder
 /cache
 
 # zip files
 *.zip
+
+# custom files
+12_market_transaction.sql
