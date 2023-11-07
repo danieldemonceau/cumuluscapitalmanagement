@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS position_market_transaction (
 );
 DROP TABLE IF EXISTS market_transaction_position_history CASCADE;
 CREATE TABLE market_transaction_position_history (LIKE position_market_transaction);
-
 CREATE INDEX IF NOT EXISTS idx_market_transaction_position_id ON position_market_transaction(position_id);
 CREATE INDEX IF NOT EXISTS idx_market_transaction_id ON position_market_transaction(market_transaction_id);

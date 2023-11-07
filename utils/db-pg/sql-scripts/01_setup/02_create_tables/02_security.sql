@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS "security" (
 );
 DROP TABLE IF EXISTS security_history CASCADE;
 CREATE TABLE security_history (LIKE "security");
-
 CREATE INDEX IF NOT EXISTS idx_security_name ON "security"(name);
 CREATE INDEX IF NOT EXISTS idx_security_full_name ON "security"(full_name);
 CREATE INDEX IF NOT EXISTS idx_security_description ON "security"(description);

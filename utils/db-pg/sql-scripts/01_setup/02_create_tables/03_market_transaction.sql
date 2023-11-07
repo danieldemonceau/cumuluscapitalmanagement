@@ -1,8 +1,5 @@
 DROP DOMAIN IF EXISTS domain_market_transaction_direction CASCADE;
-CREATE DOMAIN domain_market_transaction_direction TEXT
-CONSTRAINT constraint_market_transaction_direction_predefined NOT NULL
-CHECK (VALUE IN ('Long', 'Short'));
-
+CREATE DOMAIN domain_market_transaction_direction TEXT CONSTRAINT constraint_market_transaction_direction_predefined NOT NULL CHECK (VALUE IN ('Long', 'Short'));
 DROP TABLE IF EXISTS market_transaction CASCADE;
 CREATE TABLE IF NOT EXISTS market_transaction (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -14,7 +11,6 @@ CREATE TABLE IF NOT EXISTS market_transaction (
 ) INHERITS (transaction_type);
 DROP TABLE IF EXISTS market_transaction_history CASCADE;
 CREATE TABLE market_transaction_history (LIKE market_transaction);
-
 CREATE INDEX IF NOT EXISTS idx_market_transaction_direction ON market_transaction(direction);
 CREATE INDEX IF NOT EXISTS idx_market_transaction_security_id ON market_transaction(security_id);
 CREATE INDEX IF NOT EXISTS idx_market_transaction_price_per_asset ON market_transaction(price_per_asset);

@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS exchange (
 );
 DROP TABLE IF EXISTS exchange_history CASCADE;
 CREATE TABLE exchange_history (LIKE exchange);
-
 CREATE INDEX IF NOT EXISTS idx_exchange_name ON exchange(name);
 CREATE INDEX IF NOT EXISTS idx_exchange_city ON exchange(city);
 CREATE INDEX IF NOT EXISTS idx_exchange_sys_period ON exchange(sys_period);

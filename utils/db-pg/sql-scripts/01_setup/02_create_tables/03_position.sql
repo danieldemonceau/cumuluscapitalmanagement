@@ -1,8 +1,5 @@
 DROP DOMAIN IF EXISTS domain_position_status CASCADE;
-CREATE DOMAIN domain_position_status TEXT
-CONSTRAINT constraint_position_status_predefined NOT NULL
-CHECK (VALUE IN ('Open', 'Closed'));
-
+CREATE DOMAIN domain_position_status TEXT CONSTRAINT constraint_position_status_predefined NOT NULL CHECK (VALUE IN ('Open', 'Closed'));
 DROP TABLE IF EXISTS position CASCADE;
 CREATE TABLE IF NOT EXISTS position (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -16,7 +13,6 @@ CREATE TABLE IF NOT EXISTS position (
 );
 DROP TABLE IF EXISTS position_history CASCADE;
 CREATE TABLE position_history (LIKE position);
-
 CREATE INDEX IF NOT EXISTS idx_position_status ON position(status);
 CREATE INDEX IF NOT EXISTS idx_position_open_timestamp ON position(open_timestamp);
 CREATE INDEX IF NOT EXISTS idx_position_close_timestamp ON position(close_timestamp);

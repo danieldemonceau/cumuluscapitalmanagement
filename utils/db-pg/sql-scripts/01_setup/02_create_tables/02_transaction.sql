@@ -1,8 +1,7 @@
 DROP DOMAIN IF EXISTS domain_transaction_type CASCADE;
-CREATE DOMAIN domain_transaction_type TEXT
-CONSTRAINT constraint_transaction_type_type_predefined NOT NULL
-CHECK (VALUE IN ('Fund Deposit', 'Buy', 'Sell', 'Fund Withdrawal'));
-
+CREATE DOMAIN domain_transaction_type TEXT CONSTRAINT constraint_transaction_type_type_predefined NOT NULL CHECK (
+    VALUE IN ('Fund Deposit', 'Buy', 'Sell', 'Fund Withdrawal')
+);
 DROP TABLE IF EXISTS transaction CASCADE;
 CREATE TABLE IF NOT EXISTS transaction (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -15,7 +14,6 @@ CREATE TABLE IF NOT EXISTS transaction (
 );
 DROP TABLE IF EXISTS transaction_type_history CASCADE;
 CREATE TABLE transaction_type_history (LIKE transaction);
-
 CREATE INDEX IF NOT EXISTS idx_transaction_type_type ON transaction("type");
 CREATE INDEX IF NOT EXISTS idx_transaction_type_description ON transaction(description);
 CREATE INDEX IF NOT EXISTS idx_transaction_type_execution_execution_timestamp ON transaction(execution_timestamp);

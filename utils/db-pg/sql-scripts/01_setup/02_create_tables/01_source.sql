@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS source (
 );
 DROP TABLE IF EXISTS source_history CASCADE;
 CREATE TABLE source_history (LIKE source);
-
 CREATE INDEX IF NOT EXISTS idx_source_name ON source(name);
 CREATE INDEX IF NOT EXISTS idx_source_sys_period ON source(sys_period);

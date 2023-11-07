@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS position_position_group (
 );
 DROP TABLE IF EXISTS position_position_group_history CASCADE;
 CREATE TABLE position_position_group_history (LIKE position_position_group);
-
 CREATE INDEX IF NOT EXISTS idx_position_position_group_position_group_id ON position_position_group(position_group_id);
 CREATE INDEX IF NOT EXISTS idx_position_position_group_position_id ON position_position_group(position_id);
 CREATE INDEX IF NOT EXISTS idx_position_position_group_sys_period ON position_position_group(sys_period);

@@ -5,5 +5,4 @@ CREATE TABLE IF NOT EXISTS stock (
 ) INHERITS ("security");
 DROP TABLE IF EXISTS stock_history CASCADE;
 CREATE TABLE stock_history (LIKE stock);
-
 CREATE INDEX IF NOT EXISTS idx_stock_subindustry_id ON subindustry(id);
