@@ -44,9 +44,9 @@ start_stop_postgresql.sh
 # sql
 create_db.sql
 create_role.sql
-utils/db/inserts/*.sql
+utils/db-pg/sql-scripts/04_inserts/*
+utils/db-pg/sql-scripts/inserts/*
 04_inserts/**/*
-inserts/**/*
 
 # cache folder
 /cache
