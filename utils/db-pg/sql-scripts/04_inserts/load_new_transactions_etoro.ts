@@ -156,14 +156,6 @@ const loadNewTransactions = async ([inputFile]: string[]) => {
   fs.appendFileSync(outputFile, queries.join("\n\n"));
 
   marketTransactionSort(outputFile);
-  // const securityTableExists = await client.query(`SELECT EXISTS (
-  //   SELECT 1
-  //   FROM   pg_catalog.pg_tables
-  //   WHERE  schemaname = 'public'
-  //   AND    tablename  = 'security');`);
-
-  // if (securityTableExists.rows[0].exists) {
-  // }
 
   securitiesInFile
     .filter((security) => !securityNamesInDb.includes(security))
